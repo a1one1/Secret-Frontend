@@ -1,20 +1,35 @@
-import styles from "./Header.module.css";
-import { Link } from "react-router-dom";
+import styles from './Header.module.css';
+import { Link } from 'react-router-dom';
+import Authorization from './authorization/Authorization';
+import Basket from './basket/Basket';
+import logo from '../../../assets/header/logo.svg';
 
 export default function Footer(): JSX.Element {
   return (
     <header>
-      <div className={styles.container}>
-        <div className={styles.logo}>
-          <img alt="dress" />
-          <img alt="nameshop" />
+      <div className={styles.header}>
+        <div className={styles.headerLog}>
+          <img src={logo} alt='dress' />
+          <div>Secret</div>
         </div>
         <nav>
-          <Link to="/">Главная</Link>
-          <Link to="/shop">Магазин</Link>
-          <Link to="/brand">О бренде</Link>
-          <Link to="/contacts">Контакты</Link>
+          <Link to='/'>
+            <p className={styles.pHeader}>Главная</p>
+          </Link>
+          <Link to='/shop'>
+            <p>Магазин</p>
+          </Link>
+          <Link to='/brand'>
+            <p>О бренде</p>
+          </Link>
+          <Link to='/contacts'>
+            <p>Контакты</p>
+          </Link>
         </nav>
+        <div className={styles.authAndBasket}>
+          <Authorization />
+          <Basket />
+        </div>
       </div>
     </header>
   );

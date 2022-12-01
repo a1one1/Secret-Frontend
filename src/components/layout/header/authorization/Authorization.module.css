@@ -1,0 +1,21 @@
+.auth {
+  z-index: 999;
+  display: flex;
+}
+.auth a {
+  font-family: 'Raleway';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 15px;
+  line-height: 140%;
+  /* identical to box height, or 21px */
+
+  letter-spacing: 0.02em;
+
+  color: #000000;
+  z-index: 999;
+
+  text-decoration: none;
+  padding-left: 20px;
+  margin-bottom: 5px;
+}
