@@ -1,0 +1,68 @@
+.collectionH2 {
+  font-weight: 500;
+  font-size: 40px;
+  line-height: 110%;
+  letter-spacing: 0.02em;
+  margin-bottom: 92px;
+}
+.collections {
+  display: flex;
+}
+.collection {
+  margin-left: 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0px;
+  gap: 24px;
+}
+
+.collection:first-child {
+  margin-left: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0px;
+  gap: 24px;
+
+  width: 350px;
+  height: 558px;
+}
+
+.collection div {
+  font-family: 'Raleway';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 140%;
+  letter-spacing: 0.02em;
+}
+
+.collection span {
+  font-family: 'Raleway';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 15px;
+  line-height: 140%;
+  letter-spacing: 0.02em;
+  color: #998e78;
+  margin-bottom: 65px;
+}
+
+.openStore {
+  padding: 22px 50px;
+  display: block;
+  /* margin: auto; */
+  justify-content: center;
+  background-color: transparent;
+  border: 1px solid#6e9c9f;
+  font-family: 'Raleway';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 17px;
+  line-height: 138.9%;
+  text-align: center;
+  letter-spacing: 0.02em;
+  color: #6e9c9f;
+  margin-left: 445px;
+}

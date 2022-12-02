@@ -1,15 +1,13 @@
 a {
   text-decoration: none; /* Отменяем подчеркивание у ссылки */
 }
-
 * {
   font-family: 'Raleway', sans-serif;
-  /* position: relative; */
 }
 
 header {
+  /* font-family: 'Raleway', sans-serif; */
   width: 100%;
-  /* position: absolute; */
   top: 0;
   left: 0;
   margin-bottom: 120px;
