@@ -4,7 +4,7 @@ import collections from '../../../assets/home/collections/christopher-campbell.p
 
 export default function Collections(): JSX.Element {
   return (
-    <>
+    <div className={styles.divCollections}>
       <h2 className={styles.collectionH2}>Новая коллекция</h2>
       <section className={styles.collections}>
         <div className={styles.collection}>
@@ -23,7 +23,8 @@ export default function Collections(): JSX.Element {
           <span>$129</span>
         </div>
       </section>
+      <button className={styles.arrowBtn}>🠒</button>
       <button className={styles.openStore}>Открыть магазин</button>
-    </>
+    </div>
   );
 }

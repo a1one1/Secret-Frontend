@@ -1,0 +1,42 @@
+section h2 {
+  margin-bottom: 80px;
+}
+
+.importantDiv {
+  display: flex;
+  flex-wrap: wrap;
+}
+.important {
+  flex: 1 1 auto;
+  margin: 0 5px;
+}
+
+.important img {
+  width: 60px;
+  height: 63px;
+  margin-bottom: 35px;
+}
+
+.important h3 {
+  font-family: 'Raleway';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 25px;
+  line-height: 140%;
+  letter-spacing: 0.02em;
+
+  margin-bottom: 25px;
+}
+
+.important p {
+  width: 305px;
+  height: 115px;
+  font-family: 'Raleway';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 17px;
+  line-height: 140%;
+  letter-spacing: 0.02em;
+  color: #000000;
+  margin-bottom: 130px;
+}
