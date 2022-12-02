@@ -1,8 +1,8 @@
 import React from 'react';
 import styles from './Important.module.css';
 import quality from '../../../assets/home/important/quality.svg';
-import speed from '../../../assets/home/important/speed.jpg';
-import hand from '../../../assets/home/important/hand.jpg';
+import speed from '../../../assets/home/important/speed.svg';
+import hand from '../../../assets/home/important/hand.svg';
 
 export default function Important(): JSX.Element {
   return (
