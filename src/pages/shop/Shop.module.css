@@ -1,0 +1,50 @@
+.main {
+  width: 1200px;
+  margin: auto;
+}
+
+.shopDiv {
+}
+
+.shopRoutes {
+  display: flex;
+  margin: 0 -5px;
+  margin-bottom: 233px;
+}
+.shopRoutes a {
+  text-decoration: none;
+  font-family: 'Raleway';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 17px;
+  line-height: 140%;
+  /* identical to box height, or 24px */
+
+  letter-spacing: 0.02em;
+
+  color: #000000;
+}
+.line {
+  font-family: 'Raleway';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 17px;
+  line-height: 140%;
+  /* identical to box height, or 24px */
+
+  letter-spacing: 0.02em;
+  margin: 0 7px;
+}
+
+.shopItem {
+  font-family: 'Raleway';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 17px;
+  line-height: 140%;
+  /* identical to box height, or 24px */
+
+  letter-spacing: 0.02em;
+
+  color: #919191;
+}
