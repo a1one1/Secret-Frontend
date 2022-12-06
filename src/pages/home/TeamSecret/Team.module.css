@@ -1,3 +1,6 @@
+* a {
+  text-decoration: none;
+}
 .team {
   position: relative;
   display: flex;
@@ -11,29 +14,11 @@
   letter-spacing: 0.02em;
   margin-bottom: 90px;
 }
-
-.teamDiv {
-  position: relative;
-}
-
-.teamDiv img {
+.carouselDiv {
+  height: 488px;
+  width: 729px;
   margin-right: 125px;
-}
-.lineDiv {
-  z-index: 5;
-  position: absolute;
-  top: 400px;
-  left: 300px;
-}
-
-.lineDiv button {
-  cursor: pointer;
-  padding: 3px;
-  border: none;
-  margin-right: 12px;
-  width: 30px;
-  height: 6px;
-  background: #d1d1d1;
+  margin-bottom: 130px;
 }
 
 .arrowLeft {
@@ -56,8 +41,7 @@
   border: none;
   font-size: 40px;
 }
-.everyBrand {
-}
+
 .everyBrand div {
   margin-top: 280px;
   justify-content: center;
@@ -86,4 +70,38 @@
   font-size: 17px;
   line-height: 140%;
   letter-spacing: 0.02em;
+}
+
+.BrandLink {
+  font-family: 'Raleway';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 17px;
+  line-height: 140%;
+  /* identical to box height, or 24px */
+
+  letter-spacing: 0.02em;
+
+  /* CTA */
+
+  color: #6e9c9f;
+  text-decoration: none;
+}
+
+.BrandLink:hover{
+ font-family: 'Raleway';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 17px;
+  line-height: 140%;
+  /* identical to box height, or 24px */
+
+  letter-spacing: 0.02em;
+
+  /* CTA */
+
+  color: #6e9c9f;
+  text-decoration: none;
+
+  opacity: 0.75;
 }

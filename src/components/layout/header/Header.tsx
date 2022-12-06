@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import Authorization from './authorization/Authorization';
 import Basket from './basket/Basket';
 import logo from '../../../assets/header/logo.svg';
+import { NavLink } from 'react-router-dom';
 
 export default function Footer(): JSX.Element {
   return (
@@ -13,18 +14,30 @@ export default function Footer(): JSX.Element {
           <div>Secret</div>
         </div>
         <nav>
-          <Link to='/'>
+          <NavLink
+            to='/'
+            className={({ isActive }) => (isActive ? styles.activeLink : '')}
+          >
             <p className={styles.pHeader}>Главная</p>
-          </Link>
-          <Link to='/shop'>
+          </NavLink>
+          <NavLink
+            className={({ isActive }) => (isActive ? styles.activeLink : '')}
+            to='/shop'
+          >
             <p>Магазин</p>
-          </Link>
-          <Link to='/brand'>
+          </NavLink>
+          <NavLink
+            className={({ isActive }) => (isActive ? styles.activeLink : '')}
+            to='/brand'
+          >
             <p>О бренде</p>
-          </Link>
-          <Link to='/contacts'>
+          </NavLink>
+          <NavLink
+            className={({ isActive }) => (isActive ? styles.activeLink : '')}
+            to='/contacts'
+          >
             <p>Контакты</p>
-          </Link>
+          </NavLink>
         </nav>
         <div className={styles.authAndBasket}>
           <Authorization />

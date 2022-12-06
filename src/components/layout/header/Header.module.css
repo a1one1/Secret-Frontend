@@ -85,3 +85,8 @@ nav a {
   justify-content: space-between;
   display: flex;
 }
+
+.activeLink p{
+  color: #6e9c9f;
+  cursor: default;
+}

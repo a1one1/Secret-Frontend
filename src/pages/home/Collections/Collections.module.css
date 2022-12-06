@@ -41,19 +41,31 @@
   height: 558px;
 }
 
-.collection:last-child:after {
-  content: '';
-  background: rgba(110, 156, 159, 0.64);
-  display: block;
+.collectionDiv {
+  position: relative;
+}
+.collectionDiv:hover:after {
+  content: '→';
+  background: url('../../../assets/home/collections/arrow.svg');
+  display: table-cell;
+  /* vertical-align: middle; */
+  line-height: 430px;
+  font-size: 45px;
+  color: rgb(224, 220, 220);
+  text-align: center;
+  /* background: rgba(110, 156, 159, 0.64); */
+  background: rgba(135, 190, 194, 0.64);
   position: absolute;
   width: 350px;
   height: 478px;
   top: 0;
-  left: 0;
-  z-index: 1;
+  /* z-index: 1; */
+
+  transition: 0.6s;
 }
 
-.collection div {
+.collection h4 {
+  margin: 0px;
   font-family: 'Raleway';
   font-style: normal;
   font-weight: 500;
@@ -93,11 +105,22 @@
   z-index: 40;
 }
 
-.openStore {
-  padding: 22px 50px;
+/* .arrowBtn img:hover {
+  filter: alpha (Opacity=25);
+  opacity: 0.25;
+  transform: none;
+} */
+.linkStore {
   display: block;
-  justify-content: center;
+  width: 268px;
+  height: 70px;
+  margin-left: 425px;
+  margin-bottom: 120px;
+
   background-color: transparent;
+}
+.linkStore button {
+  padding: 13px 100px;
   border: 1px solid#6e9c9f;
   font-family: 'Raleway';
   font-style: normal;
@@ -107,7 +130,21 @@
   text-align: center;
   letter-spacing: 0.02em;
   color: #6e9c9f;
-  margin-left: 445px;
-  margin-bottom: 120px;
   cursor: pointer;
+  background-color: transparent;
+}
+
+.linkStore button:hover {
+  padding: 13px 100px;
+
+  border: 1px solid#6e9c9f;
+  font-weight: 400;
+  font-size: 17px;
+  line-height: 138.9%;
+  text-align: center;
+  letter-spacing: 0.02em;
+  color: white;
+  background: #509498;
+  cursor: pointer;
+  transition: 0.3s;
 }

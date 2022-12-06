@@ -5,6 +5,9 @@ import modelSecond from '../../../assets/home/receipts/model-second.svg';
 import modelThird from '../../../assets/home/receipts/model-third.svg';
 import backgraund from '../../../assets/home/receipts/backgraund.jpg';
 
+import Collections from '../Collections/Collections';
+import { Link } from 'react-router-dom';
+
 export default function Receipts(): JSX.Element {
   return (
     <section className={styles.sectionReceipts}>
@@ -22,7 +25,9 @@ export default function Receipts(): JSX.Element {
         </p>
         <div className={styles.storeBtn}>
           <button className={styles.arrowBtn}>↓</button>
-          <button className={styles.openBtn}>Открыть магазин</button>
+          <Link to={'/shop'}>
+            <button className={styles.openBtn}>Открыть магазин</button>
+          </Link>
         </div>
         <div className={styles.swapBtn}>
           <button></button>
