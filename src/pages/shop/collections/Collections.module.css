@@ -1,0 +1,99 @@
+.collectionH2 {
+  font-weight: 500;
+  font-size: 40px;
+  line-height: 110%;
+  letter-spacing: 0.02em;
+  margin-bottom: 92px;
+}
+.collections {
+  display: flex;
+}
+
+.collectionsShop {
+  display: flex;
+}
+.collection {
+  margin-left: 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0px;
+  gap: 24px;
+}
+
+.collection:first-child {
+  margin-left: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0px;
+  gap: 24px;
+
+  width: 350px;
+  height: 558px;
+}
+.collection:last-child {
+  position: relative;
+  margin-left: 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0px;
+  gap: 24px;
+
+  width: 350px;
+  height: 558px;
+}
+
+.collectionDiv {
+  position: relative;
+}
+.collectionDiv:hover:after {
+  content: '→';
+  background: url('../../../assets/home/collections/arrow.svg');
+  display: table-cell;
+  /* vertical-align: middle; */
+  line-height: 430px;
+  font-size: 45px;
+  color: rgb(224, 220, 220);
+  text-align: center;
+  /* background: rgba(110, 156, 159, 0.64); */
+  background: rgba(135, 190, 194, 0.64);
+  position: absolute;
+  width: 350px;
+  height: 478px;
+  top: 0;
+  /* z-index: 1; */
+
+  transition: 0.6s;
+}
+
+.collection h4 {
+  margin: 0px;
+  font-family: 'Raleway';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 140%;
+  letter-spacing: 0.02em;
+}
+
+.divCollections {
+  position: relative;
+}
+
+.arrowBtn {
+  cursor: pointer;
+  padding: 15px;
+  font-size: 55px;
+  width: 31px;
+  height: 22px;
+
+  color: white;
+  border: none;
+  background-color: transparent;
+  position: absolute;
+  top: 310px;
+  right: 260px;
+  z-index: 40;
+}

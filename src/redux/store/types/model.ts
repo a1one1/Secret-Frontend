@@ -21,7 +21,7 @@ interface FetchModelsSuccessAction {
 }
 interface FetchModelsErrorAction {
   type: modelsActionTypes.FETCH_MODELS_ERROR;
-  payload: '';
+  payload: string;
 }
 export type modelAction =
   | FetchModelsAction
