@@ -7,6 +7,7 @@ import { fetchModels } from '../../redux/store/action-creators/model';
 import styles from './Shop.module.css';
 
 import Collections from './collections/Collections';
+import Categories from './categories/Categories';
 
 export default function Shop(): JSX.Element {
   return (
@@ -19,9 +20,12 @@ export default function Shop(): JSX.Element {
           <div className={styles.line}>—</div>
           <div className={styles.shopItem}>Магазин</div>
         </div>
-        <div>
+        <section>
+          <Categories/>
+        </section>
+        <section>
           <Collections />
-        </div>
+        </section>
       </div>
     </main>
   );

@@ -6,7 +6,6 @@ export const fetchModels = () => {
     try {
       dispatch({ type: modelsActionTypes.FETCH_MODELS });
       const response = await axios.get('http://localhost:3000/clothes');
-      console.log(response);
 
       dispatch({
         type: modelsActionTypes.FETCH_MODELS_SUCCESS,

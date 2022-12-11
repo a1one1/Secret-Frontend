@@ -5,6 +5,7 @@ import instagram from '../../../assets/footer/instagram (1) 1.svg';
 import facebook from '../../../assets/footer/facebook (1) 1.svg';
 import twitter from '../../../assets/footer/twitter (1) 1.svg';
 import visa from '../../../assets/footer/visa-mastercard.svg';
+import { NavLink } from 'react-router-dom';
 
 export default function Footer(): JSX.Element {
   return (
@@ -21,18 +22,30 @@ export default function Footer(): JSX.Element {
         </div>
         <div className={styles.footerNav}>
           <nav>
-            <Link to='/'>
+            <NavLink
+              to='/'
+              className={({ isActive }) => (isActive ? styles.activeLink : '')}
+            >
               <p className={styles.pFooter}>Главная</p>
-            </Link>
-            <Link to='/shop'>
+            </NavLink>
+            <NavLink
+              className={({ isActive }) => (isActive ? styles.activeLink : '')}
+              to='/shop'
+            >
               <p>Магазин</p>
-            </Link>
-            <Link to='/brand'>
+            </NavLink>
+            <NavLink
+              className={({ isActive }) => (isActive ? styles.activeLink : '')}
+              to='/brand'
+            >
               <p>О бренде</p>
-            </Link>
-            <Link to='/contacts'>
+            </NavLink>
+            <NavLink
+              className={({ isActive }) => (isActive ? styles.activeLink : '')}
+              to='/contacts'
+            >
               <p>Контакты</p>
-            </Link>
+            </NavLink>
           </nav>
         </div>
         <div className={styles.footerInfo}>
