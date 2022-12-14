@@ -1,6 +1,8 @@
 import { Dispatch } from 'redux';
 import { modelsActionTypes, modelAction } from './../types/model';
 import axios from 'axios';
+
+
 export const fetchModels = () => {
   return async (dispatch: Dispatch<modelAction>) => {
     try {

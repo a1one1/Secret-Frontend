@@ -1,5 +1,7 @@
+import { iModels } from './Imodels';
+
 export interface IModelState {
-  models: any[];
+  models: iModels[];
   loading: boolean;
   error: null | string;
 }
@@ -17,7 +19,7 @@ interface FetchModelsAction {
 }
 interface FetchModelsSuccessAction {
   type: modelsActionTypes.FETCH_MODELS_SUCCESS;
-  payload: any[];
+  payload: iModels[];
 }
 interface FetchModelsErrorAction {
   type: modelsActionTypes.FETCH_MODELS_ERROR;
