@@ -37,7 +37,7 @@
 }
 
 .collectionDiv:hover:after {
-  content: '→';
+  /* content: '→'; */
   background: url('../../../assets/home/collections/arrow.svg');
   display: table-cell;
   /* vertical-align: middle; */
@@ -46,7 +46,7 @@
   color: rgb(224, 220, 220);
   text-align: center;
   /* background: rgba(110, 156, 159, 0.64); */
-  background: rgba(135, 190, 194, 0.64);
+  /* background: rgba(135, 190, 194, 0.64); */
   position: absolute;
   width: 350px;
   height: 478px;

@@ -1,6 +1,6 @@
 import React from 'react';
 import nextPage from '../../../../assets/shop/Vector 1 (2).svg';
-import styles from './pagination.module.css';
+import styles from './Pagination.module.css';
 
 interface IPogination {
   modelsPerPage: number;

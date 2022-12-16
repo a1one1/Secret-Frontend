@@ -1,4 +1,4 @@
-export interface iModels {
+export interface IModels {
   colors: {
     white?: {
       size: {

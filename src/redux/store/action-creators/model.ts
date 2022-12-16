@@ -7,6 +7,7 @@ export const fetchModels = () => {
   return async (dispatch: Dispatch<modelAction>) => {
     try {
       dispatch({ type: modelsActionTypes.FETCH_MODELS });
+      
       const response = await axios.get('http://localhost:3000/clothes');
 
       dispatch({

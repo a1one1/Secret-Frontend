@@ -1,29 +1,37 @@
 import React, { useEffect, useState } from 'react';
 import useActions from '../../../redux/hooks/useActions';
 import { useTypedSelector } from '../../../redux/hooks/useTypedSelector';
-import { iModels } from '../../../redux/store/types/Imodels';
+import { IModels } from '../../../redux/store/types/Imodels';
 import styles from './Collections.module.css';
-import Pogination from './pagination/Pagination';
+import Pagination from './Pagination/Pagination';
 
 interface CollectionsProps {
-  modelSt: iModels[];
-  setModelSt: (value: iModels[]) => void;
+  modelSt: IModels[];
+  setModelSt: (value: IModels[]) => void;
+  models: IModels[];
 }
 
-export default function Collections(props: CollectionsProps): JSX.Element {
-  const { error, loading, models } = useTypedSelector(state => state.model);
+export default function Collections({
+  models,
+  modelSt,
+  setModelSt,
+}: CollectionsProps): JSX.Element {
   const { fetchModels } = useActions();
   const [currentPage, setCurrentPage] = useState(1);
   const [modelsPerPage] = useState(9);
+  const [shop, setShop] = useState({});
+
+  function handleModel(model: IModels) {
+    localStorage.setItem('model', JSON.stringify(model));
+  }
 
   useEffect(() => {
     fetchModels();
-    props.setModelSt([...models]);
   }, []);
 
   const lastModelsIndex = currentPage * modelsPerPage;
   const firstModelsIndex = lastModelsIndex - modelsPerPage;
-  let currentModels = props.modelSt.slice(firstModelsIndex, lastModelsIndex);
+  let currentModels = modelSt.slice(firstModelsIndex, lastModelsIndex);
 
   function paginate(pageNumber: number) {
     return setCurrentPage(pageNumber);
@@ -41,15 +49,21 @@ export default function Collections(props: CollectionsProps): JSX.Element {
     <div>
       <div className={styles.showCollections}>
         <p>
-          {props.modelSt.length < 9
-            ? ` Показано: ${props.modelSt.length} товар`
-            : ` Показано: 9 из ${props.modelSt.length} товаров`}
+          {modelSt.length < 9
+            ? ` Показано: ${modelSt.length} товар`
+            : ` Показано: 9 из ${modelSt.length} товаров`}
         </p>
       </div>
       <div className={styles.collectionsShop}>
         {currentModels.map(item => {
           return (
-            <div key={item._id} className={styles.collection}>
+            <div
+              onClick={() => {
+                handleModel(item);
+              }}
+              key={item._id}
+              className={styles.collection}
+            >
               <div className={styles.collectionDiv}>
                 <img src={item.modelImg} alt='' />
               </div>
@@ -61,13 +75,13 @@ export default function Collections(props: CollectionsProps): JSX.Element {
       </div>
       <div className={styles.showCollections}>
         <p>
-          {props.modelSt.length < 9
+          {modelSt.length < 9
             ? ''
-            : ` Показано: 9 из ${props.modelSt.length} товаров`}
+            : ` Показано: 9 из ${modelSt.length} товаров`}
         </p>
       </div>
-      {props.modelSt.length > 9 ? (
-        <Pogination
+      {modelSt.length > 9 ? (
+        <Pagination
           nextPage={nextPage}
           paginate={paginate}
           modelsPerPage={modelsPerPage}

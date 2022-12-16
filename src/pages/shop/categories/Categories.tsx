@@ -8,9 +8,9 @@ interface CategoriesProps {
   setModelSt: (value: iModels[]) => void;
 }
 
-export default function Categories(props: CategoriesProps) {
+export default function Categories({ modelSt, setModelSt }: CategoriesProps) {
   const { error, loading, models } = useTypedSelector(state => state.model);
-  const [categories, setCategories] = useState<any[]>([]);
+  const [categories, setCategories] = useState<any>([]);
   const [categoriesId, setCategoriesId] = useState(0);
 
   async function fetchCategories() {
@@ -23,14 +23,16 @@ export default function Categories(props: CategoriesProps) {
     fetchCategories();
   }, []);
 
-  function handleCategoriesId(i: number, categoriesName: any) {
+  function handleCategoriesId(index: number, categoriesName: any) {
     if (categoriesName === 'Все') {
-      props.setModelSt([...models]);
+      setModelSt([...models]);
       return;
     }
-    setCategoriesId(i);
-    props.setModelSt(
-      models.filter((item, index) => item.categoriesId.name === categoriesName)
+
+    setCategoriesId(index);
+
+    setModelSt(
+      models.filter(item => item.categoriesId.name === categoriesName)
     );
   }
 
@@ -50,13 +52,13 @@ export default function Categories(props: CategoriesProps) {
             Все
           </button>
         </li>
-        {categories.map((item, i) => {
+        {categories.map((item, index) => {
           return (
-            <li key={i}>
+            <li key={item._id}>
               <button
-                onClick={() => handleCategoriesId(i + 1, item.name)}
+                onClick={() => handleCategoriesId(index + 1, item.name)}
                 className={
-                  categoriesId == i + 1
+                  categoriesId == index + 1
                     ? styles.categoriesBtnACT
                     : styles.categoriesBtn
                 }
