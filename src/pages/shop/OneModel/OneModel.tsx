@@ -1,53 +1,18 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { IModels } from '../../../redux/store/types/Imodels';
 import styles from './OneModel.module.css';
 interface IModel {
   colors: [
     {
       color: String;
       img: String;
-      size: {
-        XS: Number;
-        S: Number;
-        M: Number;
-        L: Number;
-        XL: Number;
-      };
+      sizesModel: [
+        {
+          size: String;
+          rest: Number;
+        }
+      ];
     }
-    //   {
-    //     black?: String;
-    //     img: String;
-    //     size: {
-    //       XS: Number;
-    //       S: Number;
-    //       M: Number;
-    //       L: Number;
-    //       XL: Number;
-    //     };
-    //   },
-    //   {
-    //     blue?: String;
-    //     img: String;
-    //     size: {
-    //       XS: Number;
-    //       S: Number;
-    //       M: Number;
-    //       L: Number;
-    //       XL: Number;
-    //     };
-    //   },
-    //   {
-    //     white?: String;
-    //     img: String;
-    //     size: {
-    //       XS: Number;
-    //       S: Number;
-    //       M: Number;
-    //       L: Number;
-    //       XL: Number;
-    //     };
-    //   }
   ];
   _id: string;
   name: string;
@@ -63,19 +28,27 @@ interface IModel {
 
 export default function OneModel() {
   const [oneModel, setOneModel] = useState<IModel>();
+  const [indexModel, setIndexModel] = useState<any>(0);
+  const [indexSize, setIndexSize] = useState<any>(0);
+  const [modelInput, setModelInput] = useState<String>('');
 
-  function handleClick() {
-    console.log(oneModel?.colors.map((item: any) => console.log(item.color)));
-  }
   useEffect(() => {
     const modelParse = localStorage.getItem('model');
 
     setOneModel(JSON.parse(modelParse!));
   }, []);
 
+  function handleModel(index: number) {
+    setIndexModel(index);
+  }
+  function handleSize(index: number) {
+    setIndexSize(index);
+  }
+  
+
   return (
     <section className={styles.OneModel}>
-      <h3 onClick={handleClick}>{oneModel?.name}</h3>
+      <h3>{oneModel?.name}</h3>
       <div className={styles.shopRoutes}>
         <Link to={'/'}>Главная</Link>
         <div className={styles.line}>—</div>
@@ -89,7 +62,7 @@ export default function OneModel() {
       </div>
       <div className={styles.oneModelDiv}>
         <div className={styles.imgOneModel}>
-          <img src={oneModel?.modelImg} alt='' />
+          <img src={oneModel?.colors[indexModel].img.toString()} alt='' />
         </div>
         <div className={styles.oneModelBody}>
           <div className={styles.oneModelPrice}>
@@ -97,22 +70,49 @@ export default function OneModel() {
           </div>
           <div className={styles.oneModelSize}>
             <p>Выберите размер</p>
-            <button className={styles.sizeBtn}>1</button>
+            <div>
+              {oneModel?.colors[indexModel].sizesModel.map(
+                (sizeModel, index) => {
+                  return (
+                    <button
+                      onClick={() => {
+                        handleSize(index);
+                      }}
+                      className={
+                        index == indexSize ? styles.sizeBtnAct : styles.sizeBtn
+                      }
+                    >
+                      {sizeModel.size}
+                    </button>
+                  );
+                }
+              )}
+            </div>
           </div>
           <div className={styles.oneModelColor}>
             <p>Выберите цвет</p>
-            {oneModel?.colors.map(item => (
-              <div
-                style={{
-                  background: item.color.toString(),
-                  width: '100px',
-                }}
-              ></div>
-            ))}
+            <div>
+              {oneModel?.colors.map((item, index) => (
+                <button
+                  onClick={() => {
+                    handleModel(index);
+                  }}
+                  style={{
+                    background: item.color.toString(),
+                    border: index === indexModel ? '1px solid #000' : 'none',
+                  }}
+                ></button>
+              ))}
+            </div>
           </div>
           <div className={styles.addBasket}>
-                <input type="number" />
-                <button>Добавить в корзину</button>
+            <input
+              onChange={e => {
+                setModelInput(e.target.value);
+              }}
+              type='number'
+            />
+            <button>Добавить в корзину</button>
           </div>
         </div>
       </div>

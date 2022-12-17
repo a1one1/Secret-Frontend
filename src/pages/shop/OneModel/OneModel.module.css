@@ -76,8 +76,47 @@
   display: flex;
   flex-direction: column;
 }
+.oneModelPrice {
+  margin-bottom: 60px;
+}
 
+.oneModelSize {
+  margin-bottom: 60px;
+}
+.oneModelSize p {
+  font-family: 'Raleway';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 140%;
+  letter-spacing: 0.02em;
+  margin-bottom: 35px;
+}
+
+.oneModelColor {
+  margin-bottom: 60px;
+}
+.oneModelColor p {
+  font-family: 'Raleway';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 140%;
+  letter-spacing: 0.02em;
+  margin-bottom: 34px;
+}
+.oneModelColor div {
+  display: flex;
+}
+.oneModelColor button {
+  margin-right: 15px;
+  border: 1px;
+  border-radius: 50%;
+  width: 41px;
+  height: 41px;
+}
 .sizeBtn {
+  margin-right: 15px;
   border: 1px solid black;
   width: 41px;
   height: 41px;
@@ -87,9 +126,41 @@
   font-weight: 500;
   font-size: 17px;
   line-height: 140%;
-  /* identical to box height, or 24px */
-
+  letter-spacing: 0.02em;
+}
+.sizeBtnAct {
+  margin-right: 15px;
+  width: 41px;
+  height: 41px;
+  background-color: black;
+  color: white;
+  font-family: 'Raleway';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 17px;
+  line-height: 140%;
   letter-spacing: 0.02em;
 }
 
+.addBasket button {
+  align-items: center;
+  padding: 22px 50px;
+  color: white;
+  width: 268px;
+  height: 68px;
+  border: none;
+  background: #6e9c9f;
+}
 
+.addBasket input {
+  align-items: center;
+  width: 68px;
+  height: 68px;
+  padding: 25px;
+
+  border: 1px solid #afafaf;
+}
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
