@@ -1,16 +1,23 @@
 import axios from 'axios';
 import React, { Dispatch, SetStateAction, useEffect, useState } from 'react';
 import { useTypedSelector } from '../../../redux/hooks/useTypedSelector';
-import { iModels } from '../../../redux/store/types/Imodels';
+import { IModels } from '../../../redux/store/types/Imodels';
 import styles from './Categories.module.css';
 interface CategoriesProps {
-  modelSt: iModels[];
-  setModelSt: (value: iModels[]) => void;
+  modelSt: IModels[];
+  setModelSt: (value: IModels[]) => void;
+  currentPage: number;
+  setCurrentPage: (value: number) => void;
 }
 
-export default function Categories({ modelSt, setModelSt }: CategoriesProps) {
+export default function Categories({
+  currentPage,
+  setCurrentPage,
+  modelSt,
+  setModelSt,
+}: CategoriesProps) {
   const { error, loading, models } = useTypedSelector(state => state.model);
-  const [categories, setCategories] = useState<any>([]);
+  const [categories, setCategories] = useState<any[]>([]);
   const [categoriesId, setCategoriesId] = useState(0);
 
   async function fetchCategories() {
@@ -24,6 +31,7 @@ export default function Categories({ modelSt, setModelSt }: CategoriesProps) {
   }, []);
 
   function handleCategoriesId(index: number, categoriesName: any) {
+    setCurrentPage(1);
     if (categoriesName === 'Все') {
       setModelSt([...models]);
       return;

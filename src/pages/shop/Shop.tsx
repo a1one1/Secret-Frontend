@@ -1,14 +1,17 @@
 import { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, Route, Routes } from 'react-router-dom';
 import { useTypedSelector } from '../../redux/hooks/useTypedSelector';
 import styles from './Shop.module.css';
-import Collections from './collections/Collections';
-import Categories from './categories/Categories';
+import Collections from './CollectionsShop/CollectionsShop';
+import Categories from './Categories/Categories';
 import { IModels } from '../../redux/store/types/Imodels';
+import OneModel from './OneModel/OneModel';
 
 export default function Shop(): JSX.Element {
   const { error, loading, models } = useTypedSelector(state => state.model);
   const [modelSt, setModelSt] = useState<IModels[]>([]);
+   const [currentPage, setCurrentPage] = useState(1);
+   const [modelsPerPage] = useState(9);
 
   useEffect(() => {
     fetch('http://localhost:3000/clothes')
@@ -28,10 +31,18 @@ export default function Shop(): JSX.Element {
           <div className={styles.shopItem}>Магазин</div>
         </div>
         <section>
-          <Categories modelSt={modelSt} setModelSt={setModelSt} />
+          <Categories
+            currentPage={currentPage}
+            setCurrentPage={setCurrentPage}
+            modelSt={modelSt}
+            setModelSt={setModelSt}
+          />
         </section>
         <section>
           <Collections
+            currentPage={currentPage}
+            setCurrentPage={setCurrentPage}
+            modelsPerPage={modelsPerPage}
             models={models}
             modelSt={modelSt}
             setModelSt={setModelSt}

@@ -1,25 +1,34 @@
 import React, { useEffect, useState } from 'react';
+import { NavLink, Route, Routes } from 'react-router-dom';
 import useActions from '../../../redux/hooks/useActions';
 import { useTypedSelector } from '../../../redux/hooks/useTypedSelector';
 import { IModels } from '../../../redux/store/types/Imodels';
-import styles from './Collections.module.css';
+import OneModel from '../OneModel/OneModel';
+import styles from './CollectionsShop.module.css';
 import Pagination from './Pagination/Pagination';
 
 interface CollectionsProps {
   modelSt: IModels[];
   setModelSt: (value: IModels[]) => void;
   models: IModels[];
+  currentPage: number;
+  setCurrentPage: (value: any) => void;
+  modelsPerPage: number;
 }
 
 export default function Collections({
+  modelsPerPage,
+  currentPage,
+  setCurrentPage,
   models,
   modelSt,
-  setModelSt,
 }: CollectionsProps): JSX.Element {
+  const { error, loading } = useTypedSelector(state => state.model);
   const { fetchModels } = useActions();
-  const [currentPage, setCurrentPage] = useState(1);
-  const [modelsPerPage] = useState(9);
   const [shop, setShop] = useState({});
+
+  if (error) {
+  }
 
   function handleModel(model: IModels) {
     localStorage.setItem('model', JSON.stringify(model));
@@ -41,7 +50,7 @@ export default function Collections({
     const currentPages = Math.ceil(models.length / modelsPerPage) - 1;
 
     if (currentPages > currentPage) {
-      return setCurrentPage(prev => prev + 1);
+      return setCurrentPage((prev: number) => prev + 1);
     }
   };
 
@@ -49,9 +58,14 @@ export default function Collections({
     <div>
       <div className={styles.showCollections}>
         <p>
-          {modelSt.length < 9
-            ? ` Показано: ${modelSt.length} товар`
-            : ` Показано: 9 из ${modelSt.length} товаров`}
+          {modelSt.length == 1 ? ` Показан: ${modelSt.length} товар` : null}
+          {modelSt.length == 2 ? ` Показано: ${modelSt.length} товара` : null}
+          {modelSt.length == 3 ? ` Показано: ${modelSt.length} товара` : null}
+          {modelSt.length == 4 ? ` Показано: ${modelSt.length} товара` : null}
+          {/* {modelSt.length >= 5 ? ` Показано: ${modelSt.length} товаров` : null} */}
+          {modelSt.length > 9
+            ? ` Показано: 9 из ${modelSt.length} товаров`
+            : null}
         </p>
       </div>
       <div className={styles.collectionsShop}>
@@ -65,8 +79,11 @@ export default function Collections({
               className={styles.collection}
             >
               <div className={styles.collectionDiv}>
-                <img src={item.modelImg} alt='' />
+                <NavLink to={'/OneModel'}>
+                  <img src={item.modelImg} alt='' />
+                </NavLink>
               </div>
+
               <h4>{item.name}</h4>
               <span className={`bg-blue`}>$129</span>
             </div>

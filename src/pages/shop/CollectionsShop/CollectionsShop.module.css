@@ -35,7 +35,9 @@
   width: 370px;
   height: 450px;
 }
-
+.collectionDiv a {
+  cursor: default;
+}
 .collectionDiv:hover:after {
   /* content: '→'; */
   background: url('../../../assets/home/collections/arrow.svg');
