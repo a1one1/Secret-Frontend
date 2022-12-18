@@ -31,20 +31,43 @@ export default function OneModel() {
   const [indexModel, setIndexModel] = useState<any>(0);
   const [indexSize, setIndexSize] = useState<any>(0);
   const [modelInput, setModelInput] = useState<String>('');
+  const [modelAddBasket, setModelAddBasket] = useState<any>('');
+  const [restSize, setRestSize] = useState<String>('');
+  let colorBlack: string;
 
   useEffect(() => {
     const modelParse = localStorage.getItem('model');
-
     setOneModel(JSON.parse(modelParse!));
   }, []);
 
-  function handleModel(index: number) {
+  function handleModel(model: any, index: number) {
+    console.log(model);
+
+    if (model.color == '#000000') {
+      colorBlack = '1px solid white';
+    }
+
+    setRestSize('');
+    setIndexSize(0);
+    setModelAddBasket({
+      ...modelAddBasket,
+      modelName: oneModel?.name,
+      color: model.color,
+    });
+
     setIndexModel(index);
   }
-  function handleSize(index: number) {
-    setIndexSize(index);
+
+  function handleSize(sizeModel: any, index: number) {
+    if (modelAddBasket.color) {
+      setRestSize(`Остаток на складе: ${sizeModel.rest}`);
+    }
+    setModelAddBasket({
+      ...modelAddBasket,
+      size: sizeModel,
+    });
+    setIndexSize(index + 1);
   }
-  
 
   return (
     <section className={styles.OneModel}>
@@ -68,6 +91,22 @@ export default function OneModel() {
           <div className={styles.oneModelPrice}>
             {oneModel?.price.toString()}
           </div>
+          <div className={styles.oneModelColor}>
+            <p>Выберите цвет</p>
+            <div>
+              {oneModel?.colors.map((model, index) => (
+                <button
+                  onClick={() => {
+                    handleModel(model, index);
+                  }}
+                  style={{
+                    background: model.color.toString(),
+                    border: index === indexModel ? '1px solid black' : 'none',
+                  }}
+                ></button>
+              ))}
+            </div>
+          </div>
           <div className={styles.oneModelSize}>
             <p>Выберите размер</p>
             <div>
@@ -76,10 +115,12 @@ export default function OneModel() {
                   return (
                     <button
                       onClick={() => {
-                        handleSize(index);
+                        modelAddBasket.color && handleSize(sizeModel, index);
                       }}
                       className={
-                        index == indexSize ? styles.sizeBtnAct : styles.sizeBtn
+                        index + 1 == indexSize
+                          ? styles.sizeBtnAct
+                          : styles.sizeBtn
                       }
                     >
                       {sizeModel.size}
@@ -89,30 +130,24 @@ export default function OneModel() {
               )}
             </div>
           </div>
-          <div className={styles.oneModelColor}>
-            <p>Выберите цвет</p>
-            <div>
-              {oneModel?.colors.map((item, index) => (
-                <button
-                  onClick={() => {
-                    handleModel(index);
-                  }}
-                  style={{
-                    background: item.color.toString(),
-                    border: index === indexModel ? '1px solid #000' : 'none',
-                  }}
-                ></button>
-              ))}
-            </div>
-          </div>
+
           <div className={styles.addBasket}>
-            <input
-              onChange={e => {
-                setModelInput(e.target.value);
-              }}
-              type='number'
-            />
-            <button>Добавить в корзину</button>
+            <div>
+              <input
+                min='0'
+                max='10'
+                onChange={e => {
+                  setModelInput(e.target.value);
+                }}
+                type='number'
+              />
+            </div>
+            <div>
+              <button>Добавить в корзину</button>
+            </div>{' '}
+          </div>
+          <div className={styles.modelRest}>
+            <p>{restSize}</p>
           </div>
         </div>
       </div>
