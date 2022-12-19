@@ -68,10 +68,11 @@
 }
 .imgOneModel img {
   max-width: 100%;
-  max-height: 100%;
+  /* max-height: 100%; */
 }
 
 .oneModelBody {
+  height: 500px;
   margin-left: 75px;
   display: flex;
   flex-direction: column;
@@ -110,10 +111,12 @@
 }
 .oneModelColor button {
   margin-right: 15px;
-  border: 1px;
   border-radius: 50%;
   width: 41px;
   height: 41px;
+}
+.oneModelColor button:hover {
+  opacity: 0.83;
 }
 .sizeBtn {
   margin-right: 15px;
@@ -142,7 +145,20 @@
   font-size: 17px;
   line-height: 140%;
   letter-spacing: 0.02em;
+  transition: 1s;
 }
+.sizeBtn:hover {
+  color: white;
+  background-color: #000000;
+  opacity: 0.63;
+  transition: 0.5s;
+}
+.sizeBtn:not(:hover) {
+  background-color: transparent;
+
+  transition: 0.5s;
+}
+
 .addBasket {
   display: flex;
 }

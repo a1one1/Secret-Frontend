@@ -1,3 +1,4 @@
+import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import styles from './OneModel.module.css';
@@ -33,20 +34,21 @@ export default function OneModel() {
   const [modelInput, setModelInput] = useState<String>('');
   const [modelAddBasket, setModelAddBasket] = useState<any>('');
   const [restSize, setRestSize] = useState<String>('');
-  let colorBlack: string;
 
   useEffect(() => {
     const modelParse = localStorage.getItem('model');
     setOneModel(JSON.parse(modelParse!));
   }, []);
 
+  useEffect(() => {
+    setModelAddBasket({
+      ...modelAddBasket,
+      modelName: oneModel?.name,
+      color: oneModel?.colors[0].color,
+    });
+  }, [oneModel]);
+
   function handleModel(model: any, index: number) {
-    console.log(model);
-
-    if (model.color == '#000000') {
-      colorBlack = '1px solid white';
-    }
-
     setRestSize('');
     setIndexSize(0);
     setModelAddBasket({
@@ -68,6 +70,7 @@ export default function OneModel() {
     });
     setIndexSize(index + 1);
   }
+  let op;
 
   return (
     <section className={styles.OneModel}>
@@ -101,7 +104,7 @@ export default function OneModel() {
                   }}
                   style={{
                     background: model.color.toString(),
-                    border: index === indexModel ? '1px solid black' : 'none',
+                    border: index === indexModel ? '3px solid #6e9c9f' : 'none',
                   }}
                 ></button>
               ))}
@@ -112,20 +115,23 @@ export default function OneModel() {
             <div>
               {oneModel?.colors[indexModel].sizesModel.map(
                 (sizeModel, index) => {
-                  return (
-                    <button
-                      onClick={() => {
-                        modelAddBasket.color && handleSize(sizeModel, index);
-                      }}
-                      className={
-                        index + 1 == indexSize
-                          ? styles.sizeBtnAct
-                          : styles.sizeBtn
-                      }
-                    >
-                      {sizeModel.size}
-                    </button>
-                  );
+                  if (sizeModel.rest !== 0) {
+                    return (
+                      <button
+                        onClick={() => {
+                          setModelInput('');
+                          handleSize(sizeModel, index);
+                        }}
+                        className={
+                          index + 1 == indexSize
+                            ? styles.sizeBtnAct
+                            : styles.sizeBtn
+                        }
+                      >
+                        {sizeModel.size}
+                      </button>
+                    );
+                  }
                 }
               )}
             </div>
@@ -134,17 +140,21 @@ export default function OneModel() {
           <div className={styles.addBasket}>
             <div>
               <input
-                min='0'
-                max='10'
+                disabled={indexSize === 0 ? true : false}
+                value={modelInput.toString()}
                 onChange={e => {
                   setModelInput(e.target.value);
+
+                  e.target.value > modelAddBasket.size.rest
+                    ? setModelInput(modelAddBasket.size.rest)
+                    : null;
                 }}
                 type='number'
               />
             </div>
             <div>
               <button>Добавить в корзину</button>
-            </div>{' '}
+            </div>
           </div>
           <div className={styles.modelRest}>
             <p>{restSize}</p>
