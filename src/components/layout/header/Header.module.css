@@ -64,6 +64,8 @@ nav a p {
   order: 0;
   flex-grow: 0;
   margin-left: 45px;
+  margin-bottom: 0px;
+  margin-top: 4px;
 }
 
 nav a:first-child {
@@ -86,7 +88,7 @@ nav a {
   display: flex;
 }
 
-.activeLink p{
+.activeLink p {
   color: #6e9c9f;
   cursor: default;
 }

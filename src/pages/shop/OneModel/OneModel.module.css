@@ -80,7 +80,32 @@
 .oneModelPrice {
   margin-bottom: 60px;
 }
+.oneModelPrice div {
+  display: flex;
+}
+.oneModelPriceItem1p {
+  margin: 0px;
+  font-family: 'Raleway';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 40px;
+  line-height: 110%;
+  letter-spacing: 0.02em;
+  color: #998e78;
+  margin-right: 30px;
+}
 
+.oneModelPriceItem2p {
+  margin: 0px;
+  font-family: 'Raleway';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 30px;
+  line-height: 110%;
+  letter-spacing: 0.02em;
+  text-decoration-line: line-through;
+  color: #9c9c9c;
+}
 .oneModelSize {
   margin-bottom: 60px;
 }

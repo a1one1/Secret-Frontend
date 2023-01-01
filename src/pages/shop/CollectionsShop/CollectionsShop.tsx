@@ -3,7 +3,6 @@ import { NavLink, Route, Routes } from 'react-router-dom';
 import useActions from '../../../redux/hooks/useActions';
 import { useTypedSelector } from '../../../redux/hooks/useTypedSelector';
 import { IModels } from '../../../redux/store/types/Imodels';
-import OneModel from '../OneModel/OneModel';
 import styles from './CollectionsShop.module.css';
 import Pagination from './Pagination/Pagination';
 
@@ -25,7 +24,6 @@ export default function Collections({
 }: CollectionsProps): JSX.Element {
   const { error, loading } = useTypedSelector(state => state.model);
   const { fetchModels } = useActions();
-  const [shop, setShop] = useState({});
 
   if (error) {
   }
@@ -69,22 +67,24 @@ export default function Collections({
         </p>
       </div>
       <div className={styles.collectionsShop}>
-        {currentModels.map(item => {
+        {currentModels.map(model => {
+          // console.log(model.colors[0].img);
+
           return (
             <div
               onClick={() => {
-                handleModel(item);
+                handleModel(model);
               }}
-              key={item._id}
+              key={model._id}
               className={styles.collection}
             >
               <div className={styles.collectionDiv}>
                 <NavLink to={'/OneModel'}>
-                  <img src={item.modelImg} alt='' />
+                  <img src={model.colors[0].img.toString()} alt='' />
                 </NavLink>
               </div>
 
-              <h4>{item.name}</h4>
+              <h4>{model.name}</h4>
               <span className={`bg-blue`}>$129</span>
             </div>
           );

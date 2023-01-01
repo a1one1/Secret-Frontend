@@ -8,7 +8,7 @@ export default function Authorization(): JSX.Element {
     <div className={styles.auth}>
       <img className={styles.img} src={telephone} alt='' />
       <div>
-        <Link to='/'>+7 (495) 823-54-12</Link>
+        <Link to='/'>Войти</Link>
       </div>
     </div>
   );

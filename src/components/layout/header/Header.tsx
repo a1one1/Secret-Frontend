@@ -22,7 +22,7 @@ export default function Footer(): JSX.Element {
           </NavLink>
           <NavLink
             className={({ isActive }) => (isActive ? styles.activeLink : '')}
-            to='/shop'
+            to={`/shop` && `/OneModel`}
           >
             <p>Магазин</p>
           </NavLink>

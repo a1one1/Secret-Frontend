@@ -1,37 +1,15 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import { useTypedSelector } from '../../../redux/hooks/useTypedSelector';
+import { IModels } from '../../../redux/store/types/Imodels';
 import styles from './OneModel.module.css';
-interface IModel {
-  colors: [
-    {
-      color: String;
-      img: String;
-      sizesModel: [
-        {
-          size: String;
-          rest: Number;
-        }
-      ];
-    }
-  ];
-  _id: string;
-  name: string;
-  modelImg: string;
-  price: Number;
-  categoriesId: {
-    _id: string;
-    name: string;
-    __v: Number;
-  };
-  __v: Number;
-}
 
 export default function OneModel() {
-  const [oneModel, setOneModel] = useState<IModel>();
+  const [oneModel, setOneModel] = useState<IModels>();
   const [indexModel, setIndexModel] = useState<any>(0);
   const [indexSize, setIndexSize] = useState<any>(0);
-  const [modelInput, setModelInput] = useState<String>('');
+  const [modelInput, setModelInput] = useState<String>('1');
   const [modelAddBasket, setModelAddBasket] = useState<any>('');
   const [restSize, setRestSize] = useState<String>('');
 
@@ -48,7 +26,8 @@ export default function OneModel() {
     });
   }, [oneModel]);
 
-  function handleModel(model: any, index: number) {
+  function handleColor(model: any, index: number) {
+    setModelInput('1');
     setRestSize('');
     setIndexSize(0);
     setModelAddBasket({
@@ -70,8 +49,8 @@ export default function OneModel() {
     });
     setIndexSize(index + 1);
   }
-  let op;
 
+  function addBasket() {}
   return (
     <section className={styles.OneModel}>
       <h3>{oneModel?.name}</h3>
@@ -92,7 +71,20 @@ export default function OneModel() {
         </div>
         <div className={styles.oneModelBody}>
           <div className={styles.oneModelPrice}>
-            {oneModel?.price.toString()}
+            {oneModel?.discount ? (
+              <div>
+                <p className={styles.oneModelPriceItem1p}>
+                  ${oneModel?.discount.toString()}
+                </p>
+                <p className={styles.oneModelPriceItem2p}>
+                  ${oneModel?.price.toString()}
+                </p>
+              </div>
+            ) : (
+              <p className={styles.oneModelPriceItem1p}>
+                ${oneModel?.price.toString()}
+              </p>
+            )}
           </div>
           <div className={styles.oneModelColor}>
             <p>Выберите цвет</p>
@@ -100,7 +92,7 @@ export default function OneModel() {
               {oneModel?.colors.map((model, index) => (
                 <button
                   onClick={() => {
-                    handleModel(model, index);
+                    handleColor(model, index);
                   }}
                   style={{
                     background: model.color.toString(),
@@ -119,7 +111,6 @@ export default function OneModel() {
                     return (
                       <button
                         onClick={() => {
-                          setModelInput('');
                           handleSize(sizeModel, index);
                         }}
                         className={
@@ -140,7 +131,7 @@ export default function OneModel() {
           <div className={styles.addBasket}>
             <div>
               <input
-                disabled={indexSize === 0 ? true : false}
+                // disabled={indexSize === 0 ? true : false}
                 value={modelInput.toString()}
                 onChange={e => {
                   setModelInput(e.target.value);
@@ -153,7 +144,7 @@ export default function OneModel() {
               />
             </div>
             <div>
-              <button>Добавить в корзину</button>
+              <button onClick={addBasket}>Добавить в корзину</button>
             </div>
           </div>
           <div className={styles.modelRest}>

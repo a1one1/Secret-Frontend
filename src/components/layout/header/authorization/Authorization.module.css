@@ -1,6 +1,7 @@
 .auth {
   z-index: 999;
   display: flex;
+  width: 200px;
 }
 .auth a {
   font-family: 'Raleway';
@@ -18,4 +19,8 @@
   text-decoration: none;
   padding-left: 20px;
   margin-bottom: 5px;
+}
+
+.auth div {
+  margin-left: 20px;
 }
