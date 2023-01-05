@@ -1,15 +1,16 @@
 import React, { useEffect, useState } from 'react';
 import { NavLink, Route, Routes } from 'react-router-dom';
-import useActions from '../../../redux/hooks/useActions';
+import useActionModels from '../../../redux/hooks/useActionModels';
 import { useTypedSelector } from '../../../redux/hooks/useTypedSelector';
-import { IModels } from '../../../redux/store/types/Imodels';
+import { iModels } from '../../../redux/store/types/IModels';
+import useActions from '../../../redux/hooks/useActionModels';
 import styles from './CollectionsShop.module.css';
 import Pagination from './Pagination/Pagination';
 
 interface CollectionsProps {
-  modelSt: IModels[];
-  setModelSt: (value: IModels[]) => void;
-  models: IModels[];
+  modelSt: iModels[];
+  setModelSt: (value: iModels[]) => void;
+  models: iModels[];
   currentPage: number;
   setCurrentPage: (value: any) => void;
   modelsPerPage: number;
@@ -28,7 +29,7 @@ export default function Collections({
   if (error) {
   }
 
-  function handleModel(model: IModels) {
+  function handleModel(model: iModels) {
     localStorage.setItem('model', JSON.stringify(model));
   }
 

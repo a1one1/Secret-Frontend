@@ -3,6 +3,7 @@ import styles from './Home.module.css';
 import Receipts from './Receipts/Receipts';
 import Important from './Important/Important';
 import Team from './TeamSecret/Team';
+import { useRef } from 'react';
 
 export default function Home(): JSX.Element {
   return (

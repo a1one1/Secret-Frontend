@@ -1,17 +1,28 @@
-import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import { iModels } from '../../../redux/store/types/IModels';
 import { useTypedSelector } from '../../../redux/hooks/useTypedSelector';
-import { IModels } from '../../../redux/store/types/Imodels';
 import styles from './OneModel.module.css';
+import useActions from '../../../redux/hooks/useActionUser';
+import { useDispatch } from 'react-redux';
+import { userActionTypes } from '../../../redux/store/types/user';
 
 export default function OneModel() {
-  const [oneModel, setOneModel] = useState<IModels>();
+  const [oneModel, setOneModel] = useState<iModels>();
   const [indexModel, setIndexModel] = useState<any>(0);
   const [indexSize, setIndexSize] = useState<any>(0);
-  const [modelInput, setModelInput] = useState<String>('1');
-  const [modelAddBasket, setModelAddBasket] = useState<any>('');
+  const [modelInput, setModelInput] = useState<String>('');
+  const [modelAddBasket, setModelAddBasket] = useState<any>({
+    amount: 1,
+  });
   const [restSize, setRestSize] = useState<String>('');
+  const [inputDisablet, setInputDisabled] = useState<Boolean>(true);
+
+  const dispatch = useDispatch();
+
+  const { id, login, basket } = useTypedSelector(state => {
+    return state.user;
+  });
 
   useEffect(() => {
     const modelParse = localStorage.getItem('model');
@@ -27,12 +38,14 @@ export default function OneModel() {
   }, [oneModel]);
 
   function handleColor(model: any, index: number) {
-    setModelInput('1');
+    setInputDisabled(true);
+    setModelInput('');
     setRestSize('');
     setIndexSize(0);
     setModelAddBasket({
       ...modelAddBasket,
       modelName: oneModel?.name,
+      size: null,
       color: model.color,
     });
 
@@ -40,17 +53,35 @@ export default function OneModel() {
   }
 
   function handleSize(sizeModel: any, index: number) {
+    setModelInput('1');
+
+    setInputDisabled(false);
+
     if (modelAddBasket.color) {
       setRestSize(`Остаток на складе: ${sizeModel.rest}`);
     }
+
     setModelAddBasket({
       ...modelAddBasket,
       size: sizeModel,
     });
+
     setIndexSize(index + 1);
   }
 
-  function addBasket() {}
+  async function addBasket() {
+    basket.map(item => {
+      if (item === modelAddBasket) {
+        console.log(modelAddBasket);
+      }
+    });
+
+    dispatch({
+      type: userActionTypes.FETCH_USER,
+      payload: modelAddBasket,
+    });
+  }
+
   return (
     <section className={styles.OneModel}>
       <h3>{oneModel?.name}</h3>
@@ -89,7 +120,7 @@ export default function OneModel() {
           <div className={styles.oneModelColor}>
             <p>Выберите цвет</p>
             <div>
-              {oneModel?.colors.map((model, index) => (
+              {oneModel?.colors.map((model: any, index: number) => (
                 <button
                   onClick={() => {
                     handleColor(model, index);
@@ -106,7 +137,7 @@ export default function OneModel() {
             <p>Выберите размер</p>
             <div>
               {oneModel?.colors[indexModel].sizesModel.map(
-                (sizeModel, index) => {
+                (sizeModel: any, index: number) => {
                   if (sizeModel.rest !== 0) {
                     return (
                       <button
@@ -131,7 +162,7 @@ export default function OneModel() {
           <div className={styles.addBasket}>
             <div>
               <input
-                // disabled={indexSize === 0 ? true : false}
+                disabled={Boolean(inputDisablet)}
                 value={modelInput.toString()}
                 onChange={e => {
                   setModelInput(e.target.value);
@@ -139,12 +170,27 @@ export default function OneModel() {
                   e.target.value > modelAddBasket.size.rest
                     ? setModelInput(modelAddBasket.size.rest)
                     : null;
+
+                  setModelAddBasket({
+                    ...modelAddBasket,
+                    amount:
+                      e.target.value > modelAddBasket.size.rest
+                        ? Number(modelAddBasket.size.rest)
+                        : Number(e.target.value),
+                  });
                 }}
                 type='number'
               />
             </div>
             <div>
-              <button onClick={addBasket}>Добавить в корзину</button>
+              <button
+                disabled={Boolean(inputDisablet)}
+                onClick={async () => {
+                  await addBasket();
+                }}
+              >
+                Добавить в корзину
+              </button>
             </div>
           </div>
           <div className={styles.modelRest}>

@@ -1,4 +1,4 @@
-import { iModels } from './Imodels';
+import { iModels } from './IModels';
 
 export interface IModelState {
   models: iModels[];

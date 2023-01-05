@@ -215,20 +215,7 @@
 }
 
 .addBasket input:focus {
-  align-items: center;
-  width: 68px;
-  height: 68px;
-  padding: 23px;
-  border: 1px solid #afafaf;
-  margin-right: 10px;
-  border: none;
-  font-family: 'Raleway';
-  font-style: normal;
-  font-weight: 400;
-  font-size: 20px;
-  line-height: 140%;
-  text-align: center;
-  letter-spacing: 0.02em;
+  outline: none;
 }
 
 input::-webkit-inner-spin-button {

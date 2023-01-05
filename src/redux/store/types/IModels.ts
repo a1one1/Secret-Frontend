@@ -43,7 +43,7 @@
 //   __v: Number;
 // }
 
-export interface IModels {
+export interface iModels {
   colors: [
     {
       color: String;
