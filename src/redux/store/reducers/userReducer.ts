@@ -12,19 +12,23 @@ export const userReducer = (
   aciton: userAction
 ): IUserState => {
   switch (aciton.type) {
+    case userActionTypes.LOCAL_STORAGE_ADD:
+      return {
+        ...initialState,
+        basket: aciton.payload,
+      };
     case userActionTypes.FETCH_USER:
       return {
         ...initialState,
-        basket: [...state.basket, aciton.payload],
+        basket: aciton.payload,
       };
     case userActionTypes.FETCH_USER_FETCH:
-
-    // return {
-    //   id: aciton.payload.id,
-    //   login: aciton.payload.login,
-    //   basket: [...initialState.basket, ...aciton.payload.basket],
-    //   error: null,
-    // };
+      return {
+        id: aciton.payload.id,
+        login: aciton.payload.login,
+        basket: [...state.basket, ...aciton.payload.basket],
+        error: null,
+      };
 
     // case userActionTypes.FETCH_USER_ERROR_AUTZLOGIN:
     //   return { loading: false, error: null, user: aciton.payload };

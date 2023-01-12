@@ -9,6 +9,7 @@ import Footer from './components/layout/footer/Footer';
 import { Provider } from 'react-redux';
 import { store } from './redux/store/store';
 import OneModel from './pages/shop/OneModel/OneModel';
+import Authorization from './pages/authorization/Authorization';
 
 export default function App(): JSX.Element {
   return (
@@ -18,7 +19,8 @@ export default function App(): JSX.Element {
         <Routes>
           <Route path='/' element={<Home />}></Route>
           <Route path='/shop' element={<Shop />}></Route>
-          <Route path='/OneModel' element={<OneModel />}></Route>
+          <Route path='/oneModel' element={<OneModel />}></Route>
+          <Route path='/authorization' element={<Authorization />}></Route>
           <Route path='/brand' element={<Brand />}></Route>
           <Route path='/contacts' element={<Contacts />}></Route>
         </Routes>

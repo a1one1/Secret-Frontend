@@ -1,11 +1,28 @@
 import styles from './Header.module.css';
 import { Link } from 'react-router-dom';
-import Authorization from './authorization/Authorization';
+import AuthHeader from './authHeader/AuthHeader';
 import Basket from './basket/Basket';
 import logo from '../../../assets/header/logo.svg';
 import { NavLink } from 'react-router-dom';
+import { useEffect, useState } from 'react';
+import { useDispatch } from 'react-redux/es/hooks/useDispatch';
+import { userActionTypes } from '../../../redux/store/types/user';
+import { IUser } from '../../../redux/store/types/IUser';
 
-export default function Footer(): JSX.Element {
+export default function Header(): JSX.Element {
+  const dispatch = useDispatch();
+
+  const localStorageGet = localStorage.getItem('basket');
+
+  const localStorageParse: IUser[] = JSON.parse(localStorageGet!);
+
+  useEffect(() => {
+    dispatch({
+      type: userActionTypes.LOCAL_STORAGE_ADD,
+      payload: localStorageParse,
+    });
+  }, []);
+
   return (
     <header>
       <div className={styles.header}>
@@ -40,7 +57,7 @@ export default function Footer(): JSX.Element {
           </NavLink>
         </nav>
         <div className={styles.authAndBasket}>
-          <Authorization />
+          <AuthHeader />
           <Basket />
         </div>
       </div>

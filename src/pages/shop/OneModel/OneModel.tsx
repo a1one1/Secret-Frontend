@@ -6,23 +6,19 @@ import styles from './OneModel.module.css';
 import useActions from '../../../redux/hooks/useActionUser';
 import { useDispatch } from 'react-redux';
 import { userActionTypes } from '../../../redux/store/types/user';
+import { IUser } from '../../../redux/store/types/IUser';
 
 export default function OneModel() {
+  const { id, login, basket } = useTypedSelector(state => state.user);
+  const dispatch = useDispatch();
+
   const [oneModel, setOneModel] = useState<iModels>();
   const [indexModel, setIndexModel] = useState<any>(0);
   const [indexSize, setIndexSize] = useState<any>(0);
   const [modelInput, setModelInput] = useState<String>('');
-  const [modelAddBasket, setModelAddBasket] = useState<any>({
-    amount: 1,
-  });
+  const [modelAddBasket, setModelAddBasket] = useState<any>({ amount: 1 });
   const [restSize, setRestSize] = useState<String>('');
   const [inputDisablet, setInputDisabled] = useState<Boolean>(true);
-
-  const dispatch = useDispatch();
-
-  const { id, login, basket } = useTypedSelector(state => {
-    return state.user;
-  });
 
   useEffect(() => {
     const modelParse = localStorage.getItem('model');
@@ -70,16 +66,30 @@ export default function OneModel() {
   }
 
   async function addBasket() {
-    basket.map(item => {
-      if (item === modelAddBasket) {
-        console.log(modelAddBasket);
-      }
-    });
+    const localStorageGet = localStorage.getItem('basket');
 
-    dispatch({
-      type: userActionTypes.FETCH_USER,
-      payload: modelAddBasket,
-    });
+    if (!localStorageGet) {
+      localStorage.removeItem('basket');
+      localStorage.setItem('basket', JSON.stringify([modelAddBasket]));
+
+      dispatch({
+        type: userActionTypes.FETCH_USER,
+        payload: [modelAddBasket],
+      });
+    }
+
+    const lsParse: IUser[] = JSON.parse(localStorageGet!);
+
+    if (lsParse) {
+      const lsAddBasket: IUser[] = [...lsParse!, modelAddBasket];
+
+      localStorage.setItem('basket', JSON.stringify(lsAddBasket));
+
+      dispatch({
+        type: userActionTypes.FETCH_USER,
+        payload: lsAddBasket,
+      });
+    }
   }
 
   return (

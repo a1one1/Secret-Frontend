@@ -4,7 +4,7 @@ export interface IUser {
   size: {
     size: string;
     rest: number;
-    _id: string;
+    _id?: string;
   };
   amount: number;
 }

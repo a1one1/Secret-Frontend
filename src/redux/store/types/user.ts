@@ -17,15 +17,19 @@ export interface IUserPayload {
 }
 
 export enum userActionTypes {
+  LOCAL_STORAGE_ADD = 'LOCAL_STORAGE_ADD',
   FETCH_USER = 'FETCH_USER',
   FETCH_USER_FETCH = 'FETCH_USER_FETCH',
   FETCH_USER_ERROR_AUTZLOGIN = 'FETCH_USER_ERROR_AUTZLOGIN',
   FETCH_MODELS_ERROR = 'FETCH_USER_ERROR',
 }
-
+interface LocalStorageAddAction {
+  type: userActionTypes.LOCAL_STORAGE_ADD;
+  payload: IUser[];
+}
 interface FetchUserAction {
   type: userActionTypes.FETCH_USER;
-  payload: IUser;
+  payload: IUser[];
 }
 
 interface FetchUserFetchAction {
@@ -42,6 +46,7 @@ interface FetchUserErrorAction {
   payload: string;
 }
 export type userAction =
+  | LocalStorageAddAction
   | FetchUserAction
   | FetchUserFetchAction
   | FetchUserErrorAutzLoginAction
