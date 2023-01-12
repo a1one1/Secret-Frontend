@@ -3,24 +3,22 @@
   display: flex;
   width: 200px;
 }
-.auth a {
+
+.authA {
+  margin-left: 20px;
   font-family: 'Raleway';
   font-style: normal;
   font-weight: 400;
   font-size: 15px;
   line-height: 140%;
-  /* identical to box height, or 21px */
-
   letter-spacing: 0.02em;
-
-  color: #000000;
-  z-index: 999;
-
+  color: black;
+  background-color: transparent;
+  border: 0px;
   text-decoration: none;
-  padding-left: 20px;
-  margin-bottom: 5px;
+  cursor: pointer;
 }
 
-.auth div {
-  margin-left: 20px;
+.authA:hover {
+  color: #6e9c9f;
 }
