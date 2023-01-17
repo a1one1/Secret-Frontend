@@ -6,5 +6,6 @@ export interface IUser {
     rest: number;
     _id?: string;
   };
+  _id?: string;
   amount: number;
 }

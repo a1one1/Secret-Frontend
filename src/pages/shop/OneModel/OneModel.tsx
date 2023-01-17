@@ -28,6 +28,7 @@ export default function OneModel() {
   useEffect(() => {
     setModelAddBasket({
       ...modelAddBasket,
+      _id: oneModel?._id,
       modelName: oneModel?.name,
       color: oneModel?.colors[0].color,
     });
@@ -57,38 +58,42 @@ export default function OneModel() {
       setRestSize(`Остаток на складе: ${sizeModel.rest}`);
     }
 
+    const { size, rest } = sizeModel;
+
     setModelAddBasket({
       ...modelAddBasket,
-      size: sizeModel,
+      size: { size, rest },
     });
 
     setIndexSize(index + 1);
   }
 
   async function addBasket() {
-    const localStorageGet = localStorage.getItem('basket');
+    if (!id) {
+      const localStorageGet = localStorage.getItem('basket');
+      const lsParse: IUser[] = JSON.parse(localStorageGet!);
 
-    if (!localStorageGet) {
-      localStorage.removeItem('basket');
-      localStorage.setItem('basket', JSON.stringify([modelAddBasket]));
+      if (!localStorageGet) {
+        localStorage.removeItem('basket');
+        localStorage.setItem('basket', JSON.stringify([modelAddBasket]));
 
-      dispatch({
-        type: userActionTypes.FETCH_USER,
-        payload: [modelAddBasket],
-      });
-    }
+        dispatch({
+          type: userActionTypes.ADD_USER,
+          payload: [modelAddBasket],
+        });
+      }
+      if (lsParse) {
+        const lsAddBasket: IUser[] = [...lsParse!, modelAddBasket];
 
-    const lsParse: IUser[] = JSON.parse(localStorageGet!);
+        localStorage.setItem('basket', JSON.stringify(lsAddBasket));
 
-    if (lsParse) {
-      const lsAddBasket: IUser[] = [...lsParse!, modelAddBasket];
-
-      localStorage.setItem('basket', JSON.stringify(lsAddBasket));
-
-      dispatch({
-        type: userActionTypes.FETCH_USER,
-        payload: lsAddBasket,
-      });
+        dispatch({
+          type: userActionTypes.ADD_USER,
+          payload: lsAddBasket,
+        });
+      }
+    } else {
+      console.log('dsa');
     }
   }
 

@@ -24,7 +24,7 @@
   flex-direction: column;
   padding: 20px;
   background-color: white;
-  height: 450px;
+  height: 480px;
   width: 450px;
   transform: scale(1);
   transition: 0.4s all;
@@ -60,27 +60,65 @@
 }
 
 .authInputs input {
+  position: relative;
   width: 350px;
   height: 40px;
   border: 0px;
   border-bottom: 1px solid #000000;
   outline: none;
-  margin-bottom: 35px;
+  margin-bottom: 10px;
 }
 
-.signUp button {
+.loginErrors {
+  min-height: 25px;
+  width: 350px;
+  color: red;
+  margin-bottom: 10px;
+}
+.loginErrors p {
+  margin: 0;
+}
+
+.eyesInput.view {
+  background: url(https://snipp.ru/demo/495/no-view.svg) 0 0 no-repeat;
+}
+
+.eyesInput {
+  position: absolute;
+  top: 205px;
+  right: 65px;
+  display: inline-block;
+  width: 23px;
+  height: 23px;
+  background: url(https://snipp.ru/demo/495/view.svg) 0 0 no-repeat;
+}
+
+.signUp input {
   width: 201px;
   height: 58px;
   border: none;
   background-color: #6e9c9f;
   color: white;
   margin-bottom: 20px;
+  display: flex;
+  justify-content: center;
+  margin: auto;
+  margin-top: 5px;
 }
-.signUp button:hover {
+.signUp input:hover {
   opacity: 0.75;
   transition: 0.8s;
 }
 
-.signUp button:not(:hover) {
+.signUp input:not(:hover) {
   transition: 0.8s;
+}
+
+.signUp input:disabled {
+  opacity: 0.55;
+}
+
+.successAuth {
+  margin: auto;
+  margin-top: 30px;
 }

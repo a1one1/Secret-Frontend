@@ -1,5 +1,7 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styles from './SignIn.module.css';
+import { useForm } from 'react-hook-form';
+import useActions from '../../../../../redux/hooks/useActionUser';
 
 interface ISignUp {
   signInActive: Boolean;
@@ -12,19 +14,51 @@ export default function SignIn({
   setSignInActive,
   setSignUpActive,
 }: ISignUp) {
+  const [passwordInput, setPasswordInput] = useState(false);
+  const [successAuth, setSuccessAuth] = useState<JSX.Element>();
+  const { fetchUserToken } = useActions();
+
+  const {
+    register,
+    formState: { errors, isValid },
+    handleSubmit,
+    reset,
+  } = useForm({
+    mode: 'onBlur',
+  });
+
+  const onSubmit = async (data: any) => {
+    // const response = await fetch('http://localhost:3000/user', {
+    //   method: 'POST',
+    //   body: JSON.stringify({ ...data, basket: [] }),
+    //   headers: {
+    //     'Content-type': 'application/json',
+    //   },
+    // });
+    // const json = await response.json();
+
+    // if (response.status === 200) {
+    //   setSuccessAuth(<p style={{ color: '#6e9c9f' }}>{json}</p>);
+    // } else {
+    //   setSuccessAuth(<p style={{ color: 'red' }}>{json}</p>);
+
+    // }
+
+    await fetchUserToken(data);
+
+    // location.reload();
+
+    setSuccessAuth(<p style={{ color: '#6e9c9f' }}>dadad</p>);
+    reset();
+  };
+
   return (
     <div
-      onClick={() => {
-        setSignInActive(false);
-      }}
       className={
         signInActive ? `${styles.modal} ${styles.active}` : styles.modal
       }
     >
       <div
-        onClick={e => {
-          e.stopPropagation();
-        }}
         className={
           signInActive
             ? `${styles.modal_content} ${styles.active}`
@@ -40,24 +74,83 @@ export default function SignIn({
           ⨉
         </button>
         <h3>Вход</h3>
-        <div className={styles.authInputs}>
-          <input placeholder='Логин' type='text' name='' id='' />
-          <input placeholder='Пароль' type='text' name='' id='' />
-        </div>
-        <div className={styles.signIn}>
-          <button>Войти</button>
-          <p>
-            Нет учетной записи?{' '}
+        <form onSubmit={handleSubmit(onSubmit)}>
+          <div className={styles.authInputs}>
+            <input
+              onClick={() => setSuccessAuth(undefined)}
+              placeholder='Логин'
+              type='text'
+              {...register('login', {
+                // required: 'Поле обязательно к заполнению',
+                pattern: {
+                  value: /^([a-zA-Z0-9 _-]+)$/,
+                  message: 'Введите латинские символы',
+                },
+                minLength: {
+                  value: 5,
+                  message: 'Должно быть минимум 5 символов.',
+                },
+              })}
+            />
+            <div className={styles.loginErrors}>
+              {errors?.login && (
+                <p>{errors.login?.message?.toString() || 'Erorr!'}</p>
+              )}
+            </div>
+            <input
+              onClick={() => setSuccessAuth(undefined)}
+              placeholder='Пароль'
+              type={passwordInput ? 'text' : 'password'}
+              {...register('password', {
+                // required: 'Поле обязательно к заполнению',
+                minLength: {
+                  value: 5,
+                  message: 'Должно быть минимум 5 символов.',
+                },
+              })}
+            />
+            <div style={{ height: '48px' }} className={styles.loginErrors}>
+              {successAuth
+                ? successAuth
+                : errors?.password && (
+                    <p>{errors.password?.message?.toString() || 'Erorr!'}</p>
+                  )}
+            </div>
             <a
+              className={
+                passwordInput
+                  ? `${styles.eyesInput} ${styles.view}`
+                  : styles.eyesInput
+              }
               onClick={() => {
-                setSignInActive(false);
-                setSignUpActive(true);
+                setPasswordInput(!passwordInput);
               }}
-            >
-              Зарегистрироваться
-            </a>
-          </p>
-        </div>
+            ></a>
+            <div className={styles.signUp}>
+              <input
+                onClick={() => {}}
+                type='submit'
+                // disabled={!isValid}
+                value='Войти'
+              />
+              <p>
+                Нет учетной записи?{' '}
+                <a
+                  onClick={() => {
+                    setSignInActive(false);
+                    setSignUpActive(true);
+                  }}
+                  style={{
+                    textDecoration: 'underline',
+                  }}
+                >
+                  Зарегистрироваться
+                </a>
+              </p>
+            </div>
+            {/* <div className={styles.successAuth}>{successAuth}</div> */}
+          </div>
+        </form>
       </div>
     </div>
   );

@@ -8,19 +8,24 @@ import { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux/es/hooks/useDispatch';
 import { userActionTypes } from '../../../redux/store/types/user';
 import { IUser } from '../../../redux/store/types/IUser';
+import { useTypedSelector } from '../../../redux/hooks/useTypedSelector';
 
 export default function Header(): JSX.Element {
+  const { id, login, basket } = useTypedSelector(state => {
+    // console.log(state.user);
+    return state.user;
+  });
   const dispatch = useDispatch();
 
-  const localStorageGet = localStorage.getItem('basket');
+  // const localStorageGet = localStorage.getItem('basket');
 
-  const localStorageParse: IUser[] = JSON.parse(localStorageGet!);
+  // const localStorageParse: IUser[] = JSON.parse(localStorageGet!);
 
   useEffect(() => {
-    dispatch({
-      type: userActionTypes.LOCAL_STORAGE_ADD,
-      payload: localStorageParse,
-    });
+    // dispatch({
+    //   type: userActionTypes.LOCAL_STORAGE_ADD,
+    //   payload: localStorageParse,
+    // });
   }, []);
 
   return (

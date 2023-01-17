@@ -4,14 +4,14 @@ import { useTypedSelector } from '../../redux/hooks/useTypedSelector';
 import styles from './Shop.module.css';
 import Collections from './CollectionsShop/CollectionsShop';
 import Categories from './Categories/Categories';
-import { IModels } from '../../redux/store/types/Imodels';
+import { iModels } from '../../redux/store/types/IModels';
 import OneModel from './OneModel/OneModel';
 
 export default function Shop(): JSX.Element {
   const { error, loading, models } = useTypedSelector(state => state.model);
-  const [modelSt, setModelSt] = useState<IModels[]>([]);
-   const [currentPage, setCurrentPage] = useState(1);
-   const [modelsPerPage] = useState(9);
+  const [modelSt, setModelSt] = useState<iModels[]>([]);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [modelsPerPage] = useState(9);
 
   useEffect(() => {
     fetch('http://localhost:3000/clothes')
