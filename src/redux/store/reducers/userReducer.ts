@@ -6,7 +6,7 @@ const initialState: IUserState = {
   id: '',
   login: '',
   error: null,
-  token: null, //localStorage.getItem('token'),
+  token: null,
 };
 
 export const userReducer = (
@@ -16,8 +16,6 @@ export const userReducer = (
   switch (aciton.type) {
     case userActionTypes.LOCAL_STORAGE_ADD:
       if (!state.login) {
-        console.log('dasda');
-
         return {
           ...state,
           basket: aciton.payload,
@@ -31,35 +29,37 @@ export const userReducer = (
       };
 
     case userActionTypes.FETCH_USER:
-      
+      const localStorageGet = localStorage.getItem('basket');
 
-      // const localStorageGet = localStorage.getItem('basket');
+      if (localStorageGet) {
+        const localParse: IUser[] = JSON.parse(localStorageGet!);
+        localStorage.removeItem('basket');
 
-      // const localParse: IUser[] = JSON.parse(localStorageGet!);
+        return {
+          ...state,
+          id: aciton.payload.id,
+          login: aciton.payload.login,
+          basket: [...localParse, ...aciton.payload.basket],
+        };
+      } else {
+        return {
+          ...state,
+          id: aciton.payload.id,
+          login: aciton.payload.login,
+          basket: aciton.payload.basket,
+        };
+      }
 
-      // if (localParse) {
-      //   localStorage.setItem(
-      //     'basket',
-      //     JSON.stringify([...localParse!, ...aciton.payload.basket])
-      //   );
-      // }
+    // console.log(state.basket);
 
-      // console.log(state.basket);
+    // console.log(aciton.payload.basket);
 
-      // console.log(aciton.payload.basket);
-
-      return {
-        id: aciton.payload.id,
-        login: aciton.payload.login,
-        basket: [...state.basket, ...aciton.payload.basket],
-        error: null,
-      };
-    case userActionTypes.op:
+    case userActionTypes.SIGNOUT_USER:
+      localStorage.removeItem('token');
       return {
         ...state,
         id: '',
         login: '',
-        error: null,
       };
     // case userActionTypes.FETCH_USER_FETCH:
     //   return {
@@ -69,8 +69,11 @@ export const userReducer = (
     //     error: null,
     //   };
 
-    // case userActionTypes.FETCH_USER_ERROR_AUTZLOGIN:
-    //   return { loading: false, error: null, user: aciton.payload };
+    case userActionTypes.FETCH_USER_ERROR_AUTZLOGIN:
+      return { ...state, error: aciton.error };
+
+    case userActionTypes.REMOVE_ERROR:
+      return { ...state, error: null };
     // case userActionTypes.FETCH_MODELS_ERROR:
     //   return { loading: false, error: aciton.payload, models: [] };
     default:

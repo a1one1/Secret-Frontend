@@ -4,28 +4,14 @@ import AuthHeader from './authHeader/AuthHeader';
 import Basket from './basket/Basket';
 import logo from '../../../assets/header/logo.svg';
 import { NavLink } from 'react-router-dom';
-import { useEffect, useState } from 'react';
-import { useDispatch } from 'react-redux/es/hooks/useDispatch';
-import { userActionTypes } from '../../../redux/store/types/user';
-import { IUser } from '../../../redux/store/types/IUser';
-import { useTypedSelector } from '../../../redux/hooks/useTypedSelector';
+import { useEffect } from 'react';
+import useActions from '../../../redux/hooks/useActionUser';
 
 export default function Header(): JSX.Element {
-  const { id, login, basket } = useTypedSelector(state => {
-    // console.log(state.user);
-    return state.user;
-  });
-  const dispatch = useDispatch();
-
-  // const localStorageGet = localStorage.getItem('basket');
-
-  // const localStorageParse: IUser[] = JSON.parse(localStorageGet!);
+  const { fetchUser } = useActions();
 
   useEffect(() => {
-    // dispatch({
-    //   type: userActionTypes.LOCAL_STORAGE_ADD,
-    //   payload: localStorageParse,
-    // });
+    fetchUser();
   }, []);
 
   return (

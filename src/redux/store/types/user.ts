@@ -26,7 +26,8 @@ export enum userActionTypes {
   LOCAL_STORAGE_ADD = 'LOCAL_STORAGE_ADD',
   ADD_USER = ' ADD_USER',
 
-  op = 'op',
+  SIGNOUT_USER = 'SIGNOUT_USER',
+  REMOVE_ERROR = 'REMOVE_ERROR',
 }
 interface LocalStorageAddAction {
   type: userActionTypes.LOCAL_STORAGE_ADD;
@@ -56,11 +57,16 @@ interface FetchUserErrorAction {
   payload: string;
 }
 
-interface op {
-  type: userActionTypes.op;
+interface RemoveError {
+  type: userActionTypes.REMOVE_ERROR;
+}
+
+interface SignOutUSer {
+  type: userActionTypes.SIGNOUT_USER;
 }
 export type userAction =
-  | op
+  | RemoveError
+  | SignOutUSer
   | AddUserAction
   | FetchUserAction
   | LocalStorageAddAction

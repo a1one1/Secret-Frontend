@@ -10,7 +10,10 @@ import { IUser } from '../../../redux/store/types/IUser';
 
 export default function OneModel() {
   const { id, login, basket } = useTypedSelector(state => state.user);
+
   const dispatch = useDispatch();
+
+  const { addUser } = useActions();
 
   const [oneModel, setOneModel] = useState<iModels>();
   const [indexModel, setIndexModel] = useState<any>(0);
@@ -93,9 +96,10 @@ export default function OneModel() {
         });
       }
     } else {
-      console.log('dsa');
+      addUser(modelAddBasket);
     }
   }
+  // console.log(basket);
 
   return (
     <section className={styles.OneModel}>

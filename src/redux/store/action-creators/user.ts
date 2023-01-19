@@ -3,38 +3,53 @@ import { IUser } from '../types/IUser';
 import { userActionTypes, userAction, IUserState } from './../types/user';
 
 export const fetchUserToken = (data: any) => {
-  return async (dispatch: Dispatch<userAction>) => {
+  return async (dispatch: Dispatch<userAction>, getState: any) => {
+    const state = getState();
+
     try {
-      const response = await fetch('http://localhost:3000/login', {
+      const responseLogin = await fetch('http://localhost:3000/login', {
         method: 'POST',
-        body: JSON.stringify({
-          login: 'Smait',
-          password: 'ismait3310',
-        }),
+        body: JSON.stringify(data),
         headers: {
           'Content-type': 'application/json',
         },
       });
 
-      const json = await response.json();
+      const jsonLogin = await responseLogin.json();
 
-      if (response.status === 401) {
-        dispatch({
-          type: userActionTypes.FETCH_USER_ERROR_AUTZLOGIN,
-          error: json,
-        });
+      if (responseLogin.status === 200) {
+        const responseUser = await fetch(
+          'http://localhost:3000/localStorageUser',
+          {
+            method: 'POST',
+            body: JSON.stringify({
+              basket: state.user.basket,
+            }),
+            headers: {
+              Authorization: `Bearer ${jsonLogin.token}`,
+              'Content-type': 'application/json',
+            },
+          }
+        );
+
+        localStorage.setItem('token', jsonLogin.token);
+        location.reload();
       }
 
-      return localStorage.setItem('token', json.token);
-    } catch (e) {
-      console.log(e);
+      if (responseLogin.status === 401) {
+        dispatch({
+          type: userActionTypes.FETCH_USER_ERROR_AUTZLOGIN,
+          error: jsonLogin,
+        });
+      }
+    } catch (e: any) {
+      console.log(e.toString());
     }
   };
 };
 
 export const fetchUser = () => {
-  return async (dispatch: Dispatch<userAction>, getState: any) => {
-    const state = getState();
+  return async (dispatch: Dispatch<userAction>) => {
     try {
       const response = await fetch('http://localhost:3000/user', {
         headers: {
@@ -42,9 +57,7 @@ export const fetchUser = () => {
         },
       });
 
-      const json: IUserState = await response.json();
-
-      console.log(json);
+      const json: IUserState | string = await response.json();
 
       if (typeof json === 'object') {
         dispatch({
@@ -78,5 +91,33 @@ export const fetchUser = () => {
       //   payload: 'произошла ошибка при загрузке  моделей',
       // });
     }
+  };
+};
+
+export const addUser = (modelAddBasket: IUser) => {
+  return async (dispatch: Dispatch<userAction>, getState: any) => {
+    const state = getState();
+
+    const response = await fetch(
+      `http://localhost:3000/user/${state.user.id}`,
+      {
+        method: 'POST',
+        body: JSON.stringify({
+          basket: [...state.user.basket, modelAddBasket],
+        }),
+        headers: {
+          'Content-type': 'application/json',
+        },
+      }
+    );
+
+    const json = await response.json();
+
+    console.log(json);
+
+    return dispatch({
+      type: userActionTypes.ADD_USER,
+      payload: [...state.user.basket, modelAddBasket],
+    });
   };
 };

@@ -7,13 +7,10 @@ import { useTypedSelector } from '../../../../redux/hooks/useTypedSelector';
 import SignIn from './signIn/SignIn';
 import SignUp from './signUp/SignUp';
 import { useDispatch } from 'react-redux';
+import { userActionTypes } from '../../../../redux/store/types/user';
 
 export default function Authorization(): JSX.Element {
-  const { id, login, basket } = useTypedSelector(state => {
-    // console.log(state.user);
-    return state.user;
-  });
-  // console.log(basket);
+  const { login } = useTypedSelector(state => state.user);
 
   const dispatch = useDispatch();
 
@@ -26,7 +23,10 @@ export default function Authorization(): JSX.Element {
     fetchUser();
   }, []);
 
-  function handleAuth() {}
+  async function handleSignOut() {
+    await dispatch({ type: userActionTypes.SIGNOUT_USER });
+    location.reload();
+  }
 
   return (
     <div className={styles.auth}>
@@ -47,7 +47,7 @@ export default function Authorization(): JSX.Element {
         {login ? (
           <a
             onClick={() => {
-              dispatch({ type: 'op' });
+              handleSignOut();
             }}
           >
             выйти
