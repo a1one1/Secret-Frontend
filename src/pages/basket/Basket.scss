@@ -1,0 +1,36 @@
+.arrow {
+  position: absolute;
+  top: 50%;
+  width: 17px;
+  height: 17px;
+  background: transparent;
+  border-top: 3px solid black;
+  border-right: 3px solid black;
+  box-shadow: 0 0 0 lightgray;
+  transition: all 200ms ease;
+
+  &.left {
+    left: 30px;
+    transform: translate3d(0, -50%, 0) rotate(-135deg);
+  }
+
+  &.right {
+    right: 30px;
+    transform: translate3d(0, -50%, 0) rotate(45deg);
+  }
+
+  &:hover {
+    border-color: rgba(110, 156, 159, 0.95);;
+    box-shadow: 0.3vmin -0.3vmin 0 black;
+  }
+
+  &:before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-40%, -60%) rotate(45deg);
+    width: 200%;
+    height: 200%;
+  }
+}

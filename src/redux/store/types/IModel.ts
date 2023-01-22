@@ -1,4 +1,4 @@
-export interface IUser {
+export interface IModel {
   modelName: string;
   color: string;
   colorId: string;

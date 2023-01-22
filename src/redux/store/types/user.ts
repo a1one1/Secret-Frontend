@@ -1,7 +1,7 @@
-import { IUser } from './IUser';
+import { IModel } from './IModel';
 
 export interface IUserState {
-  basket: IUser[];
+  basket: IModel[];
   id: String;
   login: string;
   error?: null | string;
@@ -16,22 +16,35 @@ export enum userActionTypes {
 
   LOCAL_STORAGE_ADD = 'LOCAL_STORAGE_ADD',
   ADD_MODEL = ' ADD_MODEL',
+  REMOVE_MODEL = ' REMOVE_MODEL',
 
   SIGNOUT_USER = 'SIGNOUT_USER',
   REMOVE_ERROR = 'REMOVE_ERROR',
+
+  AMOUNT = ' AMOUNT',
 }
 interface LocalStorageAddAction {
   type: userActionTypes.LOCAL_STORAGE_ADD;
-  payload: IUser[];
+  payload: IModel[];
 }
 interface FetchUserAction {
   type: userActionTypes.FETCH_USER;
   payload: any;
 }
 
-interface AddUserAction {
+interface AddModelAction {
   type: userActionTypes.ADD_MODEL;
-  payload: IUser[];
+  payload: IModel[];
+}
+
+interface RemoveModelAction {
+  type: userActionTypes.REMOVE_MODEL;
+  payload: IModel[];
+}
+
+interface AmountModelAction {
+  type: userActionTypes.AMOUNT;
+  payload: IModel[];
 }
 
 interface FetchUserFetchAction {
@@ -55,10 +68,13 @@ interface RemoveError {
 interface SignOutUSer {
   type: userActionTypes.SIGNOUT_USER;
 }
+
 export type userAction =
+  | AmountModelAction
+  | RemoveModelAction
   | RemoveError
   | SignOutUSer
-  | AddUserAction
+  | AddModelAction
   | FetchUserAction
   | LocalStorageAddAction
   | FetchUserFetchAction

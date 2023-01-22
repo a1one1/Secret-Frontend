@@ -1,5 +1,5 @@
 import { Dispatch } from 'redux';
-import { IUser } from '../types/IUser';
+import { IModel } from '../types/IModel';
 import { userActionTypes, userAction, IUserState } from './../types/user';
 
 export const fetchUserToken = (data: any) => {
@@ -68,7 +68,7 @@ export const fetchUser = () => {
         const localStorageGet = localStorage.getItem('basket');
 
         if (localStorageGet) {
-          const localStorageParse: IUser[] = JSON.parse(localStorageGet!);
+          const localStorageParse: IModel[] = JSON.parse(localStorageGet!);
 
           dispatch({
             type: userActionTypes.LOCAL_STORAGE_ADD,
@@ -82,46 +82,215 @@ export const fetchUser = () => {
   };
 };
 
-export const addModel = (modelAddBasket: IUser) => {
+export const addModel = (modelAddBasket: IModel) => {
   return async (dispatch: Dispatch<userAction>, getState: any) => {
     const state = getState();
 
-    let tmpArray: any[] = [];
+    if (!state.user.id) {
+      const localStorageGet = localStorage.getItem('basket');
+      const localStorageParse: IModel[] = JSON.parse(localStorageGet!);
 
-    const totalModel = [...state.user.basket, modelAddBasket];
+      if (!localStorageGet) {
+        localStorage.removeItem('basket');
 
-    function itemCheck(item: any) {
-      if (tmpArray.indexOf(item.uniqueId) === -1) {
-        tmpArray.push(item.uniqueId);
+        localStorage.setItem('basket', JSON.stringify([modelAddBasket]));
 
-        return true;
+        dispatch({
+          type: userActionTypes.ADD_MODEL,
+          payload: [modelAddBasket],
+        });
+      }
+      if (localStorageParse) {
+        const lsAddBasket: IModel[] = [...localStorageParse!, modelAddBasket];
+
+        let tmpArray: any[] = [];
+
+        function itemCheck(item: any) {
+          if (tmpArray.indexOf(item.uniqueId) === -1) {
+            tmpArray.push(item.uniqueId);
+
+            return true;
+          }
+
+          return false;
+        }
+
+        const basketIncludes = lsAddBasket.filter((item: any) =>
+          itemCheck(item)
+        );
+
+        localStorage.setItem('basket', JSON.stringify(basketIncludes));
+
+        dispatch({
+          type: userActionTypes.ADD_MODEL,
+          payload: basketIncludes,
+        });
+      }
+    } else {
+      let includesArray: any[] = [];
+
+      const totalModel = [...state.user.basket, modelAddBasket];
+
+      function itemCheck(item: any) {
+        if (includesArray.indexOf(item.uniqueId) === -1) {
+          includesArray.push(item.uniqueId);
+
+          return true;
+        }
+
+        return false;
       }
 
-      return false;
+      const basketIncludes = totalModel.filter((item: any) => itemCheck(item));
+
+      dispatch({
+        type: userActionTypes.ADD_MODEL,
+        payload: basketIncludes,
+      });
+
+      const response = await fetch(
+        `http://localhost:3000/user/${state.user.id}`,
+        {
+          method: 'POST',
+          body: JSON.stringify({
+            basket: basketIncludes,
+          }),
+          headers: {
+            'Content-type': 'application/json',
+          },
+        }
+      );
     }
+  };
+};
 
-    
+export const removeModel = (modelRemoveBasket: IModel) => {
+  return async (dispatch: Dispatch<userAction>, getState: any) => {
+    const state = getState();
 
-    const basketInclude = totalModel.filter((item: any) => itemCheck(item));
+    const basketFilter = state.user.basket.filter(
+      (model: IModel) => model.uniqueId !== modelRemoveBasket.uniqueId
+    );
 
-    console.log(basketInclude);
+    if (!state.user.id) {
+      const localStorageGet = localStorage.getItem('basket');
 
-    // const response = await fetch(
-    //   `http://localhost:3000/user/${state.user.id}`,
-    //   {
-    //     method: 'POST',
-    //     body: JSON.stringify({
-    //       basket: basketInclude,
-    //     }),
-    //     headers: {
-    //       'Content-type': 'application/json',
-    //     },
-    //   }
-    // );
+      if (localStorageGet) {
+        localStorage.setItem('basket', JSON.stringify(basketFilter));
 
-    return dispatch({
-      type: userActionTypes.ADD_MODEL,
-      payload: basketInclude,
+        dispatch({
+          type: userActionTypes.REMOVE_MODEL,
+          payload: basketFilter,
+        });
+      }
+    } else {
+      dispatch({
+        type: userActionTypes.REMOVE_MODEL,
+        payload: basketFilter,
+      });
+
+      const response = await fetch(
+        `http://localhost:3000/user/${state.user.id}`,
+        {
+          method: 'POST',
+          body: JSON.stringify({
+            basket: basketFilter,
+          }),
+          headers: {
+            'Content-type': 'application/json',
+          },
+        }
+      );
+    }
+  };
+};
+
+export const AmountPlus = (modelRemoveBasket: IModel) => {
+  return async (dispatch: Dispatch<userAction>, getState: any) => {
+    const state = getState();
+
+    const basketMap = state.user.basket.map((model: IModel) => {
+      if (model.uniqueId === modelRemoveBasket.uniqueId) {
+        if (model.amount < model.size.rest) {
+          model.amount = model.amount + 1;
+        }
+      }
+      return model;
     });
+
+    if (!state.user.id) {
+      const localStorageGet = localStorage.getItem('basket');
+
+      if (localStorageGet) {
+        localStorage.setItem('basket', JSON.stringify(basketMap));
+
+        dispatch({
+          type: userActionTypes.AMOUNT,
+          payload: basketMap,
+        });
+      }
+    } else {
+      dispatch({
+        type: userActionTypes.AMOUNT,
+        payload: basketMap,
+      });
+      const response = await fetch(
+        `http://localhost:3000/user/${state.user.id}`,
+        {
+          method: 'POST',
+          body: JSON.stringify({
+            basket: basketMap,
+          }),
+          headers: {
+            'Content-type': 'application/json',
+          },
+        }
+      );
+    }
+  };
+};
+
+export const AmountMinus = (modelRemoveBasket: IModel) => {
+  return async (dispatch: Dispatch<userAction>, getState: any) => {
+    const state = getState();
+
+    const basketMap = state.user.basket.map((model: IModel) => {
+      if (model.uniqueId === modelRemoveBasket.uniqueId) {
+        if (model.amount > 1) {
+          model.amount = model.amount - 1;
+        }
+      }
+      return model;
+    });
+
+    if (!state.user.id) {
+      const localStorageGet = localStorage.getItem('basket');
+
+      if (localStorageGet) {
+        localStorage.setItem('basket', JSON.stringify(basketMap));
+
+        dispatch({
+          type: userActionTypes.AMOUNT,
+          payload: basketMap,
+        });
+      }
+    } else {
+      dispatch({
+        type: userActionTypes.AMOUNT,
+        payload: basketMap,
+      });
+      const response = await fetch(
+        `http://localhost:3000/user/${state.user.id}`,
+        {
+          method: 'POST',
+          body: JSON.stringify({
+            basket: basketMap,
+          }),
+          headers: {
+            'Content-type': 'application/json',
+          },
+        }
+      );
+    }
   };
 };

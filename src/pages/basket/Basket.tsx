@@ -1,13 +1,18 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { Link } from 'react-router-dom';
 import { useTypedSelector } from '../../redux/hooks/useTypedSelector';
-import { IUser } from '../../redux/store/types/IUser';
+import { IModel } from '../../redux/store/types/IModel';
 import styles from './Basket.module.css';
+import useActions from '../../redux/hooks/useActionUser';
+import './Basket.scss';
 
 export default function Basket() {
   const { error, basket } = useTypedSelector(state => state.user);
   const { models } = useTypedSelector(state => state.model);
+  const [total, setTotal] = useState<any>();
+
+  const { removeModel, AmountPlus, AmountMinus } = useActions();
 
   const {
     register,
@@ -19,6 +24,14 @@ export default function Basket() {
     //  mode: 'all',
   });
 
+  useEffect(() => {
+    const total = basket.reduce((acc, model) => {
+      return model.price * model.amount + acc;
+    }, 0);
+
+    setTotal(total);
+  }, [basket]);
+
   const onSubmitAmount = async (data: any) => {
     console.log(data);
   };
@@ -27,46 +40,34 @@ export default function Basket() {
     console.log(data);
   };
 
-  const total = basket.reduce((acc, model) => {
-    return acc + model.price;
-  }, 0);
-
-  function handleRemoveModel(model: IUser) {
-    console.log(model);
+  function handleRemoveModel(model: IModel) {
+    removeModel(model);
   }
 
-  function handleAmountPlus(params: IUser) {
-    // let cities = basket.reduce(
-    //   (acc, model) => {
-    //     if (acc.map[model.colorId]) return acc;
-    //     acc.map[model.colorId] = true;
-    //     acc.cities.push(model);
-    //     return acc;
-    //   },
-    //   {
-    //     map: {},
-    //     cities: [],
-    //   }
-    // ).cities;
-    // console.log(cities);
-    // const op = basket.filter(item => {
-    //   if (item.colorId === item.colorId) {
-    //   }
-    // });
-    // basket.filter(item => {
-    //   if (params) {
-    //   }
-    // });
-    // console.log(params);
+  async function handleAmountPlus(params: IModel) {
+    await AmountPlus(params);
+
+    const total = basket.reduce((acc, model) => {
+      return model.price * model.amount + acc;
+    }, 0);
+
+    setTotal(total);
   }
 
-  function handleAmountMinus(params: any) {
-    console.log(params);
+  async function handleAmountMinus(params: IModel) {
+    await AmountMinus(params);
+
+    const total = basket.reduce((acc, model) => {
+      return model.price * model.amount + acc;
+    }, 0);
+
+    setTotal(total);
   }
 
   return (
     <div className={styles.basket}>
       <h3 className={styles.basketH3}>Корзина</h3>
+
       <div className={styles.basketRoutes}>
         <Link to={'/'}>Главная</Link>
         <div className={styles.line}>—</div>
@@ -107,22 +108,21 @@ export default function Basket() {
                     <form onSubmit={handleSubmit(onSubmitAmount)}>
                       <a
                         onClick={() => {
-                          handleAmountPlus(item);
-                        }}
-                      >
-                        ˄
-                      </a>
-                      <a
-                        onClick={() => {
                           handleAmountMinus(item);
                         }}
-                      >
-                        ˅
-                      </a>
+                        className='arrow left'
+                      ></a>
+                      <a
+                        onClick={() => {
+                          handleAmountPlus(item);
+                        }}
+                        className='arrow right'
+                      ></a>
+
                       <input
                         type='number'
-                        {...register(item.uniqueId!)}
                         value={item.amount}
+                        disabled={true}
                       />
                     </form>
                   </td>

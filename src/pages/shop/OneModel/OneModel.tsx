@@ -6,7 +6,7 @@ import styles from './OneModel.module.css';
 import useActions from '../../../redux/hooks/useActionUser';
 import { useDispatch } from 'react-redux';
 import { userActionTypes } from '../../../redux/store/types/user';
-import { IUser } from '../../../redux/store/types/IUser';
+import { IModel } from '../../../redux/store/types/IModel';
 
 export default function OneModel() {
   const { id, login, basket } = useTypedSelector(state => state.user);
@@ -77,48 +77,7 @@ export default function OneModel() {
   }
 
   async function addBasket() {
-    // if (!id) {
-    //   const localStorageGet = localStorage.getItem('basket');
-    //   const localStorageParse: IUser[] = JSON.parse(localStorageGet!);
-
-    //   if (!localStorageGet) {
-    //     localStorage.removeItem('basket');
-    //     localStorage.setItem('basket', JSON.stringify([modelAddBasket]));
-
-    //     dispatch({
-    //       type: userActionTypes.ADD_MODEL,
-    //       payload: [modelAddBasket],
-    //     });
-    //   }
-    //   if (localStorageParse) {
-    //     const lsAddBasket: IUser[] = [...localStorageParse!, modelAddBasket];
-
-    //     let tmpArray: any[] = [];
-
-    //     function itemCheck(item: any) {
-    //       if (tmpArray.indexOf(item.uniqueId) === -1) {
-    //         tmpArray.push(item.uniqueId);
-
-    //         return true;
-    //       }
-
-    //       return false;
-    //     }
-
-    //     const basketInclude = lsAddBasket.filter((item: any) =>
-    //       itemCheck(item)
-    //     );
-
-    //     localStorage.setItem('basket', JSON.stringify(basketInclude));
-
-    //     dispatch({
-    //       type: userActionTypes.ADD_MODEL,
-    //       payload: basketInclude,
-    //     });
-    //   }
-    // } else {
-    //   addModel(modelAddBasket);
-    // }
+    addModel(modelAddBasket);
   }
 
   return (

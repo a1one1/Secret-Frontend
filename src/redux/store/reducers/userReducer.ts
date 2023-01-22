@@ -1,4 +1,4 @@
-import { IUser } from '../types/IUser';
+import { IModel } from '../types/IModel';
 import { IUserState, userAction, userActionTypes } from '../types/user';
 
 const initialState: IUserState = {
@@ -28,11 +28,23 @@ export const userReducer = (
         basket: aciton.payload,
       };
 
+    case userActionTypes.REMOVE_MODEL:
+      return {
+        ...state,
+        basket: aciton.payload,
+      };
+
+    case userActionTypes.AMOUNT:
+      return {
+        ...state,
+        basket: aciton.payload,
+      };
+
     case userActionTypes.FETCH_USER:
       const localStorageGet = localStorage.getItem('basket');
 
       if (localStorageGet) {
-        const localParse: IUser[] = JSON.parse(localStorageGet!);
+        const localParse: IModel[] = JSON.parse(localStorageGet!);
 
         localStorage.removeItem('basket');
 
@@ -68,9 +80,6 @@ export const userReducer = (
     case userActionTypes.REMOVE_ERROR:
       return { ...state, error: null };
 
-
-
-      
     default:
       return state;
   }
