@@ -1,7 +1,6 @@
 import styles from './Header.module.css';
-import { Link } from 'react-router-dom';
 import AuthHeader from './authHeader/AuthHeader';
-import Basket from './basket/Basket';
+import Basket from './basket/BasketHeader';
 import logo from '../../../assets/header/logo.svg';
 import { NavLink } from 'react-router-dom';
 import { useEffect } from 'react';
@@ -21,6 +20,7 @@ export default function Header(): JSX.Element {
           <img src={logo} alt='dress' />
           <div>Secret</div>
         </div>
+
         <nav>
           <NavLink
             to='/'
@@ -30,7 +30,7 @@ export default function Header(): JSX.Element {
           </NavLink>
           <NavLink
             className={({ isActive }) => (isActive ? styles.activeLink : '')}
-            to={`/shop` && `/OneModel`}
+            to={`/shop`}
           >
             <p>Магазин</p>
           </NavLink>
@@ -47,8 +47,10 @@ export default function Header(): JSX.Element {
             <p>Контакты</p>
           </NavLink>
         </nav>
+
         <div className={styles.authAndBasket}>
           <AuthHeader />
+
           <Basket />
         </div>
       </div>

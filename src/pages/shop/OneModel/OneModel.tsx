@@ -13,7 +13,7 @@ export default function OneModel() {
 
   const dispatch = useDispatch();
 
-  const { addUser } = useActions();
+  const { addModel } = useActions();
 
   const [oneModel, setOneModel] = useState<iModels>();
   const [indexModel, setIndexModel] = useState<any>(0);
@@ -31,9 +31,11 @@ export default function OneModel() {
   useEffect(() => {
     setModelAddBasket({
       ...modelAddBasket,
+      price: oneModel?.price,
       _id: oneModel?._id,
       modelName: oneModel?.name,
-      color: oneModel?.colors[0].color,
+      color: oneModel?.colors[0]._id,
+      img: oneModel?.colors[0].img,
     });
   }, [oneModel]);
 
@@ -44,15 +46,19 @@ export default function OneModel() {
     setIndexSize(0);
     setModelAddBasket({
       ...modelAddBasket,
+      img: model.img,
       modelName: oneModel?.name,
       size: null,
       color: model.color,
+      colorId: model._id,
     });
 
     setIndexModel(index);
   }
 
   function handleSize(sizeModel: any, index: number) {
+    const { size, rest, _id } = sizeModel;
+
     setModelInput('1');
 
     setInputDisabled(false);
@@ -61,10 +67,9 @@ export default function OneModel() {
       setRestSize(`Остаток на складе: ${sizeModel.rest}`);
     }
 
-    const { size, rest } = sizeModel;
-
     setModelAddBasket({
       ...modelAddBasket,
+      uniqueId: _id,
       size: { size, rest },
     });
 
@@ -72,34 +77,49 @@ export default function OneModel() {
   }
 
   async function addBasket() {
-    if (!id) {
-      const localStorageGet = localStorage.getItem('basket');
-      const lsParse: IUser[] = JSON.parse(localStorageGet!);
+    // if (!id) {
+    //   const localStorageGet = localStorage.getItem('basket');
+    //   const localStorageParse: IUser[] = JSON.parse(localStorageGet!);
 
-      if (!localStorageGet) {
-        localStorage.removeItem('basket');
-        localStorage.setItem('basket', JSON.stringify([modelAddBasket]));
+    //   if (!localStorageGet) {
+    //     localStorage.removeItem('basket');
+    //     localStorage.setItem('basket', JSON.stringify([modelAddBasket]));
 
-        dispatch({
-          type: userActionTypes.ADD_USER,
-          payload: [modelAddBasket],
-        });
-      }
-      if (lsParse) {
-        const lsAddBasket: IUser[] = [...lsParse!, modelAddBasket];
+    //     dispatch({
+    //       type: userActionTypes.ADD_MODEL,
+    //       payload: [modelAddBasket],
+    //     });
+    //   }
+    //   if (localStorageParse) {
+    //     const lsAddBasket: IUser[] = [...localStorageParse!, modelAddBasket];
 
-        localStorage.setItem('basket', JSON.stringify(lsAddBasket));
+    //     let tmpArray: any[] = [];
 
-        dispatch({
-          type: userActionTypes.ADD_USER,
-          payload: lsAddBasket,
-        });
-      }
-    } else {
-      addUser(modelAddBasket);
-    }
+    //     function itemCheck(item: any) {
+    //       if (tmpArray.indexOf(item.uniqueId) === -1) {
+    //         tmpArray.push(item.uniqueId);
+
+    //         return true;
+    //       }
+
+    //       return false;
+    //     }
+
+    //     const basketInclude = lsAddBasket.filter((item: any) =>
+    //       itemCheck(item)
+    //     );
+
+    //     localStorage.setItem('basket', JSON.stringify(basketInclude));
+
+    //     dispatch({
+    //       type: userActionTypes.ADD_MODEL,
+    //       payload: basketInclude,
+    //     });
+    //   }
+    // } else {
+    //   addModel(modelAddBasket);
+    // }
   }
-  // console.log(basket);
 
   return (
     <section className={styles.OneModel}>

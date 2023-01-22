@@ -22,7 +22,7 @@ export const userReducer = (
         };
       }
 
-    case userActionTypes.ADD_USER:
+    case userActionTypes.ADD_MODEL:
       return {
         ...state,
         basket: aciton.payload,
@@ -33,6 +33,7 @@ export const userReducer = (
 
       if (localStorageGet) {
         const localParse: IUser[] = JSON.parse(localStorageGet!);
+
         localStorage.removeItem('basket');
 
         return {
@@ -50,32 +51,26 @@ export const userReducer = (
         };
       }
 
-    // console.log(state.basket);
-
-    // console.log(aciton.payload.basket);
-
     case userActionTypes.SIGNOUT_USER:
       localStorage.removeItem('token');
+
+      location.reload();
+
       return {
         ...state,
         id: '',
         login: '',
       };
-    // case userActionTypes.FETCH_USER_FETCH:
-    //   return {
-    //     id: aciton.payload.id,
-    //     login: aciton.payload.login,
-    //     basket: [...state.basket, ...aciton.payload.basket],
-    //     error: null,
-    //   };
 
     case userActionTypes.FETCH_USER_ERROR_AUTZLOGIN:
       return { ...state, error: aciton.error };
 
     case userActionTypes.REMOVE_ERROR:
       return { ...state, error: null };
-    // case userActionTypes.FETCH_MODELS_ERROR:
-    //   return { loading: false, error: aciton.payload, models: [] };
+
+
+
+      
     default:
       return state;
   }

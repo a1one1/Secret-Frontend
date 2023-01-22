@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import styles from './Basket.module.css';
+import styles from './BasketHeader.module.css';
 import basketImg from '../../../../assets/header/basket.svg';
 import { useTypedSelector } from '../../../../redux/hooks/useTypedSelector';
 
@@ -8,8 +8,14 @@ export default function Basket(): JSX.Element {
 
   return (
     <div className={styles.basket}>
-      <img src={basketImg} alt='вфвф' />
-      <nav>{basket ? basket.length : null}</nav>
+      <a href='/basket'>
+        <img src={basketImg} alt='вфвф' />
+      </a>
+      {basket.length !== 0 ? (
+        <div className={styles.basketLength}>{basket.length}</div>
+      ) : (
+        <div></div>
+      )}
     </div>
   );
 }

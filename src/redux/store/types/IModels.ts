@@ -48,10 +48,12 @@ export interface iModels {
     {
       color: String;
       img: String;
+      _id: String;
       sizesModel: [
         {
           size: String;
           rest: Number;
+          _id: string;
         }
       ];
     }

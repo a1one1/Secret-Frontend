@@ -7,11 +7,7 @@ interface ISignIn {
   setSignInActive: (value: React.SetStateAction<Boolean>) => void;
 }
 
-export default function SignUp({
-  signUpActive,
-  setSignUpActive,
-  setSignInActive,
-}: ISignIn) {
+export default function SignUp({ signUpActive, setSignUpActive }: ISignIn) {
   const [passwordInput, setPasswordInput] = useState(false);
   const [successAuth, setSuccessAuth] = useState<JSX.Element>(<></>);
 
@@ -21,11 +17,11 @@ export default function SignUp({
     handleSubmit,
     reset,
   } = useForm({
-    mode: 'onBlur',
+    mode: 'all',
   });
 
   const onSubmit = async (data: any) => {
-    const response = await fetch('http://localhost:3000/user', {
+    const response = await fetch('http://localhost:3000/userReg', {
       method: 'POST',
       body: JSON.stringify({ ...data, basket: [] }),
       headers: {
@@ -36,6 +32,10 @@ export default function SignUp({
 
     if (response.status === 200) {
       setSuccessAuth(<p style={{ color: '#6e9c9f' }}>{json}</p>);
+
+      setTimeout(() => {
+        setSignUpActive(false);
+      }, 1000);
     } else {
       setSuccessAuth(<p style={{ color: 'red' }}>{json}</p>);
     }
@@ -50,7 +50,6 @@ export default function SignUp({
       }
     >
       <div
-       
         className={
           signUpActive
             ? `${styles.modal_content} ${styles.active}`

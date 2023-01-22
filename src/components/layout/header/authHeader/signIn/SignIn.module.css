@@ -86,14 +86,14 @@
 .eyesInput {
   position: absolute;
   top: 205px;
-  right: 65px;
+  right: 45px;
   display: inline-block;
   width: 23px;
   height: 23px;
   background: url(https://snipp.ru/demo/495/view.svg) 0 0 no-repeat;
 }
 
-.signUp input {
+.signIn input {
   width: 201px;
   height: 58px;
   border: none;
@@ -105,25 +105,29 @@
   margin: auto;
   margin-top: 5px;
 }
-.signUp input:hover {
+.signIn input:hover {
   opacity: 0.75;
   transition: 0.8s;
 }
 
-.signUp input:not(:hover) {
+.signIn input:not(:hover) {
   transition: 0.8s;
 }
 
-.signUp input:disabled {
+.signIn input:disabled {
   opacity: 0.55;
 }
 
-.signUp p {
+.signIn p {
   margin-top: 25px;
   text-align: center;
 }
-.signUp p a {
+.signIn p a {
   cursor: pointer;
+}
+
+.signIn p a:hover {
+  opacity: 0.75;
 }
 
 .fetchAuth {

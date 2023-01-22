@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
 import styles from './AuthHeader.module.css';
 import telephone from '../../../../assets/header/telephone.svg';
 import useActions from '../../../../redux/hooks/useActionUser';
@@ -25,13 +24,12 @@ export default function Authorization(): JSX.Element {
 
   async function handleSignOut() {
     await dispatch({ type: userActionTypes.SIGNOUT_USER });
-    location.reload();
   }
 
   return (
     <div className={styles.auth}>
       <img className={styles.img} src={telephone} alt='' />
-      <div>
+      <div className={styles.authSwag}>
         {!login ? (
           <a
             className={styles.authA}
@@ -42,15 +40,16 @@ export default function Authorization(): JSX.Element {
             Войти
           </a>
         ) : (
-          login
+          <a>{login}</a>
         )}
         {login ? (
           <a
+            className={styles.authA}
             onClick={() => {
               handleSignOut();
             }}
           >
-            выйти
+            Выйти
           </a>
         ) : null}
       </div>

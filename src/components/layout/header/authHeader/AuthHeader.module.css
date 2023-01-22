@@ -2,8 +2,23 @@
   z-index: 999;
   display: flex;
   width: 200px;
+  margin-top: 1px;
 }
 
+.auth img {
+  height: 20px;
+  margin-right: 10px;
+}
+.auth a {
+  height: 24px;
+  width: 50px;
+  text-align: center;
+  margin: revert;
+}
+.auth a:last-child {
+  margin-top: 1.2px;
+  margin-left: 20px;
+}
 .authA {
   margin-left: 20px;
   font-family: 'Raleway';
@@ -21,4 +36,8 @@
 
 .authA:hover {
   color: #6e9c9f;
+}
+
+.authSwag {
+  display: flex;
 }

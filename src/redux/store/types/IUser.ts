@@ -1,6 +1,10 @@
 export interface IUser {
   modelName: string;
   color: string;
+  colorId: string;
+  price: number;
+  img: string;
+  uniqueId: string;
   size: {
     size: string;
     rest: number;

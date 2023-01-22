@@ -1,0 +1,291 @@
+.basket {
+  width: 1000px;
+  margin: auto;
+}
+
+.basket_h3 {
+  font-weight: 500;
+  font-size: 45px;
+  line-height: 110%;
+  letter-spacing: 0.02em;
+  margin-bottom: 26px;
+}
+
+.basketRoutes {
+  display: flex;
+  margin: 0 -5px;
+  margin-bottom: 215px;
+}
+.basketRoutes a {
+  text-decoration: none;
+
+  font-style: normal;
+  font-weight: 500;
+  font-size: 17px;
+  line-height: 140%;
+  letter-spacing: 0.02em;
+  color: #000000;
+}
+.line {
+  font-weight: 500;
+  font-size: 17px;
+  line-height: 140%;
+  letter-spacing: 0.02em;
+  margin: 0 7px;
+}
+
+.basketItem {
+  font-weight: 500;
+  font-size: 17px;
+  line-height: 140%;
+  letter-spacing: 0.02em;
+  color: #919191;
+}
+.basketMain {
+  position: relative;
+}
+.basketMain table {
+  width: 950px;
+  margin-bottom: 70px;
+}
+
+.borderLine {
+  top: 50px;
+  position: absolute;
+  width: 1000px;
+  border-bottom: 1px solid #cccccc;
+}
+
+.basket_tr th {
+  text-align: center;
+  height: 100px;
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 140%;
+  letter-spacing: 0.02em;
+  padding-bottom: 76px;
+}
+
+.basket_tr th:nth-child(1) {
+  text-align: start;
+
+  width: 430px;
+}
+
+.basket_tr th:nth-child(3) {
+  width: 150px;
+}
+
+.basket_tr th:nth-child(4) {
+  width: 150px;
+}
+
+.basket_td img {
+  width: 106px;
+  height: 105px;
+}
+
+.basket_td td {
+  vertical-align: middle;
+  text-align: center;
+}
+
+.basket_td td:first-child {
+  display: flex;
+}
+.basket_td td:first-child div h4 {
+  font-weight: 500;
+  font-size: 17px;
+  line-height: 140%;
+  letter-spacing: 0.02em;
+  margin-top: 40px;
+  margin-left: 30px;
+}
+
+.basket_td td:nth-child(4) {
+  padding-left: 7px;
+}
+
+.itemsPrice {
+  font-weight: 500;
+  font-size: 17px;
+  line-height: 140%;
+  letter-spacing: 0.02em;
+  padding-left: 5px;
+}
+.itemsSize {
+  font-weight: 500;
+  font-size: 17px;
+  line-height: 140%;
+  letter-spacing: 0.02em;
+  padding-left: 5px;
+}
+.itemsAmout form a {
+  cursor: pointer;
+}
+.itemsAmout input {
+  display: flex;
+  outline: none;
+  /* margin-left: 200px; */
+  align-items: center;
+  width: 47px;
+  height: 47px;
+  border: 1px solid #afafaf;
+  margin-right: 10px;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 140%;
+  /* text-align: center; */
+  letter-spacing: 0.02em;
+  margin-left: 35px;
+  /* justify-content: center; */
+}
+
+.removeModels {
+  margin-top: 42px;
+  margin-right: 45px;
+  width: 15px;
+  height: 15px;
+  background: url(../../assets/basket/Vector.svg) 0 0 no-repeat;
+  cursor: pointer;
+}
+
+.coupons {
+  height: 80px;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 90px;
+}
+
+.formInputs {
+  display: flex;
+  align-self: flex-end;
+}
+
+.formInputs input[type='text'] {
+  outline: none;
+  border: none;
+  border-bottom: 1px solid #000000;
+  margin-right: 15px;
+  align-self: flex-end;
+
+  width: 255px;
+  height: 47px;
+}
+
+.formInputs input[type='button'] {
+  align-self: flex-end;
+
+  width: 248px;
+  height: 68px;
+  color: #6e9c9f;
+  background-color: transparent;
+  border: 1px solid #6e9c9f;
+}
+.formInputs input[type='button']:hover {
+  color: white;
+  background: #509498;
+  cursor: pointer;
+  transition: 0.3s;
+}
+.formInputs input[type='button']:not(:hover) {
+  background-color: transparent;
+
+  transition: 0.3s;
+}
+
+.coupons button {
+  width: 248px;
+  height: 68px;
+  color: #6e9c9f;
+  background-color: transparent;
+  border: 1px solid #6e9c9f;
+  align-self: flex-start;
+}
+
+.coupons button:hover {
+  color: white;
+  background: #509498;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.coupons button:not(:hover) {
+  background-color: transparent;
+  transition: 0.3s;
+}
+
+.basketTotal {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  position: relative;
+  height: 150px;
+}
+
+.basketTotalAbsolute {
+  width: 500px;
+  height: 120px;
+  position: absolute;
+  right: 0;
+  top: 0px;
+}
+
+.basketTotalAbsolute h6 {
+  margin-bottom: 25px;
+  font-weight: 500;
+  font-size: 17px;
+  line-height: 140%;
+  letter-spacing: 0.02em;
+}
+
+.orderAndTotal {
+  display: flex;
+}
+
+.orderAndTotal div {
+  display: flex;
+
+  width: 287px;
+  height: 68px;
+  background: #f1eadc;
+  align-items: center;
+  justify-content: center;
+}
+
+.orderAndTotal div h5 {
+  margin-bottom: 0px;
+
+  font-weight: 500;
+  font-size: 25px;
+  line-height: 140%;
+  letter-spacing: 0.02em;
+
+  /* line-height: 70px; */
+}
+
+.orderAndTotal div h5:nth-child(2) {
+  margin-left: 20px;
+}
+
+.orderAndTotal input {
+  margin-left: 15px;
+  width: 236px;
+  height: 68px;
+  font-weight: 400;
+  font-size: 17px;
+  line-height: 138.9%;
+  text-align: center;
+  letter-spacing: 0.02em;
+
+  color: #ffffff;
+  border: none;
+
+  background: #6e9c9f;
+  transition: 0.3s;
+}
+
+.orderAndTotal input:hover {
+  transition: 0.3s;
+  background: #509498;
+}

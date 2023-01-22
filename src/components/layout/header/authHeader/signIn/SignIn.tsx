@@ -6,7 +6,7 @@ import { useTypedSelector } from '../../../../../redux/hooks/useTypedSelector';
 import { useDispatch } from 'react-redux';
 import { userActionTypes } from '../../../../../redux/store/types/user';
 
-interface ISignUp {
+interface ISignIn {
   signInActive: Boolean;
   setSignInActive: (value: React.SetStateAction<Boolean>) => void;
   setSignUpActive: (value: React.SetStateAction<Boolean>) => void;
@@ -16,7 +16,7 @@ export default function SignIn({
   signInActive,
   setSignInActive,
   setSignUpActive,
-}: ISignUp) {
+}: ISignIn) {
   const dispatch = useDispatch();
   const { error } = useTypedSelector(state => state.user);
   const { fetchUserToken } = useActions();
@@ -34,7 +34,6 @@ export default function SignIn({
 
   const onSubmit = async (data: any) => {
     await fetchUserToken(data);
-
     reset();
   };
 
@@ -116,15 +115,10 @@ export default function SignIn({
                 setPasswordInput(!passwordInput);
               }}
             ></a>
-            <div className={styles.signUp}>
-              <input
-                onClick={() => {}}
-                type='submit'
-                // disabled={!isValid}
-                value='Войти'
-              />
+            <div className={styles.signIn}>
+              <input type='submit' disabled={!isValid} value='Войти' />
               <p>
-                Нет учетной записи?{' '}
+                Нет учетной записи?
                 <a
                   onClick={() => {
                     setSignInActive(false);
@@ -132,13 +126,14 @@ export default function SignIn({
                   }}
                   style={{
                     textDecoration: 'underline',
+                    marginLeft: '5px',
+                    color: '#6e9c9f',
                   }}
                 >
                   Зарегистрироваться
                 </a>
               </p>
             </div>
-            {/* <div className={styles.fetchAuth}>{error}</div> */}
           </div>
         </form>
       </div>

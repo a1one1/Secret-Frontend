@@ -1,10 +1,3 @@
-a {
-  text-decoration: none; /* Отменяем подчеркивание у ссылки */
-}
-* {
-  font-family: 'Raleway', sans-serif;
-}
-
 header {
   /* font-family: 'Raleway', sans-serif; */
   width: 100%;
@@ -19,7 +12,7 @@ header {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
-  max-width: 1200px;
+  max-width: 1150px;
   margin: auto;
 }
 .headerLog {
@@ -33,12 +26,9 @@ header {
   padding-left: 15px;
   width: 103px;
   height: 19px;
-
   font-weight: 500;
   font-size: 16px;
   line-height: 19px;
-  /* identical to box height */
-
   letter-spacing: 0.1em;
   text-transform: uppercase;
 
@@ -50,7 +40,8 @@ nav {
 }
 
 nav a p {
-  height: 21px;
+  height: 25px;
+  width: 80px;
 
   font-style: normal;
   font-weight: 700;
@@ -61,29 +52,26 @@ nav a p {
   color: #000000;
 
   flex: none;
-  order: 0;
-  flex-grow: 0;
-  margin-left: 45px;
-  margin-bottom: 0px;
-  margin-top: 4px;
-}
 
-nav a:first-child {
-  margin-left: 0px;
+  margin: revert;
+
+  text-align: center;
+  margin-left: 10px;
 }
 nav a {
-  z-index: 999;
+  width: 100px;
+  height: 50px;
 
+  z-index: 999;
   text-decoration: none;
 }
-
-.pHeader {
+nav a:first-child {
   margin-left: 0px;
 }
 
 .authAndBasket {
   align-items: center;
-  width: 250px;
+  width: 300px;
   justify-content: space-between;
   display: flex;
 }
@@ -91,4 +79,7 @@ nav a {
 .activeLink p {
   color: #6e9c9f;
   cursor: default;
+}
+.pHeader {
+  margin-left: 10px;
 }
