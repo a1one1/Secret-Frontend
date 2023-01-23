@@ -18,7 +18,6 @@ export default function Basket() {
     register,
     formState: { errors },
     handleSubmit,
-
     reset,
   } = useForm({
     //  mode: 'all',
@@ -125,6 +124,7 @@ export default function Basket() {
                         disabled={true}
                       />
                     </form>
+                    <div>В складе: {item.size.rest}</div>
                   </td>
                   <td className={styles.itemsPrice}>
                     ${item.price * item.amount}

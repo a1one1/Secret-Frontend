@@ -141,6 +141,12 @@
   background-color: transparent;
 }
 
+.itemsAmout div {
+  position: absolute;
+  bottom: 0;
+  left: 35px;
+}
+
 .amountPlus {
   user-select: none;
   font-size: 21px;
