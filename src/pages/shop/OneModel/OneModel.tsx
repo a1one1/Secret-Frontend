@@ -35,7 +35,7 @@ export default function OneModel() {
       _id: oneModel?._id,
       modelName: oneModel?.name,
       color: oneModel?.colors[0]._id,
-      img: oneModel?.colors[0].img,
+      img: oneModel?.colors[0].modelImgItem,
     });
   }, [oneModel]);
 
@@ -96,22 +96,34 @@ export default function OneModel() {
       </div>
       <div className={styles.oneModelDiv}>
         <div className={styles.imgOneModel}>
-          <img src={oneModel?.colors[indexModel].img.toString()} alt='' />
+          <img
+            src={oneModel?.colors[indexModel].modelImgItem.toString()}
+            alt=''
+          />
+          <div className={styles.cardImg}>
+            {oneModel?.colors[indexModel].imgItem.map(img => {
+              return (
+                <div className={styles.cardImg_div}>
+                  <img src={img.toString()} />
+                </div>
+              );
+            })}
+          </div>
         </div>
         <div className={styles.oneModelBody}>
           <div className={styles.oneModelPrice}>
             {oneModel?.discount ? (
               <div>
                 <p className={styles.oneModelPriceItem1p}>
-                  ${oneModel?.discount.toString()}
+                  {oneModel?.discount.toString()} ₽
                 </p>
                 <p className={styles.oneModelPriceItem2p}>
-                  ${oneModel?.price.toString()}
+                  {oneModel?.price.toString()}₽
                 </p>
               </div>
             ) : (
               <p className={styles.oneModelPriceItem1p}>
-                ${oneModel?.price.toString()}
+                {oneModel?.price.toString()} ₽
               </p>
             )}
           </div>

@@ -63,28 +63,14 @@ html {
   border: none;
 }
 .openBtn:hover {
-  align-items: center;
-  width: 243px;
-  height: 68px;
-  background: #6e9c9f;
-  cursor: pointer;
-  font-family: 'Raleway';
-  font-style: normal;
-  font-weight: 400;
-  font-size: 17px;
-  line-height: 138.9%;
-  text-align: center;
-  letter-spacing: 0.02em;
-  color: #ffffff;
-  border: none;
-  opacity: 0.85;
+  transition: 0.3s;
+  background: #509498;
 }
 
 .storeBtn {
   margin-left: 85px;
   display: flex;
 }
-
 
 .swapBtn {
   display: flex;

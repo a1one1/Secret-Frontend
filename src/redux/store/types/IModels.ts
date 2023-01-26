@@ -47,7 +47,8 @@ export interface iModels {
   colors: [
     {
       color: String;
-      img: String;
+      modelImgItem: String;
+      imgItem: String[];
       _id: String;
       sizesModel: [
         {
@@ -61,6 +62,7 @@ export interface iModels {
   _id: string;
   name: string;
   modelImg: string;
+  img: String[];
   price: Number;
   discount: Number;
   categoriesId: {

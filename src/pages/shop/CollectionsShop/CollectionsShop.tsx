@@ -69,8 +69,6 @@ export default function Collections({
       </div>
       <div className={styles.collectionsShop}>
         {currentModels.map(model => {
-          // console.log(model.colors[0].img);
-
           return (
             <div
               onClick={() => {
@@ -81,15 +79,38 @@ export default function Collections({
             >
               <div className={styles.collectionDiv}>
                 <NavLink to={'/OneModel'}>
-                  <img src={model.colors[0].img.toString()} alt='' />
+                  <img src={model.modelImg} alt='' />
+                  <div className={styles.cardImg}>
+                    {
+                      <div className={styles.cardImg_div}>
+                        <img src={model.img[0].toString()} />
+                      </div>
+                    }
+                  </div>
                 </NavLink>
               </div>
-
               <h4>{model.name}</h4>
-              <span className={`bg-blue`}>$129</span>
+              <span className={`bg-blue`}>{model.price.toString()} ₽</span>
             </div>
           );
         })}
+
+        {/* <div className={styles.collection}>
+          <div className={styles.collectionDiv}>
+            <img src={model.modelImg} alt='' />
+            <div className={styles.cardImg}>
+              {model.img.map(img => {
+                return (
+                  <div className={styles.cardImg_div}>
+                    <img src={img.toString()} />
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+          <h4>{model.name}</h4>
+          <span>{model.price.toString()} ₽</span>
+        </div> */}
       </div>
       <div className={styles.showCollections}>
         <p>

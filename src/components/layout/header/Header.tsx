@@ -4,13 +4,16 @@ import Basket from './basket/BasketHeader';
 import logo from '../../../assets/header/logo.svg';
 import { NavLink } from 'react-router-dom';
 import { useEffect } from 'react';
-import useActions from '../../../redux/hooks/useActionUser';
+import useActionsUser from '../../../redux/hooks/useActionUser';
+import useActionsModel from '../../../redux/hooks/useActionModels';
 
 export default function Header(): JSX.Element {
-  const { fetchUser } = useActions();
+  const { fetchUser } = useActionsUser();
+  const { fetchModels } = useActionsModel();
 
   useEffect(() => {
     fetchUser();
+    fetchModels();
   }, []);
 
   return (

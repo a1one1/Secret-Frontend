@@ -8,19 +8,21 @@ import useActions from '../../redux/hooks/useActionUser';
 import './Basket.scss';
 
 export default function Basket() {
-  const { error, basket } = useTypedSelector(state => state.user);
-  const { models } = useTypedSelector(state => state.model);
+  const { id, login, basket } = useTypedSelector(state => state.user);
   const [total, setTotal] = useState<any>();
+  const [totalDiscount, setTotalDiscount] = useState<any>();
+  const [discountSuccess, setDiscountSuccess] = useState<any>();
+  const [couponDiscount, setCouponDiscount] = useState(0);
 
   const { removeModel, AmountPlus, AmountMinus } = useActions();
 
   const {
     register,
-    formState: { errors },
+    formState: { isValid },
     handleSubmit,
     reset,
   } = useForm({
-    //  mode: 'all',
+    mode: 'all',
   });
 
   useEffect(() => {
@@ -31,15 +33,42 @@ export default function Basket() {
     setTotal(total);
   }, [basket]);
 
-  const onSubmitAmount = async (data: any) => {
-    console.log(data);
-  };
-
   const onSubmitCoupons = async (data: any) => {
-    console.log(data);
+    const response = await fetch('http://localhost:3000/coupon', {
+      method: 'POST',
+      body: JSON.stringify(data),
+      headers: {
+        'Content-type': 'application/json',
+      },
+    });
+
+    const json = await response.json();
+
+    if (response.status === 200) {
+      setCouponDiscount(json.discount);
+      const percent = '0.' + json.discount;
+      setTotalDiscount(total - Number(percent) * total);
+      setDiscountSuccess(
+        <div style={{ color: '#509498' }}>Купон успешно использован!</div>
+      );
+      setTimeout(() => {
+        setDiscountSuccess(undefined);
+      }, 2000);
+    } else {
+      setDiscountSuccess(
+        <div style={{ color: 'red' }}>Не удалось найти купон!</div>
+      );
+    }
+
+    reset();
   };
 
   function handleRemoveModel(model: IModel) {
+    const total = basket.reduce((acc, model) => {
+      return model.price * model.amount + acc;
+    }, 0);
+
+    setTotal(total);
     removeModel(model);
   }
 
@@ -61,6 +90,18 @@ export default function Basket() {
     }, 0);
 
     setTotal(total);
+  }
+
+  function handleOrder() {
+    const order = {
+      userId: id,
+      userName: login,
+      basket: basket,
+      orderPrice: totalDiscount ? totalDiscount : total,
+      coupon: couponDiscount,
+    };
+
+    localStorage.setItem('order', JSON.stringify(order));
   }
 
   return (
@@ -90,21 +131,25 @@ export default function Basket() {
               return (
                 <tr key={index} className={styles.basket_td}>
                   <td>
-                    <a
-                      onClick={() => {
-                        handleRemoveModel(item);
-                      }}
-                      className={styles.removeModels}
-                    ></a>
-                    <img src={item.img} alt='Marka' />{' '}
+                    <div className={styles.removeModels}>
+                      {' '}
+                      <a
+                        onClick={() => {
+                          handleRemoveModel(item);
+                        }}
+                      ></a>
+                    </div>
                     <div>
+                      <img src={item.img} alt='Marka' />
+                    </div>{' '}
+                    <div className={styles.td_h4}>
                       <h4>{item.modelName}</h4>
                     </div>
                   </td>
-                  <td className={styles.itemsPrice}>${item.price}</td>
+                  <td className={styles.itemsPrice}>{item.price} ₽</td>
                   <td className={styles.itemsSize}>{item.size.size}</td>
                   <td className={styles.itemsAmout}>
-                    <form onSubmit={handleSubmit(onSubmitAmount)}>
+                    <form>
                       <a
                         onClick={() => {
                           handleAmountMinus(item);
@@ -127,7 +172,7 @@ export default function Basket() {
                     <div>В складе: {item.size.rest}</div>
                   </td>
                   <td className={styles.itemsPrice}>
-                    ${item.price * item.amount}
+                    {item.price * item.amount} ₽
                   </td>
                 </tr>
               );
@@ -141,29 +186,51 @@ export default function Basket() {
             onSubmit={handleSubmit(onSubmitCoupons)}
           >
             <input
-              {...register('Cupon', {
-                // maxLength: {
-                //   value: 5,
-                //   message: 'Должно быть минимум 5 символов.',
-                // },
+              {...register('coupon', {
+                required: 'Поле обязательно к заполнению',
               })}
               type='text'
               placeholder='Введите купон'
             />
-            <input type='button' value={'Применить купон'} />
+            <input
+              type='submit'
+              value={'Применить купон'}
+              disabled={!isValid}
+            />
           </form>
-
-          {/* <button>Обновить корзину</button> */}
+          <div className={styles.couponSuccessAndError}>{discountSuccess}</div>
         </div>
       </div>
       <div className={styles.basketTotal}>
         <div className={styles.basketTotalAbsolute}>
-          <div className={styles.orderAndTotal}>
+          <div>Подытог: {total} ₽</div>
+          <div className={styles.couponDiscount}>
+            {totalDiscount
+              ? `Купон на ${couponDiscount}%  ( ${Math.round(
+                  Number('0.' + couponDiscount) * total
+                )}$ )`
+              : ''}
+          </div>
+          <div style={{ width: '100%' }} className={styles.orderAndTotal}>
             <div>
               <h5>Итого:</h5>
-              <h5>${total}</h5>
+              {totalDiscount ? (
+                <h5 className={styles.total}>
+                  {total - Math.round(Number('0.' + couponDiscount) * total)} ₽
+                </h5>
+              ) : (
+                <h5 className={styles.total}>${total}</h5>
+              )}
             </div>
-            <input type='button' value={'Оформить заказ'} />
+            <Link to={'/order'}>
+              <input
+                onClick={() => {
+                  handleOrder();
+                }}
+                type='button'
+                value={'Оформить заказ'}
+              />
+            </Link>
           </div>
         </div>
       </div>

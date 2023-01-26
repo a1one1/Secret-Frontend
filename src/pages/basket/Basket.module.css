@@ -3,7 +3,7 @@
   margin: auto;
 }
 
-.basket_h3 {
+.basketH3 {
   font-weight: 500;
   font-size: 45px;
   line-height: 110%;
@@ -80,9 +80,14 @@
   width: 150px;
 }
 
+.tbody {
+  height: 800px;
+}
+
 .basket_td img {
-  width: 106px;
-  height: 105px;
+  width: 156px;
+  height: auto;
+  object-fit: scale-down;
 }
 
 .basket_td td {
@@ -93,13 +98,23 @@
 .basket_td td:first-child {
   display: flex;
 }
+
+.td_h4 {
+  position: relative;
+  width: 156px;
+  height: 214px;
+}
 .basket_td td:first-child div h4 {
   font-weight: 500;
   font-size: 17px;
   line-height: 140%;
   letter-spacing: 0.02em;
-  margin-top: 40px;
-  margin-left: 30px;
+  margin: 0px;
+  margin-left: 25px;
+
+  position: absolute;
+  top: 50%;
+  transform: translate(0, -50%);
 }
 
 .basket_td td:nth-child(4) {
@@ -112,6 +127,7 @@
   line-height: 140%;
   letter-spacing: 0.02em;
   padding-left: 5px;
+  min-width: 120px;
 }
 .itemsSize {
   font-weight: 500;
@@ -143,7 +159,7 @@
 
 .itemsAmout div {
   position: absolute;
-  bottom: 0;
+
   left: 35px;
 }
 
@@ -173,26 +189,40 @@
   width: 30px;
   height: 35px;
 }
-
 .removeModels {
-  margin-top: 43px;
+  width: 60px;
+  height: 214px;
+  position: relative;
+}
+
+.removeModels a {
+  display: block;
+
   margin-right: 45px;
   width: 15px;
   height: 15px;
   background: url(../../assets/basket/Vector.svg) 0 0 no-repeat;
   cursor: pointer;
+
+  position: absolute;
+  top: 50%;
+  transform: translate(0, -50%);
 }
 
 .coupons {
   height: 80px;
   display: flex;
-  justify-content: space-between;
-  margin-bottom: 90px;
+  margin-bottom: 50px;
+  flex-direction: column;
+}
+
+.couponSuccessAndError {
+  margin-top: 15px;
 }
 
 .formInputs {
   display: flex;
-  align-self: flex-end;
+  align-self: flex-start;
 }
 
 .formInputs input[type='text'] {
@@ -206,46 +236,31 @@
   height: 47px;
 }
 
-.formInputs input[type='button'] {
+.formInputs input[type='submit'] {
   align-self: flex-end;
-
   width: 248px;
   height: 68px;
   color: #6e9c9f;
   background-color: transparent;
   border: 1px solid #6e9c9f;
 }
-.formInputs input[type='button']:hover {
+.formInputs input[type='submit']:hover {
   color: white;
   background: #509498;
   cursor: pointer;
   transition: 0.3s;
 }
-.formInputs input[type='button']:not(:hover) {
+.formInputs input[type='submit']:not(:hover) {
   background-color: transparent;
 
   transition: 0.3s;
 }
 
-.coupons button {
-  width: 248px;
-  height: 68px;
+.formInputs input[type='submit']:disabled {
   color: #6e9c9f;
-  background-color: transparent;
-  border: 1px solid #6e9c9f;
-  align-self: flex-start;
-}
-
-.coupons button:hover {
-  color: white;
-  background: #509498;
-  cursor: pointer;
-  transition: 0.3s;
-}
-
-.coupons button:not(:hover) {
-  background-color: transparent;
-  transition: 0.3s;
+  background: transparent;
+  cursor: default;
+  opacity: 0.65;
 }
 
 .basketTotal {
@@ -254,6 +269,7 @@
   justify-content: flex-end;
   position: relative;
   height: 150px;
+  margin-bottom: 40px;
 }
 
 .basketTotalAbsolute {
@@ -262,6 +278,21 @@
   position: absolute;
   right: 0;
   top: 0px;
+}
+
+.basketTotalAbsolute div:nth-child(1) {
+  font-weight: 500;
+  font-size: 17px;
+  line-height: 140%;
+  margin-bottom: 10px;
+}
+
+.couponDiscount {
+  min-height: 10px;
+  font-weight: 500;
+  font-size: 17px;
+  line-height: 140%;
+  margin-bottom: 10px;
 }
 
 .basketTotalAbsolute h6 {
@@ -285,7 +316,9 @@
   align-items: center;
   justify-content: center;
 }
-
+.orderAndTotal div div {
+  width: 150px;
+}
 .orderAndTotal div h5 {
   margin-bottom: 0px;
 
@@ -297,8 +330,25 @@
   /* line-height: 70px; */
 }
 
-.orderAndTotal div h5:nth-child(2) {
+.total {
   margin-left: 20px;
+}
+
+.total.totalMarge {
+  margin-top: 4px;
+  margin-left: 8px;
+  font-size: 20px;
+
+  text-decoration-line: line-through;
+  color: #9c9c9c;
+}
+
+.totalDiscount {
+  margin-bottom: 0px;
+  font-weight: 500;
+  font-size: 24px;
+  letter-spacing: 0.02em;
+  margin-left: 10px;
 }
 
 .orderAndTotal input {
