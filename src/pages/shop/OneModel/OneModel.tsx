@@ -10,10 +10,11 @@ export default function OneModel() {
   const [oneModel, setOneModel] = useState<iModels>();
   const [indexModel, setIndexModel] = useState<any>(0);
   const [indexSize, setIndexSize] = useState<any>(0);
-  const [modelInput, setModelInput] = useState<String>('');
+  const [modelInput, setModelInput] = useState<string>('');
   const [modelAddBasket, setModelAddBasket] = useState<any>({ amount: 1 });
-  const [restSize, setRestSize] = useState<String>('');
+  const [restSize, setRestSize] = useState<string>('');
   const [inputDisablet, setInputDisabled] = useState<boolean>(true);
+  const [lineCard, setLineCard] = useState<number>();
 
   const { addModel } = useActions();
 
@@ -87,10 +88,14 @@ export default function OneModel() {
     <section className={styles.OneModel}>
       <h3>{oneModel?.name}</h3>
       <div className={styles.shopRoutes}>
-        <Link className={styles.mainLink} to={'/'}>Главная</Link>
+        <Link className={styles.mainLink} to={'/'}>
+          Главная
+        </Link>
         <div className={styles.line}>—</div>
         <div className={styles.shopItem}>
-          <Link className={styles.categoriesName} to={'/shop'}>{oneModel?.categoriesId.name}</Link>
+          <Link className={styles.categoriesName} to={'/shop'}>
+            {oneModel?.categoriesId.name}
+          </Link>
         </div>
         <div className={styles.line}>—</div>
         <div className={styles.shopItemGrey}>
@@ -100,12 +105,37 @@ export default function OneModel() {
       <div className={styles.oneModelDiv}>
         <div className={styles.imgOneModel}>
           <img
+            className={styles.imgMain}
             src={oneModel?.colors[indexModel].modelImgItem.toString()}
             alt=''
           />
+          <div className={styles.lineCard}>
+            {oneModel?.colors[indexModel].imgItem.map((_, index) => (
+              <div className={styles.lineCard_div}>
+                <img
+                  className={
+                    lineCard === index
+                      ? `${styles.lineCardImg} ${styles.lineCardImgActive}`
+                      : `${styles.lineCardImg}`
+                  }
+                  src='https://svgur.com/i/puM.svg'
+                  alt=''
+                />
+              </div>
+            ))}
+          </div>
           <div className={styles.cardImg}>
             {oneModel?.colors[indexModel].imgItem.map((img, index) => (
-              <div key={index} className={styles.cardImg_div}>
+              <div
+                onMouseEnter={() => {
+                  setLineCard(index);
+                }}
+                onMouseLeave={() => {
+                  setLineCard(undefined);
+                }}
+                key={index}
+                className={styles.cardImg_div}
+              >
                 <img src={img.toString()} />
               </div>
             ))}

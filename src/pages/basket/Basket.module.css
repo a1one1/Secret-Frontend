@@ -44,6 +44,9 @@
   width: 1150px;
   margin: auto;
 }
+.basket a:hover {
+  color: #509498;
+}
 
 .basketH3 {
   font-weight: 500;

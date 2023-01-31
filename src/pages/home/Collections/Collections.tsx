@@ -9,8 +9,8 @@ import { iModels } from '../../../redux/store/types/IModels';
 
 export default function Collections(): JSX.Element {
   const { error, loading, models } = useTypedSelector(state => state.model);
-
-  console.log(models);
+  const [lineCardId, setLineCardId] = useState<any>();
+  const [lineCardIndex, setLineCardIndex] = useState<any>();
 
   const modelsSlice = models.slice(0, 3);
 
@@ -21,6 +21,7 @@ export default function Collections(): JSX.Element {
   return (
     <div className={styles.divCollections}>
       <h2 className={styles.collectionH2}>Новая коллекция</h2>
+      <div className={styles.lineCard}></div>
       <section className={styles.collections}>
         {modelsSlice.map(model => (
           <div
@@ -31,11 +32,40 @@ export default function Collections(): JSX.Element {
             className={styles.collection}
           >
             <div className={styles.collectionDiv}>
-              <NavLink to={`/oneModel`}>
-                <img src={model.modelImg} alt='' />
+              <NavLink className={styles.op} to={`/oneModel`}>
+                <img className={styles.imgMain} src={model.modelImg} alt='' />
+                <div className={styles.lineCard}>
+                  {model.img.map((_, index) => (
+                    <div className={styles.lineCard_div}>
+                      <img
+                        className={
+                          model._id === lineCardId
+                            ? lineCardIndex === index
+                              ? `${styles.lineCardImg} ${styles.lineCardImgActive}`
+                              : `${styles.lineCardImg}`
+                            : `${styles.lineCardImg}`
+                        }
+                        src='https://svgur.com/i/puM.svg'
+                        alt=''
+                      />
+                    </div>
+                  ))}
+                </div>
+
                 <div className={styles.cardImg}>
                   {model.img.map((img, index) => (
-                    <div key={index} className={styles.cardImg_div}>
+                    <div
+                      onMouseEnter={() => {
+                        setLineCardId(model._id);
+                        setLineCardIndex(index);
+                      }}
+                      onMouseLeave={() => {
+                        setLineCardId(undefined);
+                        setLineCardIndex(undefined);
+                      }}
+                      key={index}
+                      className={styles.cardImg_div}
+                    >
                       <img src={img.toString()} />
                     </div>
                   ))}

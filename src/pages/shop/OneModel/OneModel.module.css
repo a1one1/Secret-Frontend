@@ -2,6 +2,10 @@
   margin: auto;
   width: 1200px;
 }
+
+.OneModel a:hover {
+  color: #509498;
+}
 .OneModel h3 {
   font-weight: 500;
   font-size: 50px;
@@ -71,11 +75,33 @@
   width: 536px;
   height: 729px;
 }
-.imgOneModel img {
+.imgMain {
   max-width: 100%;
   height: 100%;
 }
 
+.lineCard {
+  display: flex;
+}
+.lineCard_div {
+  position: relative;
+
+  width: 50%;
+  height: 100%;
+}
+.lineCardImg {
+  position: absolute;
+  top: 30px;
+  width: 40px;
+  z-index: 20;
+  top: -710px;
+  left: 36%;
+  transition: 0.5s;
+}
+.lineCardImgActive {
+  content: url(https://svgur.com/i/pvP.svg);
+  transition: 0.5s;
+}
 .cardImg {
   position: absolute;
   bottom: 0;

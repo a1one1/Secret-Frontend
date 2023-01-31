@@ -4,6 +4,10 @@
   margin: auto;
 }
 
+.main a:hover {
+  color: #509498;
+}
+
 .shopRoutes {
   display: flex;
   margin: 0 -5px;

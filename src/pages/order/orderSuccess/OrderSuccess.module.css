@@ -2,6 +2,9 @@
   max-width: 1150px;
   margin: auto;
 }
+.orderSuccessSection a:hover {
+  color: #509498;
+}
 
 .HeadOrder h2 {
   font-weight: 500;
