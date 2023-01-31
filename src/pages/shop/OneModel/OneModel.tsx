@@ -1,41 +1,37 @@
 import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 import { iModels } from '../../../redux/store/types/IModels';
 import { useTypedSelector } from '../../../redux/hooks/useTypedSelector';
 import styles from './OneModel.module.css';
 import useActions from '../../../redux/hooks/useActionUser';
-import { useDispatch } from 'react-redux';
-import { userActionTypes } from '../../../redux/store/types/user';
-import { IModel } from '../../../redux/store/types/IModel';
 
 export default function OneModel() {
-  const { id, login, basket } = useTypedSelector(state => state.user);
-
-  const dispatch = useDispatch();
-
-  const { addModel } = useActions();
-
+  const { categories, models } = useTypedSelector(state => state.model);
   const [oneModel, setOneModel] = useState<iModels>();
   const [indexModel, setIndexModel] = useState<any>(0);
   const [indexSize, setIndexSize] = useState<any>(0);
   const [modelInput, setModelInput] = useState<String>('');
   const [modelAddBasket, setModelAddBasket] = useState<any>({ amount: 1 });
   const [restSize, setRestSize] = useState<String>('');
-  const [inputDisablet, setInputDisabled] = useState<Boolean>(true);
+  const [inputDisablet, setInputDisabled] = useState<boolean>(true);
+
+  const { addModel } = useActions();
 
   useEffect(() => {
     const modelParse = localStorage.getItem('model');
+
     setOneModel(JSON.parse(modelParse!));
   }, []);
 
   useEffect(() => {
     setModelAddBasket({
       ...modelAddBasket,
-      price: oneModel?.price,
+      price: oneModel?.discount || oneModel?.price,
       _id: oneModel?._id,
       modelName: oneModel?.name,
       color: oneModel?.colors[0]._id,
-      img: oneModel?.colors[0].modelImgItem,
+      modelImg: oneModel?.colors[0].modelImgItem,
+      img: oneModel?.colors[0].imgItem,
     });
   }, [oneModel]);
 
@@ -46,7 +42,8 @@ export default function OneModel() {
     setIndexSize(0);
     setModelAddBasket({
       ...modelAddBasket,
-      img: model.img,
+      modelImg: model.modelImgItem,
+      img: model.imgItem,
       modelName: oneModel?.name,
       size: null,
       color: model.color,
@@ -80,14 +77,20 @@ export default function OneModel() {
     addModel(modelAddBasket);
   }
 
-  return (
+  function handleModel(model: iModels) {
+    localStorage.setItem('model', JSON.stringify(model));
+
+    setOneModel(model);
+  }
+
+  return oneModel ? (
     <section className={styles.OneModel}>
       <h3>{oneModel?.name}</h3>
       <div className={styles.shopRoutes}>
-        <Link to={'/'}>Главная</Link>
+        <Link className={styles.mainLink} to={'/'}>Главная</Link>
         <div className={styles.line}>—</div>
         <div className={styles.shopItem}>
-          <Link to={'/shop'}>{oneModel?.categoriesId.name}</Link>
+          <Link className={styles.categoriesName} to={'/shop'}>{oneModel?.categoriesId.name}</Link>
         </div>
         <div className={styles.line}>—</div>
         <div className={styles.shopItemGrey}>
@@ -101,13 +104,11 @@ export default function OneModel() {
             alt=''
           />
           <div className={styles.cardImg}>
-            {oneModel?.colors[indexModel].imgItem.map(img => {
-              return (
-                <div className={styles.cardImg_div}>
-                  <img src={img.toString()} />
-                </div>
-              );
-            })}
+            {oneModel?.colors[indexModel].imgItem.map((img, index) => (
+              <div key={index} className={styles.cardImg_div}>
+                <img src={img.toString()} />
+              </div>
+            ))}
           </div>
         </div>
         <div className={styles.oneModelBody}>
@@ -132,6 +133,7 @@ export default function OneModel() {
             <div>
               {oneModel?.colors.map((model: any, index: number) => (
                 <button
+                  key={model._id}
                   onClick={() => {
                     handleColor(model, index);
                   }}
@@ -151,6 +153,7 @@ export default function OneModel() {
                   if (sizeModel.rest !== 0) {
                     return (
                       <button
+                        key={sizeModel._id}
                         onClick={() => {
                           handleSize(sizeModel, index);
                         }}
@@ -172,7 +175,7 @@ export default function OneModel() {
           <div className={styles.addBasket}>
             <div>
               <input
-                disabled={Boolean(inputDisablet)}
+                disabled={inputDisablet}
                 value={modelInput.toString()}
                 onChange={e => {
                   setModelInput(e.target.value);
@@ -208,6 +211,49 @@ export default function OneModel() {
           </div>
         </div>
       </div>
+      <div className={styles.linkModel}>
+        <h4>Связанные товары</h4>
+        <div className={styles.collectionsShop}>
+          {models.map(model => {
+            if (oneModel.categoriesId.name == model.categoriesId.name) {
+              if (oneModel._id !== model._id) {
+                return (
+                  <div
+                    onClick={() => {
+                      handleModel(model);
+                    }}
+                    key={model._id}
+                    className={styles.collection}
+                  >
+                    <div className={styles.collectionDiv}>
+                      <NavLink to={`/oneModel`}>
+                        <img src={model.modelImg} alt='' />
+                        <div className={styles.cardImg}>
+                          {
+                            <div className={styles.cardImg_div}>
+                              <img src={model.img[0].toString()} />
+                            </div>
+                          }
+                        </div>
+                      </NavLink>
+                    </div>
+                    <h4>{model.name}</h4>
+                    <span>{model.price.toString()} ₽</span>
+                  </div>
+                );
+              } else {
+                return (
+                  <div className={styles.zeroLinkModel}>
+                    Пока нет связанных товаров
+                  </div>
+                );
+              }
+            }
+          })}
+        </div>
+      </div>
     </section>
+  ) : (
+    <div className={styles.oneModelNull}></div>
   );
 }

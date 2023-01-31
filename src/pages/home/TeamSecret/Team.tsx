@@ -15,7 +15,6 @@ export default function Team(): JSX.Element {
             <Carousel>
               <Carousel.Item style={{ width: '729px', height: '488px' }}>
                 <img src={adamWinger} alt='adamWinger' />
-                <Carousel.Caption></Carousel.Caption>
               </Carousel.Item>
               <Carousel.Item style={{ width: '729px', height: '488px' }}>
                 <img src={adamWinger} alt='adamWinger' />

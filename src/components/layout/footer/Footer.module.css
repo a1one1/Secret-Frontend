@@ -5,7 +5,7 @@ footer {
 .footer {
   display: flex;
   flex-wrap: wrap;
-  width: 1100px;
+  width: 1150px;
   height: 363px;
   display: flex;
   margin: 0 auto;
@@ -13,19 +13,18 @@ footer {
   justify-content: space-between;
 }
 .footerLog div {
-  z-index: 100;
+  z-index: 10;
   display: flex;
   flex-wrap: wrap;
   align-items: center;
 }
 .footerLog p {
-  font-family: 'Raleway';
-  font-style: normal;
   font-weight: 400;
   font-size: 13px;
   line-height: 140%;
   letter-spacing: 0.02em;
 }
+
 .logoDiv {
   margin-top: 115px;
   margin-bottom: 75px;
@@ -45,21 +44,24 @@ footer {
 .links {
   display: flex;
 }
+.links a {
+  margin-left: 10px;
+}
 
 .footerNav {
   margin-top: 100px;
 }
 .footerNav {
-  z-index: 100;
+  z-index: 10;
 }
 
 .footerInfo {
   display: flex;
   flex-wrap: wrap;
-  /* flex: 1 1 160px; */
+
   flex-direction: column;
   margin: 0 -5px;
-  margin-top: 100px;
+  margin-top: 110px;
 }
 .footerInfo div {
   flex: 1 1 auto;

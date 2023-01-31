@@ -7,7 +7,7 @@ import hand from '../../../assets/home/important/hand.svg';
 export default function Important(): JSX.Element {
   return (
     <section>
-      <h2>Что для нас важно</h2>
+      <h2 className={styles.importantH2}>Что для нас важно</h2>
       <div className={styles.importantDiv}>
         <div className={styles.important}>
           <img src={quality} alt='quality' />

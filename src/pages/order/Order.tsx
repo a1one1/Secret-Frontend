@@ -1,48 +1,51 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { useForm } from 'react-hook-form';
-import { Link } from 'react-router-dom';
+import { json, Link } from 'react-router-dom';
 import { IModel } from '../../redux/store/types/IModel';
-import styles from './OrderUser.module.css';
+import styles from './Order.module.css';
 
 interface IOrder {
   basket: IModel[];
   userId: string;
   userName: string;
+  totalAmount: number;
   orderPrice: Number;
   coupon: Number;
   order: {
     Name: string;
-    E_mail: string;
+    E_mail?: string;
     Phone: number;
     Country: string;
     City: string;
     Street: string;
     House: string;
+    cash: Boolean;
+    card: Boolean;
     flat: string;
-    Comment: string;
+    Comment?: string;
   };
 }
 
 export default function OrderUser() {
-  const [order, setOrder] = useState<IOrder>();
-
+  const [UserOrder, setUserOrder] = useState<IOrder>();
   const [total, setTotal] = useState<any>();
+  const [errrorOrder, setErrrorOrder] = useState<any>();
 
   useEffect(() => {
     const localStorageOrder = localStorage.getItem('order');
 
     if (localStorageOrder) {
-      setOrder(JSON.parse(localStorageOrder));
+      setUserOrder(JSON.parse(localStorageOrder));
     }
   }, []);
 
   useEffect(() => {
-    const total = order?.basket.reduce((acc, model) => {
+    const total = UserOrder?.basket.reduce((acc, model) => {
       return model.price * model.amount + acc;
     }, 0);
 
     setTotal(total);
-  }, [order]);
+  }, [UserOrder]);
 
   const {
     register,
@@ -53,13 +56,21 @@ export default function OrderUser() {
     mode: 'onBlur',
   });
 
-  function handleOrder(data: any) {
+  async function handleOrder(data: any) {
     const orderFetch = {
-      ...order,
+      userData: UserOrder,
       order: data,
     };
 
-    console.log(data);
+    const response = await fetch(`http://localhost:3000/order`, {
+      method: 'POST',
+      body: JSON.stringify(orderFetch),
+      headers: {
+        'Content-type': 'application/json',
+      },
+    });
+
+    const res = await response.json();
   }
 
   const textarea = document.getElementById('my-text');
@@ -100,7 +111,6 @@ export default function OrderUser() {
               </div>
               <input
                 {...register('E_mail', {
-                  required: 'Поле обязательно к заполнению',
                   pattern: {
                     value: /^[A-Z0-9._%+-]+@[A-Z0-9-]+.+.[A-Z]{2,4}$/i,
                     message: 'Введите корректный почту',
@@ -118,7 +128,7 @@ export default function OrderUser() {
                   required: 'Поле обязательно к заполнению',
                   pattern: {
                     value:
-                      /^\+?(\d{1,3})?[- .]?\(?(?:\d{2,3})\)?[- .]?\d\d\d[- .]?\d\d\d\d$/,
+                      /^(\s*)?(\+)?([- _():=+]?\d[- _():=+]?){10,14}(\s*)?$/,
                     message: 'Введите корректный номер',
                   },
                 })}
@@ -214,36 +224,53 @@ export default function OrderUser() {
               </tr>
             </thead>
             <tbody>
-              {order?.basket.map(item => {
-                return (
-                  <tr>
-                    <td>{item.modelName}</td>
-                    <td>{item.price} ₽</td>
-                  </tr>
-                );
-              })}
+              {UserOrder?.basket.map(item => (
+                <tr key={item._id}>
+                  <td>{item.modelName}</td>
+                  <td>{item.price} ₽</td>
+                </tr>
+              ))}
             </tbody>
-            {order?.coupon == 0 ? null : (
-              <tr className={styles.coupon}>
-                <td>Купон на {order?.coupon.toString()}%</td>
-                <td>{Math.round(Number('0.' + order?.coupon) * total)} ₽</td>
-              </tr>
-            )}
 
-            <tr
-              className={
-                order?.coupon == 0
-                  ? styles.preTotalCouponFalse
-                  : styles.preTotalCouponTrue
-              }
-            >
-              <td>Подытог:</td>
-              <td>{total} ₽</td>
-              <div className={styles.totalPrice}>
-                <h6>Итого:</h6>
-                <h6>{Math.round(Number(order?.orderPrice))} ₽</h6>
-              </div>
-            </tr>
+            <tfoot>
+              <tr className={styles.totalAmount}>
+                <td>Количество:</td>
+                <td>{UserOrder?.totalAmount}</td>
+              </tr>
+              {UserOrder?.coupon == 0 ? null : (
+                <tr className={styles.coupon}>
+                  <td>Скидка по промокоду</td>
+                  <td>
+                    -
+                    {UserOrder?.coupon
+                      ? Math.round(Number('0.' + UserOrder?.coupon) * total)
+                      : 0}{' '}
+                    ₽
+                  </td>
+                </tr>
+              )}
+              <tr
+                className={
+                  UserOrder?.coupon == 0
+                    ? styles.preTotalCouponFalse
+                    : styles.preTotalCouponTrue
+                }
+              >
+                <td>Подытог:</td>
+                <td>{total} ₽</td>
+                <td>
+                  <div className={styles.totalPrice}>
+                    <h6>Итого:</h6>
+                    <h6>
+                      {UserOrder?.orderPrice
+                        ? Math.round(Number(UserOrder?.orderPrice))
+                        : 0}{' '}
+                      ₽
+                    </h6>
+                  </div>
+                </td>
+              </tr>
+            </tfoot>
           </table>
 
           <div className={styles.paymentMethod}>
@@ -252,7 +279,7 @@ export default function OrderUser() {
               <div>
                 <label className={`${styles.checkbox} ${styles.style_c}`}>
                   <input
-                    {...register('checkbox', {
+                    {...register('cash', {
                       required: 'Поле обязательно к заполнению',
                     })}
                     type='checkbox'
@@ -263,11 +290,13 @@ export default function OrderUser() {
 
                 <h6>Оплата наличными</h6>
               </div>
-              <input
-                type='submit'
-                value={'Разместить заказ'}
-                // disabled={!isValid}
-              />
+              <Link to='/orderSuccess'>
+                <input
+                  type='submit'
+                  value={'Разместить заказ'}
+                  disabled={!isValid}
+                />
+              </Link>
             </form>
           </div>
         </div>

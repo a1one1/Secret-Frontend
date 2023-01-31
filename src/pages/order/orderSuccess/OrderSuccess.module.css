@@ -1,25 +1,36 @@
-.brand {
-  width: 1150px;
+.orderSuccessSection {
+  max-width: 1150px;
   margin: auto;
 }
 
-.brandH3 {
+.HeadOrder h2 {
   font-weight: 500;
-  font-size: 40px;
+  font-size: 35px;
   line-height: 110%;
   letter-spacing: 0.02em;
+  color: #000000;
   margin-bottom: 26px;
 }
 
-.brandRoutes {
+.orderRoutes {
   display: flex;
   margin: 0 -5px;
   margin-bottom: 150px;
 }
-
-.brandRoutes a {
+.mainLink {
   text-decoration: none;
   margin-left: 10px;
+
+  font-style: normal;
+  font-weight: 500;
+  font-size: 17px;
+  line-height: 140%;
+  letter-spacing: 0.02em;
+  color: #000000;
+}
+.orderLink {
+  margin-left: 0px;
+  text-decoration: none;
 
   font-style: normal;
   font-weight: 500;
@@ -36,7 +47,16 @@
   margin: 0 7px;
 }
 
-.brandItem {
+.orderItem {
+  font-weight: 500;
+  font-size: 17px;
+  line-height: 140%;
+  letter-spacing: 0.02em;
+  color: #919191;
+}
+.orderItemGrey {
+  font-family: 'Raleway';
+  font-style: normal;
   font-weight: 500;
   font-size: 17px;
   line-height: 140%;
@@ -44,79 +64,57 @@
   color: #919191;
 }
 
-.bodyItem1 {
+.orderSuccessMain {
+  display: flex;
+  margin-bottom: 130px;
+}
+
+.item1 {
   display: flex;
 }
 
-.bodyItem1Div {
-  width: 542px;
-  height: 321px;
-  margin-top: 115px;
+.successImg {
+  margin-right: 45px;
 }
-.bodyItem1Div h4 {
+
+.successText h4 {
+  margin-bottom: 17px;
   font-weight: 500;
   font-size: 25px;
   line-height: 140%;
-  margin-bottom: 46px;
+  letter-spacing: 0.02em;
 }
-.bodyItem1Div p {
+
+.successText p {
+  margin: 0px;
+
   font-weight: 500;
   font-size: 17px;
   line-height: 140%;
+  letter-spacing: 0.02em;
 }
-
-.bodyItem1Div {
-  margin-left: 95px;
+.item2 {
+  margin-left: 200px;
 }
-
-.bodyItem2 {
-  display: flex;
-  margin-top: 120px;
-}
-
-.bodyItem2Div {
-  width: 542px;
-  height: 321px;
-  margin-top: 115px;
-}
-.bodyItem1Div h4 {
-  font-weight: 500;
-  font-size: 25px;
-  line-height: 140%;
-  margin-bottom: 46px;
-}
-.bodyItem2Div p {
-  font-weight: 500;
-  font-size: 17px;
-  line-height: 140%;
-}
-
-.bodyItem2Div {
-  margin-right: 120px;
-}
-.brandButton div {
-  margin: auto;
-  width: 300px;
-}
-
-.brandButton div button {
+.item2 button {
   margin-top: 6px;
-  background: #6e9c9f;
-  color: white;
+  color: #6e9c9f;
   padding: 22px 50px;
   gap: 10px;
   width: 272px;
   height: 68px;
   border: 1px solid #6e9c9f;
-  margin: 130px 0;
+  background-color: transparent;
 }
 
-.brandButton div button:hover {
+.item2 button:hover {
+  color: white;
   background: #509498;
   cursor: pointer;
   transition: 0.3s;
 }
 
-.brandButton div button:not(:hover) {
+.item2 button:not(:hover) {
+  background-color: transparent;
   transition: 0.3s;
 }

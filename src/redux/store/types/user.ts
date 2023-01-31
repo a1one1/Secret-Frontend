@@ -2,8 +2,8 @@ import { IModel } from './IModel';
 
 export interface IUserState {
   basket: IModel[];
-  id: String;
-  login: string;
+  id: string;
+  login: string | null;
   error?: null | string;
   token?: null | string;
 }
@@ -21,7 +21,7 @@ export enum userActionTypes {
   SIGNOUT_USER = 'SIGNOUT_USER',
   REMOVE_ERROR = 'REMOVE_ERROR',
 
-  AMOUNT = ' AMOUNT',
+  AMOUNT = 'AMOUNT',
 }
 interface LocalStorageAddAction {
   type: userActionTypes.LOCAL_STORAGE_ADD;

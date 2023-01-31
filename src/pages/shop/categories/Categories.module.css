@@ -1,3 +1,7 @@
+.liWrapper {
+  display: flex;
+}
+
 .categories {
   margin-bottom: 92px;
 }
@@ -5,17 +9,25 @@
   padding-left: 0px;
   display: flex;
 }
-.categories ul li button:first-child {
+.categories ul li:first-child button {
+  width: 210px;
+  height: 69px;
+
   margin-left: 0px;
 }
 .categories ul li {
   list-style-type: none;
 }
 .categoriesBtn {
-  margin: 0px 10px;
+  width: 210px;
+  height: 69px;
+
+  margin-right: 10px;
+  margin-left: 0px;
+
   color: black;
   border: 1px solid black;
-  padding: 20px 65px;
+  /* padding: 20px 65px; */
   background-color: transparent;
 
   font-weight: 500;
@@ -25,10 +37,14 @@
 }
 
 .categoriesBtnACT {
-  margin: 0px 10px;
+  width: 210px;
+  height: 69px;
+
+  margin-right: 10px;
+  margin-left: 0px;
   color: white;
   background-color: black;
-  padding: 20px 65px;
+  /* padding: 20px 65px; */
   list-style-type: none;
 
   font-weight: 500;

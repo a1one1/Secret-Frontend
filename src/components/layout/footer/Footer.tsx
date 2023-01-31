@@ -50,7 +50,7 @@ export default function Footer(): JSX.Element {
         </div>
         <div className={styles.footerInfo}>
           <div>
-            <p>+7 (495) 823-54-12</p>
+            <p className={styles.login}>+7 (495) 823-54-12</p>
             <p className={styles.pInfo}>secret@gmail.com</p>
           </div>
           <div className={styles.links}>

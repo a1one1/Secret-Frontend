@@ -1,82 +1,68 @@
 import axios from 'axios';
 import React, { Dispatch, SetStateAction, useEffect, useState } from 'react';
+import { useDispatch } from 'react-redux';
 import { useTypedSelector } from '../../../redux/hooks/useTypedSelector';
-import { IModels } from '../../../redux/store/types/Imodels';
+import { iModels } from '../../../redux/store/types/IModels';
+import { modelsActionTypes } from '../../../redux/store/types/model';
 import styles from './Categories.module.css';
+import SkeletonCat from './SkeletonCat';
 interface CategoriesProps {
-  modelSt: IModels[];
-  setModelSt: (value: IModels[]) => void;
   currentPage: number;
   setCurrentPage: (value: number) => void;
 }
 
-export default function Categories({
-  currentPage,
-  setCurrentPage,
-  modelSt,
-  setModelSt,
-}: CategoriesProps) {
-  const { error, loading, models } = useTypedSelector(state => state.model);
-  const [categories, setCategories] = useState<any[]>([]);
+export default function Categories({ setCurrentPage }: CategoriesProps) {
+  const { loading, models, categories } = useTypedSelector(
+    state => state.model
+  );
+  const dispatch = useDispatch();
   const [categoriesId, setCategoriesId] = useState(0);
-
-  async function fetchCategories() {
-    const response = await axios.get('http://localhost:3000/categories');
-
-    setCategories(response.data);
-  }
-
-  useEffect(() => {
-    fetchCategories();
-  }, []);
 
   function handleCategoriesId(index: number, categoriesName: any) {
     setCurrentPage(1);
-    if (categoriesName === 'Все') {
-      setModelSt([...models]);
-      return;
-    }
-
     setCategoriesId(index);
-
-    setModelSt(
-      models.filter(item => item.categoriesId.name === categoriesName)
-    );
+    dispatch({
+      type: modelsActionTypes.MODELS_FILTER,
+      payload: categoriesName,
+    });
   }
 
+  useEffect(() => {
+    return () => {
+      dispatch({
+        type: modelsActionTypes.MODELS_FILTER,
+        payload: 'Все',
+      });
+    };
+  }, [loading]);
+
   return (
-    <div className={styles.categories}>
-      <ul>
-        <li>
-          <button
-            onClick={() => {
-              handleCategoriesId(0, 'Все');
-              setCategoriesId(0);
-            }}
-            className={
-              categoriesId == 0 ? styles.categoriesBtnACT : styles.categoriesBtn
-            }
-          >
-            Все
-          </button>
-        </li>
-        {categories.map((item, index) => {
-          return (
-            <li key={item._id}>
-              <button
-                onClick={() => handleCategoriesId(index + 1, item.name)}
-                className={
-                  categoriesId == index + 1
-                    ? styles.categoriesBtnACT
-                    : styles.categoriesBtn
-                }
-              >
-                {item.name}
-              </button>
-            </li>
-          );
-        })}
-      </ul>
-    </div>
+    <section>
+      {' '}
+      <div className={styles.categories}>
+        <ul>
+          {loading ? (
+            [...new Array(5)].map((_, index) => <SkeletonCat key={index} />)
+          ) : (
+            <div className={styles.liWrapper}>
+              {categories.map((item, index) => (
+                <li key={item._id}>
+                  <button
+                    onClick={() => handleCategoriesId(index, item.name)}
+                    className={
+                      categoriesId == index
+                        ? styles.categoriesBtnACT
+                        : styles.categoriesBtn
+                    }
+                  >
+                    {item.name}
+                  </button>
+                </li>
+              ))}
+            </div>
+          )}
+        </ul>
+      </div>
+    </section>
   );
 }

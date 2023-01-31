@@ -93,10 +93,6 @@ export default function SignIn({
               type={passwordInput ? 'text' : 'password'}
               {...register('password', {
                 required: 'Поле обязательно к заполнению',
-                minLength: {
-                  value: 5,
-                  message: 'Должно быть минимум 5 символов.',
-                },
               })}
             />
             <div style={{ height: '48px' }} className={styles.loginErrors}>

@@ -3,7 +3,8 @@ export interface IModel {
   color: string;
   colorId: string;
   price: number;
-  img: string;
+  modelImg: string;
+  img: string[];
   uniqueId: string;
   size: {
     size: string;

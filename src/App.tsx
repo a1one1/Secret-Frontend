@@ -10,7 +10,8 @@ import { Provider } from 'react-redux';
 import { store } from './redux/store/store';
 import OneModel from './pages/shop/OneModel/OneModel';
 import Basket from './pages/basket/Basket';
-import OrderUser from './pages/order/OrderUser';
+import Order from './pages/order/Order';
+import OrderSuccess from './pages/order/orderSuccess/OrderSuccess';
 
 export default function App(): JSX.Element {
   return (
@@ -22,7 +23,8 @@ export default function App(): JSX.Element {
           <Route path='/shop' element={<Shop />}></Route>
           <Route path='/oneModel' element={<OneModel />}></Route>
           <Route path='/basket' element={<Basket />}></Route>
-          <Route path='/order' element={<OrderUser />}></Route>
+          <Route path='/order' element={<Order />}></Route>
+          <Route path='/orderSuccess' element={<OrderSuccess />}></Route>
           <Route path='/brand' element={<Brand />}></Route>
           <Route path='/contacts' element={<Contacts />}></Route>
         </Routes>

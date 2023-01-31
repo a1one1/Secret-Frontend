@@ -6,9 +6,11 @@ import { IModel } from '../../redux/store/types/IModel';
 import styles from './Basket.module.css';
 import useActions from '../../redux/hooks/useActionUser';
 import './Basket.scss';
+import SkeletonBasket from './SkeletonBasket';
 
 export default function Basket() {
   const { id, login, basket } = useTypedSelector(state => state.user);
+  const { loading } = useTypedSelector(state => state.model);
   const [total, setTotal] = useState<any>();
   const [totalDiscount, setTotalDiscount] = useState<any>();
   const [discountSuccess, setDiscountSuccess] = useState<any>();
@@ -93,11 +95,16 @@ export default function Basket() {
   }
 
   function handleOrder() {
+    const totalAmount = basket.reduce((acc, model) => {
+      return model.amount + acc;
+    }, 0);
+
     const order = {
       userId: id,
+      totalAmount,
       userName: login,
-      basket: basket,
-      orderPrice: totalDiscount ? totalDiscount : total,
+      basket,
+      orderPrice: totalDiscount ? Math.round(totalDiscount) : Math.round(total),
       coupon: couponDiscount,
     };
 
@@ -113,127 +120,166 @@ export default function Basket() {
         <div className={styles.line}>—</div>
         <div className={styles.basketItem}>Корзина</div>
       </div>
-      <div className={styles.basketMain}>
-        <div className={styles.borderLine}></div>
-
-        <table>
-          <thead>
-            <tr className={styles.basket_tr}>
-              <th>Товар</th>
-              <th>Цена</th>
-              <th>Размер</th>
-              <th>Количество</th>
-              <th>Всего</th>
-            </tr>
-          </thead>
-          <tbody>
-            {basket.map((item, index) => {
-              return (
-                <tr key={index} className={styles.basket_td}>
-                  <td>
-                    <div className={styles.removeModels}>
-                      {' '}
-                      <a
-                        onClick={() => {
-                          handleRemoveModel(item);
-                        }}
-                      ></a>
-                    </div>
-                    <div>
-                      <img src={item.img} alt='Marka' />
-                    </div>{' '}
-                    <div className={styles.td_h4}>
-                      <h4>{item.modelName}</h4>
-                    </div>
-                  </td>
-                  <td className={styles.itemsPrice}>{item.price} ₽</td>
-                  <td className={styles.itemsSize}>{item.size.size}</td>
-                  <td className={styles.itemsAmout}>
-                    <form>
-                      <a
-                        onClick={() => {
-                          handleAmountMinus(item);
-                        }}
-                        className='arrow left'
-                      ></a>
-                      <a
-                        onClick={() => {
-                          handleAmountPlus(item);
-                        }}
-                        className='arrow right'
-                      ></a>
-
-                      <input
-                        type='number'
-                        value={item.amount}
-                        disabled={true}
-                      />
-                    </form>
-                    <div>В складе: {item.size.rest}</div>
-                  </td>
-                  <td className={styles.itemsPrice}>
-                    {item.price * item.amount} ₽
-                  </td>
-                </tr>
-              );
-            })}
-          </tbody>
-        </table>
-
-        <div className={styles.coupons}>
-          <form
-            className={styles.formInputs}
-            onSubmit={handleSubmit(onSubmitCoupons)}
-          >
-            <input
-              {...register('coupon', {
-                required: 'Поле обязательно к заполнению',
-              })}
-              type='text'
-              placeholder='Введите купон'
-            />
-            <input
-              type='submit'
-              value={'Применить купон'}
-              disabled={!isValid}
-            />
-          </form>
-          <div className={styles.couponSuccessAndError}>{discountSuccess}</div>
-        </div>
-      </div>
-      <div className={styles.basketTotal}>
-        <div className={styles.basketTotalAbsolute}>
-          <div>Подытог: {total} ₽</div>
-          <div className={styles.couponDiscount}>
-            {totalDiscount
-              ? `Купон на ${couponDiscount}%  ( ${Math.round(
-                  Number('0.' + couponDiscount) * total
-                )}$ )`
-              : ''}
-          </div>
-          <div style={{ width: '100%' }} className={styles.orderAndTotal}>
-            <div>
-              <h5>Итого:</h5>
-              {totalDiscount ? (
-                <h5 className={styles.total}>
-                  {total - Math.round(Number('0.' + couponDiscount) * total)} ₽
-                </h5>
-              ) : (
-                <h5 className={styles.total}>${total}</h5>
-              )}
-            </div>
-            <Link to={'/order'}>
-              <input
-                onClick={() => {
-                  handleOrder();
-                }}
-                type='button'
-                value={'Оформить заказ'}
+      {loading ? (
+        <SkeletonBasket />
+      ) : basket.length == 0 ? (
+        <div className={styles.basketZero}>
+          <div className={styles.basketWrapper}>
+            <div className={styles.itemFirst}>
+              <img
+                src='https://a.lmcdn.ru/static/23.01.26_1/assets/d-cart.c259d025.svg'
+                alt=''
               />
-            </Link>
+            </div>
+            <div className={styles.itemSecond}>
+              <h2>В корзине нет товаров</h2>
+              <p>Для выбора вещей перейдите в каталог</p>
+              <Link to={'/shop'}>
+                <input type='button' value={'Перейти в каталог'} />
+              </Link>
+            </div>
           </div>
         </div>
-      </div>
+      ) : (
+        <div>
+          <div className={styles.basketMain}>
+            <div className={styles.borderLine}></div>
+            <table>
+              <thead>
+                <tr className={styles.basket_tr}>
+                  <th>Товар</th>
+                  <th>Цена</th>
+                  <th>Размер</th>
+                  <th>Количество</th>
+                  <th>Всего</th>
+                </tr>
+              </thead>
+              <tbody>
+                {basket.map(model => {
+                  return (
+                    <tr key={model.uniqueId} className={styles.basket_td}>
+                      <td>
+                        <div className={styles.removeModels}>
+                          {' '}
+                          <a
+                            onClick={() => {
+                              handleRemoveModel(model);
+                            }}
+                          ></a>
+                        </div>
+                        <div className={styles.baskeImg}>
+                          <img src={model.modelImg} alt='Marka' />
+                          <div className={styles.cardImg}>
+                            {
+                              <div className={styles.cardImg_div}>
+                                <img src={model.img[0].toString()} />
+                              </div>
+                            }
+                          </div>
+                        </div>{' '}
+                        <div className={styles.td_h4}>
+                          <h4>{model.modelName}</h4>
+                        </div>
+                      </td>
+                      <td className={styles.itemsPrice}>{model.price} ₽</td>
+                      <td className={styles.itemsSize}>{model.size.size}</td>
+                      <td className={styles.itemsAmout}>
+                        <form>
+                          <a
+                            onClick={() => {
+                              handleAmountMinus(model);
+                            }}
+                            className='arrow left'
+                          ></a>
+                          <a
+                            onClick={() => {
+                              handleAmountPlus(model);
+                            }}
+                            className='arrow right'
+                          ></a>
+
+                          <input
+                            type='number'
+                            value={model.amount}
+                            disabled={true}
+                          />
+                        </form>
+                        <div>В складе: {model.size.rest}</div>
+                      </td>
+                      <td className={styles.itemsPrice}>
+                        {model.price * model.amount} ₽
+                      </td>
+                    </tr>
+                  );
+                })}
+              </tbody>
+            </table>
+
+            <div className={styles.coupons}>
+              <form
+                className={styles.formInputs}
+                onSubmit={handleSubmit(onSubmitCoupons)}
+              >
+                <input
+                  {...register('coupon', {
+                    required: 'Поле обязательно к заполнению',
+                  })}
+                  type='text'
+                  placeholder='Введите купон'
+                />
+                <input
+                  type='submit'
+                  value={'Применить купон'}
+                  disabled={!isValid}
+                />
+              </form>
+              <div className={styles.couponSuccessAndError}>
+                {discountSuccess}
+              </div>
+            </div>
+          </div>
+          <div className={styles.basketTotal}>
+            <div className={styles.basketTotalAbsolute}>
+              <div>Подытог: {total} ₽</div>
+              <div className={styles.couponDiscount}>
+                {totalDiscount ? (
+                  <div>
+                    Скидка по промокоду
+                    <p>
+                      -{Math.round(Number('0.' + couponDiscount) * total)} ₽
+                    </p>
+                  </div>
+                ) : (
+                  ''
+                )}
+              </div>
+              <div className={styles.orderAndTotal}>
+                <div>
+                  <h5>Итого:</h5>
+                  {totalDiscount ? (
+                    <h5 className={styles.total}>
+                      {total -
+                        Math.round(Number('0.' + couponDiscount) * total)}{' '}
+                      ₽
+                    </h5>
+                  ) : (
+                    <h5 className={styles.total}>{total} ₽</h5>
+                  )}
+                </div>
+                <Link to={'/order'}>
+                  <input
+                    onClick={() => {
+                      handleOrder();
+                    }}
+                    type='button'
+                    value={'Оформить заказ'}
+                  />
+                </Link>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }

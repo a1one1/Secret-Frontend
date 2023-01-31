@@ -1,3 +1,4 @@
+import axios from 'axios';
 import { Dispatch } from 'redux';
 import { IModel } from '../types/IModel';
 import { userActionTypes, userAction, IUserState } from './../types/user';
@@ -18,21 +19,20 @@ export const fetchUserToken = (data: any) => {
       const jsonLogin = await responseLogin.json();
 
       if (responseLogin.status === 200) {
-        const responseUser = await fetch(
-          'http://localhost:3000/localStorageUser',
-          {
-            method: 'POST',
-            body: JSON.stringify({
-              basket: state.user.basket,
-            }),
-            headers: {
-              Authorization: `Bearer ${jsonLogin.token}`,
-              'Content-type': 'application/json',
-            },
-          }
-        );
+        await fetch('http://localhost:3000/localStorageUser', {
+          method: 'POST',
+          body: JSON.stringify({
+            basket: state.user.basket,
+          }),
+          headers: {
+            Authorization: `Bearer ${jsonLogin.token}`,
+            'Content-type': 'application/json',
+          },
+        });
 
         localStorage.setItem('token', jsonLogin.token);
+        localStorage.setItem('login', jsonLogin.login);
+
         location.reload();
       }
 
@@ -51,20 +51,22 @@ export const fetchUserToken = (data: any) => {
 export const fetchUser = () => {
   return async (dispatch: Dispatch<userAction>) => {
     try {
-      const response = await fetch('http://localhost:3000/user', {
-        headers: {
-          Authorization: `Bearer ${localStorage.getItem('token')}`,
-        },
-      });
-
-      const json: IUserState | string = await response.json();
-
-      if (typeof json === 'object') {
-        dispatch({
-          type: userActionTypes.FETCH_USER,
-          payload: json,
+      if (localStorage.getItem('token')) {
+        const response = await axios.get('http://localhost:3000/user', {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem('token')}`,
+          },
         });
+
+        if (typeof response.data === 'object') {
+          dispatch({
+            type: userActionTypes.FETCH_USER,
+            payload: response.data,
+          });
+        }
       } else {
+        localStorage.removeItem('login');
+
         const localStorageGet = localStorage.getItem('basket');
 
         if (localStorageGet) {

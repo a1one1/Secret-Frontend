@@ -90,11 +90,12 @@ html {
 }
 
 .backgraund {
-  width: 1062px;
+  width: 862px;
   height: 836px;
   position: absolute;
   z-index: 1;
-  right: -570px;
+  right: -360px;
+
   top: -240px;
 }
 
@@ -117,7 +118,6 @@ html {
 .modelThird {
   width: 190px;
   height: auto;
-
   top: 270px;
   right: 350px;
   position: absolute;

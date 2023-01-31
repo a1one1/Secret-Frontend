@@ -4,7 +4,7 @@ import { IUserState, userAction, userActionTypes } from '../types/user';
 const initialState: IUserState = {
   basket: [],
   id: '',
-  login: '',
+  login: localStorage.getItem('login'),
   error: null,
   token: null,
 };
@@ -65,6 +65,7 @@ export const userReducer = (
 
     case userActionTypes.SIGNOUT_USER:
       localStorage.removeItem('token');
+      localStorage.removeItem('login');
 
       location.reload();
 

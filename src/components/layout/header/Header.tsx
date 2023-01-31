@@ -20,7 +20,7 @@ export default function Header(): JSX.Element {
     <header>
       <div className={styles.header}>
         <div className={styles.headerLog}>
-          <img src={logo} alt='dress' />
+          <img src='https://svgur.com/i/pt7.svg' alt='dress' />
           <div>Secret</div>
         </div>
 

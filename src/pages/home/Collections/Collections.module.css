@@ -45,8 +45,6 @@
   height: 558px;
 }
 
-
-
 .collectionDiv {
   position: relative;
 }
@@ -69,7 +67,7 @@
 .cardImg .cardImg_div {
   justify-content: flex-end;
   font-size: 30px;
-  z-index: 999;
+  z-index: 10;
   width: 50%;
   height: 100%;
 }
@@ -95,24 +93,39 @@
 }
 
 .collection h4 {
-  z-index: 999;
+  z-index: 10;
   margin: 0px;
-  font-family: 'Raleway';
-  font-style: normal;
+
   font-weight: 500;
   font-size: 20px;
   line-height: 140%;
   letter-spacing: 0.02em;
 }
 
-.collection span {
-  font-family: 'Raleway';
-  font-style: normal;
+.modelPrice {
   font-weight: 500;
-  font-size: 15px;
+  font-size: 20px;
   line-height: 140%;
   letter-spacing: 0.02em;
-  color: #998e78;
+  margin-bottom: 65px;
+  margin-right: 10px;
+  color: #998E78;
+}
+.discountTrue {
+  text-decoration: line-through;
+  font-size: 16px;
+      color: #9c9c9c;
+}
+
+.modelDiscountDiv {
+  width: 180px;
+}
+.modelDiscount {
+  color: #998E78;
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 140%;
+  letter-spacing: 0.02em;
   margin-bottom: 65px;
 }
 
@@ -122,14 +135,11 @@
   height: 70px;
   margin-left: 425px;
   margin-bottom: 120px;
-
   background-color: transparent;
 }
 .linkStore button {
   padding: 13px 100px;
   border: 1px solid#6e9c9f;
-  font-family: 'Raleway';
-  font-style: normal;
   font-weight: 400;
   font-size: 17px;
   line-height: 138.9%;
@@ -151,6 +161,11 @@
   letter-spacing: 0.02em;
   color: white;
   background: #509498;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.linkStore button:not(:hover) {
   cursor: pointer;
   transition: 0.3s;
 }

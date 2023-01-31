@@ -13,14 +13,8 @@ export default function Authorization(): JSX.Element {
 
   const dispatch = useDispatch();
 
-  const { fetchUser } = useActions();
-
   const [signInActive, setSignInActive] = useState<Boolean>(false);
   const [signUpActive, setSignUpActive] = useState<Boolean>(false);
-
-  useEffect(() => {
-    fetchUser();
-  }, []);
 
   async function handleSignOut() {
     await dispatch({ type: userActionTypes.SIGNOUT_USER });
@@ -28,29 +22,35 @@ export default function Authorization(): JSX.Element {
 
   return (
     <div className={styles.auth}>
-      <img className={styles.img} src={telephone} alt='' />
+      {/* <img className={styles.img} src={telephone} alt='' /> */}
       <div className={styles.authSwag}>
         {!login ? (
-          <a
-            className={styles.authA}
-            onClick={() => {
-              setSignInActive(true);
-            }}
-          >
-            Войти
-          </a>
+          <div>
+            <a
+              className={styles.authA}
+              onClick={() => {
+                setSignInActive(true);
+              }}
+            >
+              Войти
+            </a>
+          </div>
         ) : (
-          <a>{login}</a>
+          <div className={styles.login}>
+            <div className={styles.loginChild}>{login}</div>
+          </div>
         )}
         {login ? (
-          <a
-            className={styles.authA}
-            onClick={() => {
-              handleSignOut();
-            }}
-          >
-            Выйти
-          </a>
+          <div className={styles.loginOut}>
+            <div
+              className={styles.loginOutChild}
+              onClick={() => {
+                handleSignOut();
+              }}
+            >
+              Выйти
+            </div>
+          </div>
         ) : null}
       </div>
       <SignIn

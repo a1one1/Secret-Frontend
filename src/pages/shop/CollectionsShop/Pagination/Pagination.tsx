@@ -1,40 +1,37 @@
 import React from 'react';
-import nextPage from '../../../../assets/shop/Vector 1 (2).svg';
+import nextPageImg from '../../../../assets/shop/Vector 1 (2).svg';
 import styles from './Pagination.module.css';
 
 interface IPogination {
-  modelsPerPage: number;
-  totalModels: number;
+  pageNumbers: number[];
   currentPage: number;
   paginate: (pageNumber: number) => void;
   nextPage: () => void;
 }
 
-export default function Pagination(props: IPogination) {
-  const pageNumbers: any[] = [];
-
-  for (let i = 1; i < Math.ceil(props.totalModels / props.modelsPerPage); i++) {
-    pageNumbers.push(i);
-    
-  }
-
+export default function Pagination({
+  pageNumbers,
+  currentPage,
+  paginate,
+  nextPage,
+}: IPogination) {
   return (
     <div className={styles.pagination}>
       <div className={styles.paginationDiv}>
         <ul className={styles.paginationUl}>
-          {pageNumbers.map(number => (
+          {pageNumbers.map((number, index) => (
             <li
               className={
-                props.currentPage === number
+                currentPage === number
                   ? styles.paginationLiAct
                   : styles.paginationLi
               }
-              key={number}
+              key={index}
             >
               <button
                 className={styles.paginationBtn}
                 onClick={() => {
-                  props.paginate(number);
+                  paginate(number);
                 }}
               >
                 {number}
@@ -42,8 +39,8 @@ export default function Pagination(props: IPogination) {
             </li>
           ))}
         </ul>
-        <button onClick={props.nextPage} className={styles.nextPage}>
-          <img src={nextPage} alt='nextPage' />
+        <button onClick={nextPage} className={styles.nextPage}>
+          <img src={nextPageImg} alt='nextPage' />
         </button>
       </div>
     </div>

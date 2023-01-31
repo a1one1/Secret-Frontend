@@ -13,24 +13,31 @@
 .shopRoutes {
   display: flex;
   margin: 0 -5px;
-  margin-bottom: 100px;
-  margin-left: 1px;
+  margin-bottom: 150px;
 }
-
-.shopRoutes a {
+.mainLink {
   text-decoration: none;
-  font-family: 'Raleway';
+  margin-left: 10px;
+
   font-style: normal;
   font-weight: 500;
-  font-size: 15px;
+  font-size: 17px;
   line-height: 140%;
   letter-spacing: 0.02em;
   color: #000000;
 }
+.categoriesName {
+  margin-left: 0px;
+  text-decoration: none;
 
-.line {
-  font-family: 'Raleway';
   font-style: normal;
+  font-weight: 500;
+  font-size: 17px;
+  line-height: 140%;
+  letter-spacing: 0.02em;
+  color: #000000;
+}
+.line {
   font-weight: 500;
   font-size: 17px;
   line-height: 140%;
@@ -39,19 +46,17 @@
 }
 
 .shopItem {
-  font-family: 'Raleway';
-  font-style: normal;
   font-weight: 500;
-  font-size: 15px;
+  font-size: 17px;
   line-height: 140%;
   letter-spacing: 0.02em;
+  color: #919191;
 }
-
 .shopItemGrey {
   font-family: 'Raleway';
   font-style: normal;
   font-weight: 500;
-  font-size: 15px;
+  font-size: 17px;
   line-height: 140%;
   letter-spacing: 0.02em;
   color: #919191;
@@ -59,6 +64,7 @@
 
 .oneModelDiv {
   display: flex;
+  margin-bottom: 120px;
 }
 .imgOneModel {
   position: relative;
@@ -83,7 +89,7 @@
 .cardImg .cardImg_div {
   justify-content: flex-end;
   font-size: 30px;
-  z-index: 999;
+  z-index: 800;
   width: 50%;
   height: 100%;
 }
@@ -288,4 +294,103 @@ input::-webkit-inner-spin-button {
   font-size: 15px;
   line-height: 140%;
   letter-spacing: 0.02em;
+}
+
+.oneModelNull {
+  width: 1200px;
+  height: 932px;
+}
+
+.linkModel h4 {
+  font-weight: 500;
+  font-size: 40px;
+  line-height: 110%;
+  letter-spacing: 0.02em;
+  margin-bottom: 50px;
+}
+
+.collectionsShop {
+  display: flex;
+  margin: 0 -5px;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  margin-bottom: 65px;
+}
+.collection {
+  margin: 15px 20px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0px;
+  gap: 24px;
+  width: 350px;
+}
+
+.collectionDiv {
+  position: relative;
+}
+.collectionDiv img {
+  width: 370px;
+  height: 450px;
+}
+
+.cardImg {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: flex-start;
+}
+
+.cardImg .cardImg_div {
+  font-size: 30px;
+  z-index: 10;
+  width: 100%;
+  height: 100%;
+  transition: 1s;
+}
+
+.cardImg .cardImg_div:hover {
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  transition: 1s;
+}
+
+.cardImg .cardImg_div img {
+  width: 0%;
+  height: 0%;
+}
+
+.cardImg .cardImg_div:hover img {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  z-index: 0;
+}
+
+.collectionDiv a {
+  height: 100%;
+  cursor: default;
+}
+
+.collection h4 {
+  margin: 0px;
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 140%;
+  letter-spacing: 0.02em;
+  word-break: break-all;
+}
+
+.zeroLinkModel {
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 140%;
+  letter-spacing: 0.02em;
+  padding-left: 10px;
 }

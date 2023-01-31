@@ -4,8 +4,8 @@
   width: 17px;
   height: 17px;
   background: transparent;
-  border-top: 3px solid black;
-  border-right: 3px solid black;
+  border-top: 1px solid black;
+  border-right: 1px solid black;
   box-shadow: 0 0 0 lightgray;
   transition: all 200ms ease;
 
@@ -21,7 +21,7 @@
 
   &:hover {
     border-color: rgba(110, 156, 159, 0.95);;
-    box-shadow: 0.3vmin -0.3vmin 0 black;
+    box-shadow: 0.2vmin -0.2vmin 0 black;
   }
 
   &:before {
