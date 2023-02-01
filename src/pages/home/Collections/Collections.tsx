@@ -32,7 +32,7 @@ export default function Collections(): JSX.Element {
             className={styles.collection}
           >
             <div className={styles.collectionDiv}>
-              <NavLink className={styles.op} to={`/oneModel`}>
+              <NavLink className={styles.navLink} to={`/oneModel`}>
                 <img className={styles.imgMain} src={model.modelImg} alt='' />
                 <div className={styles.lineCard}>
                   {model.img.map((_, index) => (
