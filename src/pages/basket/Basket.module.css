@@ -136,7 +136,6 @@
 .baskeImg img {
   width: 156px;
   height: auto;
-  object-fit: scale-down;
 }
 
 .cardImg {
