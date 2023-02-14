@@ -1,0 +1,470 @@
+.basketZero {
+  height: 400px;
+}
+
+.basketWrapper {
+  display: flex;
+  width: 800px;
+  margin: auto;
+}
+
+.itemSecond h2 {
+  margin-top: 70px;
+  width: 370px;
+}
+.itemSecond p {
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 140%;
+  letter-spacing: 0.02em;
+}
+
+.itemSecond input {
+  margin-left: 48px;
+  width: 206px;
+  height: 50px;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 138.9%;
+  text-align: center;
+  letter-spacing: 0.02em;
+
+  color: #ffffff;
+  border: none;
+
+  background: #6e9c9f;
+  transition: 0.3s;
+}
+
+.itemSecond input:hover {
+  background: #509498;
+}
+
+.basket {
+  width: 1150px;
+  margin: auto;
+}
+.basket a:hover {
+  color: #509498;
+}
+
+.basketH3 {
+  font-weight: 500;
+  font-size: 40px;
+  line-height: 110%;
+  letter-spacing: 0.02em;
+  margin-bottom: 26px;
+}
+
+.basketRoutes {
+  display: flex;
+  margin: 0 -5px;
+  margin-bottom: 150px;
+}
+.basketRoutes a {
+  text-decoration: none;
+  margin-left: 10px;
+
+  font-style: normal;
+  font-weight: 500;
+  font-size: 17px;
+  line-height: 140%;
+  letter-spacing: 0.02em;
+  color: #000000;
+}
+.line {
+  font-weight: 500;
+  font-size: 17px;
+  line-height: 140%;
+  letter-spacing: 0.02em;
+  margin: 0 7px;
+}
+
+.basketItem {
+  font-weight: 500;
+  font-size: 17px;
+  line-height: 140%;
+  letter-spacing: 0.02em;
+  color: #919191;
+}
+
+.basketMain {
+  position: relative;
+}
+.basketMain table {
+  width: 950px;
+  margin-bottom: 70px;
+}
+
+.borderLine {
+  top: 50px;
+  position: absolute;
+  width: 1000px;
+  border-bottom: 1px solid #cccccc;
+}
+
+.basket_tr th {
+  text-align: center;
+  height: 100px;
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 140%;
+  letter-spacing: 0.02em;
+  padding-bottom: 76px;
+}
+
+.basket_tr th:nth-child(1) {
+  text-align: start;
+
+  width: 430px;
+}
+
+.basket_tr th:nth-child(3) {
+  width: 150px;
+}
+
+.basket_tr th:nth-child(4) {
+  width: 150px;
+}
+
+.tbody {
+  height: 800px;
+}
+.baskeImg {
+  position: relative;
+}
+.baskeImg img {
+  width: 156px;
+  height: auto;
+}
+
+.cardImg {
+  position: absolute;
+  bottom: 0;
+
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: flex-start;
+}
+
+.cardImg .cardImg_div {
+  font-size: 30px;
+  z-index: 10;
+  width: 100%;
+  height: 100%;
+  transition: 1s;
+}
+
+.cardImg .cardImg_div:hover {
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  transition: 1s;
+}
+
+.cardImg .cardImg_div img {
+  width: 0%;
+  height: 0%;
+}
+
+.cardImg .cardImg_div:hover img {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  z-index: 0;
+}
+
+.basket_td td {
+  vertical-align: middle;
+  text-align: center;
+}
+
+.basket_td td:first-child {
+  display: flex;
+}
+
+.td_h4 {
+  position: relative;
+  width: 156px;
+  height: 214px;
+}
+.basket_td td:first-child div h4 {
+  font-weight: 500;
+  font-size: 17px;
+  line-height: 140%;
+  letter-spacing: 0.02em;
+  margin: 0px;
+  margin-left: 25px;
+
+  position: absolute;
+  top: 50%;
+  transform: translate(0, -50%);
+}
+
+.basket_td td:nth-child(4) {
+  padding-left: 7px;
+}
+
+.itemsPrice {
+  font-weight: 500;
+  font-size: 17px;
+  line-height: 140%;
+  letter-spacing: 0.02em;
+  padding-left: 5px;
+  min-width: 120px;
+}
+.itemsSize {
+  font-weight: 500;
+  font-size: 17px;
+  line-height: 140%;
+  letter-spacing: 0.02em;
+  padding-left: 5px;
+}
+.itemsAmout {
+  position: relative;
+}
+.itemsAmout input {
+  text-align: center;
+  display: flex;
+  width: 47px;
+  height: 47px;
+  border: 1px solid #afafaf;
+  margin-right: 10px;
+  font-weight: 400;
+  font-size: 20px;
+
+  letter-spacing: 0.02em;
+  margin-left: 44px;
+  padding-bottom: 5px;
+}
+.itemsAmout input:disabled {
+  background-color: transparent;
+}
+
+.itemsAmout div {
+  position: absolute;
+
+  left: 35px;
+}
+
+.amountPlus {
+  user-select: none;
+  font-size: 21px;
+  position: absolute;
+  top: 37px;
+  right: 26px;
+  cursor: pointer;
+  text-decoration: none;
+  color: #000000;
+}
+
+.amountMinus {
+  user-select: none;
+  font-size: 21px;
+  position: absolute;
+  top: 37px;
+  right: 97px;
+  cursor: pointer;
+  text-decoration: none;
+  color: #000000;
+}
+.amountMinus svg {
+  display: block;
+  width: 30px;
+  height: 35px;
+}
+.removeModels {
+  width: 60px;
+  height: 214px;
+  position: relative;
+}
+
+.removeModels a {
+  display: block;
+
+  margin-right: 45px;
+  width: 15px;
+  height: 15px;
+  background: url(../../assets/basket/Vector.svg) 0 0 no-repeat;
+  cursor: pointer;
+
+  position: absolute;
+  top: 50%;
+  transform: translate(0, -50%);
+}
+
+.coupons {
+  height: 80px;
+  display: flex;
+  margin-bottom: 50px;
+  flex-direction: column;
+}
+
+.couponSuccessAndError {
+  margin-top: 15px;
+}
+
+.formInputs {
+  display: flex;
+  align-self: flex-start;
+}
+
+.formInputs input[type='text'] {
+  outline: none;
+  border: none;
+  border-bottom: 1px solid #000000;
+  margin-right: 15px;
+  align-self: flex-end;
+
+  width: 255px;
+  height: 47px;
+}
+
+.formInputs input[type='submit'] {
+  align-self: flex-end;
+  width: 248px;
+  height: 68px;
+  color: #6e9c9f;
+  background-color: transparent;
+  border: 1px solid #6e9c9f;
+}
+.formInputs input[type='submit']:hover {
+  color: white;
+  background: #509498;
+  cursor: pointer;
+  transition: 0.3s;
+}
+.formInputs input[type='submit']:not(:hover) {
+  background-color: transparent;
+
+  transition: 0.3s;
+}
+
+.formInputs input[type='submit']:disabled {
+  color: #6e9c9f;
+  background: transparent;
+  cursor: default;
+  opacity: 0.65;
+}
+
+.basketTotal {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  position: relative;
+  height: 150px;
+  margin-bottom: 40px;
+}
+
+.basketTotalAbsolute {
+  width: 500px;
+  height: 120px;
+  position: absolute;
+  right: 10%;
+  top: 0px;
+}
+
+.basketTotalAbsolute div:nth-child(1) {
+  font-weight: 500;
+  font-size: 17px;
+  line-height: 140%;
+  margin-bottom: 10px;
+}
+
+.couponDiscount {
+  min-height: 10px;
+  font-weight: 500;
+  font-size: 17px;
+  line-height: 140%;
+  margin-bottom: 10px;
+}
+
+.couponDiscount div {
+  display: flex;
+}
+
+.couponDiscount div p {
+  margin-left: 10px;
+  color: red;
+}
+
+.basketTotalAbsolute h6 {
+  margin-bottom: 25px;
+  font-weight: 500;
+  font-size: 17px;
+  line-height: 140%;
+  letter-spacing: 0.02em;
+}
+
+.orderAndTotal {
+  width: 100%;
+  display: flex;
+}
+
+.orderAndTotal div {
+  display: flex;
+
+  width: 287px;
+  height: 68px;
+  background: #f1eadc;
+  align-items: center;
+  justify-content: center;
+}
+.orderAndTotal div div {
+  width: 150px;
+}
+.orderAndTotal div h5 {
+  margin-bottom: 0px;
+
+  font-weight: 500;
+  font-size: 25px;
+  line-height: 140%;
+  letter-spacing: 0.02em;
+
+  /* line-height: 70px; */
+}
+
+.total {
+  margin-left: 20px;
+}
+
+.total.totalMarge {
+  margin-top: 4px;
+  margin-left: 8px;
+  font-size: 20px;
+
+  text-decoration-line: line-through;
+  color: #9c9c9c;
+}
+
+.totalDiscount {
+  margin-bottom: 0px;
+  font-weight: 500;
+  font-size: 24px;
+  letter-spacing: 0.02em;
+  margin-left: 10px;
+}
+
+.orderAndTotal input {
+  margin-left: 15px;
+  width: 236px;
+  height: 68px;
+  font-weight: 400;
+  font-size: 17px;
+  line-height: 138.9%;
+  text-align: center;
+  letter-spacing: 0.02em;
+
+  color: #ffffff;
+  border: none;
+
+  background: #6e9c9f;
+  transition: 0.3s;
+}
+
+.orderAndTotal input:hover {
+  background: #509498;
+}

@@ -1,0 +1,146 @@
+.zeroModels {
+  text-align: center;
+}
+
+.zeroModels div {
+  width: 70%;
+  margin-left: 270px;
+
+  font-size: 2rem;
+}
+.CollectionsShopSection {
+  min-height: 690px;
+}
+.collectionsShop {
+  display: flex;
+  margin: 0 -5px;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  margin-bottom: 65px;
+}
+.collection {
+  margin: 12px;
+  margin-right: 24px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0px;
+  gap: 24px;
+  width: 350px;
+}
+
+/* .collection:first-child {
+  margin: 10px 20px;
+  margin-left: 10px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0px;
+  gap: 24px;
+  width: 350px;
+} */
+
+.collectionDiv {
+  position: relative;
+}
+.collectionDiv img {
+  width: 370px;
+  height: 450px;
+}
+
+.cardImg {
+  position: absolute;
+  bottom: 0;
+
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: flex-start;
+}
+
+.cardImg .cardImg_div {
+  font-size: 30px;
+  z-index: 10;
+  width: 100%;
+  height: 100%;
+  transition: 1s;
+}
+
+.cardImg .cardImg_div:hover {
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  transition: 1s;
+}
+
+.cardImg .cardImg_div img {
+  width: 0%;
+  height: 0%;
+}
+
+.cardImg .cardImg_div:hover img {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  z-index: 0;
+}
+
+.collectionDiv a {
+  cursor: default;
+}
+
+.collection h4 {
+  margin: 0px;
+  font-family: 'Raleway';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 140%;
+  letter-spacing: 0.02em;
+
+  word-break: break-all;
+}
+
+.modelPrice {
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 140%;
+  letter-spacing: 0.02em;
+  color: #998e78;
+  margin-right: 10px;
+}
+.discountTrue {
+  text-decoration: line-through;
+  font-size: 16px;
+  color: #9c9c9c;
+}
+
+.modelDiscountDiv {
+  width: 180px;
+}
+.modelDiscount {
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 140%;
+  letter-spacing: 0.02em;
+  color: #998e78;
+}
+
+.showCollections {
+  margin-bottom: 85px;
+}
+
+.showCollections p {
+  font-family: 'Raleway';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 17px;
+  line-height: 140%;
+
+  letter-spacing: 0.02em;
+  color: #808080;
+}

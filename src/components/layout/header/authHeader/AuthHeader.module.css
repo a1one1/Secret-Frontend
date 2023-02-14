@@ -1,0 +1,94 @@
+/* .auth {
+  z-index: 999;
+  display: flex;
+  width: 150px;
+  margin-top: 1px;
+} */
+
+.auth img {
+  height: 20px;
+  margin-right: 10px;
+}
+/* .auth a {
+  height: 24px;
+  width: 50px;
+  text-align: center;
+  margin: revert;
+} */
+/* .auth a:last-child {
+  margin-top: 1.2px;
+  margin-left: 20px;
+} */
+.authA {
+  z-index: 10;
+  margin-left: 20px;
+  font-weight: 400;
+  font-size: 15px;
+  line-height: 140%;
+  letter-spacing: 0.02em;
+  color: black;
+  background-color: transparent;
+  border: 0px;
+  text-decoration: none;
+  cursor: pointer;
+  text-align: end;
+}
+
+.authA:hover {
+  color: #6e9c9f;
+  transition: 0.2s;
+}
+.authA:not(:hover) {
+  transition: 0.2s;
+}
+
+.authSwag {
+  display: flex;
+  /* width: 150px; */
+}
+
+.login {
+  width: 80px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+}
+
+.loginChild {
+  height: 25px;
+  width: 80px;
+  font-weight: 700;
+  font-size: 17px;
+  line-height: 140%;
+  color: #000000;
+  margin-bottom: 2px;
+  text-align: center;
+}
+
+.loginOut {
+  width: 100px;
+  height: 50px;
+  z-index: 999;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+}
+
+.loginOutChild {
+  height: 25px;
+  width: 80px;
+  font-weight: 400;
+  font-size: 15px;
+  line-height: 140%;
+  color: #000000;
+  margin-right: 25px;
+  margin-top: 1px;
+}
+.loginOutChild:hover {
+  color: #6e9c9f;
+  transition: 0.2s;
+  cursor: pointer;
+}
+.loginOutChild:not(:hover) {
+  transition: 0.2s;
+}

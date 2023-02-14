@@ -1,20 +1,61 @@
-import styles from "./Header.module.css";
-import { Link } from "react-router-dom";
+import styles from './Header.module.css';
+import AuthHeader from './authHeader/AuthHeader';
+import Basket from './basket/BasketHeader';
+import logo from '../../../assets/header/logo.svg';
+import { NavLink } from 'react-router-dom';
+import { useEffect } from 'react';
+import useActionsUser from '../../../redux/hooks/useActionUser';
+import useActionsModel from '../../../redux/hooks/useActionModels';
 
-export default function Footer(): JSX.Element {
+export default function Header(): JSX.Element {
+  const { fetchUser } = useActionsUser();
+  const { fetchModels } = useActionsModel();
+
+  useEffect(() => {
+    fetchUser();
+    fetchModels();
+  }, []);
+
   return (
     <header>
-      <div className={styles.container}>
-        <div className={styles.logo}>
-          <img alt="dress" />
-          <img alt="nameshop" />
+      <div className={styles.header}>
+        <div className={styles.headerLog}>
+          <img src='https://svgur.com/i/pt7.svg' alt='dress' />
+          <div>Secret</div>
         </div>
+
         <nav>
-          <Link to="/">Главная</Link>
-          <Link to="/shop">Магазин</Link>
-          <Link to="/brand">О бренде</Link>
-          <Link to="/contacts">Контакты</Link>
+          <NavLink
+            to='/'
+            className={({ isActive }) => (isActive ? styles.activeLink : '')}
+          >
+            <p className={styles.pHeader}>Главная</p>
+          </NavLink>
+          <NavLink
+            className={({ isActive }) => (isActive ? styles.activeLink : '')}
+            to={`/shop`}
+          >
+            <p>Магазин</p>
+          </NavLink>
+          <NavLink
+            className={({ isActive }) => (isActive ? styles.activeLink : '')}
+            to='/brand'
+          >
+            <p>О бренде</p>
+          </NavLink>
+          <NavLink
+            className={({ isActive }) => (isActive ? styles.activeLink : '')}
+            to='/contacts'
+          >
+            <p>Контакты</p>
+          </NavLink>
         </nav>
+
+        <div className={styles.authAndBasket}>
+          <AuthHeader />
+
+          <Basket />
+        </div>
       </div>
     </header>
   );

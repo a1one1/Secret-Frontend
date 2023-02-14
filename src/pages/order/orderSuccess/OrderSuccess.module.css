@@ -1,0 +1,123 @@
+.orderSuccessSection {
+  max-width: 1150px;
+  margin: auto;
+}
+.orderSuccessSection a:hover {
+  color: #509498;
+}
+
+.HeadOrder h2 {
+  font-weight: 500;
+  font-size: 35px;
+  line-height: 110%;
+  letter-spacing: 0.02em;
+  color: #000000;
+  margin-bottom: 26px;
+}
+
+.orderRoutes {
+  display: flex;
+  margin: 0 -5px;
+  margin-bottom: 150px;
+}
+.mainLink {
+  text-decoration: none;
+  margin-left: 10px;
+
+  font-style: normal;
+  font-weight: 500;
+  font-size: 17px;
+  line-height: 140%;
+  letter-spacing: 0.02em;
+  color: #000000;
+}
+.orderLink {
+  margin-left: 0px;
+  text-decoration: none;
+
+  font-style: normal;
+  font-weight: 500;
+  font-size: 17px;
+  line-height: 140%;
+  letter-spacing: 0.02em;
+  color: #000000;
+}
+.line {
+  font-weight: 500;
+  font-size: 17px;
+  line-height: 140%;
+  letter-spacing: 0.02em;
+  margin: 0 7px;
+}
+
+.orderItem {
+  font-weight: 500;
+  font-size: 17px;
+  line-height: 140%;
+  letter-spacing: 0.02em;
+  color: #919191;
+}
+.orderItemGrey {
+  font-family: 'Raleway';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 17px;
+  line-height: 140%;
+  letter-spacing: 0.02em;
+  color: #919191;
+}
+
+.orderSuccessMain {
+  display: flex;
+  margin-bottom: 130px;
+}
+
+.item1 {
+  display: flex;
+}
+
+.successImg {
+  margin-right: 45px;
+}
+
+.successText h4 {
+  margin-bottom: 17px;
+  font-weight: 500;
+  font-size: 25px;
+  line-height: 140%;
+  letter-spacing: 0.02em;
+}
+
+.successText p {
+  margin: 0px;
+
+  font-weight: 500;
+  font-size: 17px;
+  line-height: 140%;
+  letter-spacing: 0.02em;
+}
+.item2 {
+  margin-left: 200px;
+}
+.item2 button {
+  margin-top: 6px;
+  color: #6e9c9f;
+  padding: 22px 50px;
+  gap: 10px;
+  width: 272px;
+  height: 68px;
+  border: 1px solid #6e9c9f;
+  background-color: transparent;
+}
+
+.item2 button:hover {
+  color: white;
+  background: #509498;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.item2 button:not(:hover) {
+  background-color: transparent;
+  transition: 0.3s;
+}

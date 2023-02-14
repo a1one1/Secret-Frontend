@@ -1,0 +1,54 @@
+.liWrapper {
+  display: flex;
+}
+
+.categories {
+  margin-bottom: 92px;
+}
+.categories ul {
+  padding-left: 0px;
+  display: flex;
+}
+.categories ul li:first-child button {
+  width: 210px;
+  height: 69px;
+
+  margin-left: 0px;
+}
+.categories ul li {
+  list-style-type: none;
+}
+.categoriesBtn {
+  width: 210px;
+  height: 69px;
+
+  margin-right: 10px;
+  margin-left: 0px;
+
+  color: black;
+  border: 1px solid black;
+  /* padding: 20px 65px; */
+  background-color: transparent;
+
+  font-weight: 500;
+  font-size: 17px;
+  line-height: 140%;
+  letter-spacing: 0.02em;
+}
+
+.categoriesBtnACT {
+  width: 210px;
+  height: 69px;
+
+  margin-right: 10px;
+  margin-left: 0px;
+  color: white;
+  background-color: black;
+  /* padding: 20px 65px; */
+  list-style-type: none;
+
+  font-weight: 500;
+  font-size: 17px;
+  line-height: 140%;
+  letter-spacing: 0.02em;
+}

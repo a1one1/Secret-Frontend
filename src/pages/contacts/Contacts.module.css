@@ -1,0 +1,151 @@
+.contacts {
+  width: 1150px;
+  margin: auto;
+}
+.contacts a:hover {
+  color: #509498;
+}
+
+.contactsH3 {
+  font-weight: 500;
+  font-size: 40px;
+  line-height: 110%;
+  letter-spacing: 0.02em;
+  margin-bottom: 26px;
+}
+
+.contactsRoutes {
+  display: flex;
+  margin: 0 -5px;
+  margin-bottom: 150px;
+}
+
+.contactsRoutes a {
+  text-decoration: none;
+  margin-left: 10px;
+
+  font-style: normal;
+  font-weight: 500;
+  font-size: 17px;
+  line-height: 140%;
+  letter-spacing: 0.02em;
+  color: #000000;
+}
+.line {
+  font-weight: 500;
+  font-size: 17px;
+  line-height: 140%;
+  letter-spacing: 0.02em;
+  margin: 0 7px;
+}
+
+.contactsItem {
+  font-weight: 500;
+  font-size: 17px;
+  line-height: 140%;
+  letter-spacing: 0.02em;
+  color: #919191;
+}
+
+.contactsMap {
+  /* width: 1109px;
+  height: 476px; */
+}
+.contactsInfo {
+  display: flex;
+  margin-bottom: 130px;
+}
+.contactsInfo div {
+  margin-left: 110px;
+}
+.contactsInfo div:first-child {
+  margin-left: 0px;
+}
+
+.contactsInfo p {
+  font-weight: 500;
+  font-size: 19px;
+  line-height: 140%;
+  letter-spacing: 0.02em;
+}
+
+.contactsInputs {
+  margin-bottom: 42px;
+}
+
+.contactsInputs h5 {
+  margin-bottom: 62px;
+}
+
+.formInputs {
+  display: flex;
+  flex-direction: column;
+}
+.formInputs div {
+  height: 30px;
+}
+
+.formInputs div p {
+  margin: 5px 0;
+  color: red;
+}
+
+.formInputs input[type='text'] {
+  outline: none;
+  border: none;
+  border-bottom: 1px solid #000000;
+  /* margin-bottom: 35px; */
+  width: 350px;
+  height: 40px;
+  font-weight: 500;
+  font-size: 17px;
+  line-height: 140%;
+}
+
+.textrea {
+  width: 350px;
+  min-height: 104px;
+  overflow-y: hidden;
+  outline: none;
+  resize: none;
+  border: none;
+  border-bottom: 1px solid black;
+  margin-bottom: 35px;
+}
+
+.formInputs input[type='submit'] {
+  outline: none;
+  border: none;
+  background: #6e9c9f;
+  color: white;
+  width: 189px;
+  height: 68px;
+  font-weight: 500;
+  font-size: 17px;
+  line-height: 140%;
+  transition: 0.3s;
+}
+
+.formInputs input[type='submit']:hover {
+  background-color: #509498;
+  transition: 0.3s;
+}
+.resContactsWrapper {
+  width: 437px;
+  height: 84px;
+  margin-bottom: 80px;
+}
+
+.contactsResponse {
+  width: 437px;
+  height: 84px;
+  background: #f1eadc;
+  text-align: center;
+}
+
+.contactsResponse div {
+  font-weight: 500;
+  font-size: 17px;
+  line-height: 140%;
+  padding-top: 30px;
+}

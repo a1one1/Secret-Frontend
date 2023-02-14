@@ -1,0 +1,125 @@
+.brand {
+  width: 1150px;
+  margin: auto;
+}
+.brand a:hover {
+  color: #509498;
+}
+
+.brandH3 {
+  font-weight: 500;
+  font-size: 40px;
+  line-height: 110%;
+  letter-spacing: 0.02em;
+  margin-bottom: 26px;
+}
+
+.brandRoutes {
+  display: flex;
+  margin: 0 -5px;
+  margin-bottom: 150px;
+}
+
+.brandRoutes a {
+  text-decoration: none;
+  margin-left: 10px;
+
+  font-style: normal;
+  font-weight: 500;
+  font-size: 17px;
+  line-height: 140%;
+  letter-spacing: 0.02em;
+  color: #000000;
+}
+.line {
+  font-weight: 500;
+  font-size: 17px;
+  line-height: 140%;
+  letter-spacing: 0.02em;
+  margin: 0 7px;
+}
+
+.brandItem {
+  font-weight: 500;
+  font-size: 17px;
+  line-height: 140%;
+  letter-spacing: 0.02em;
+  color: #919191;
+}
+
+.bodyItem1 {
+  display: flex;
+}
+
+.bodyItem1Div {
+  width: 542px;
+  height: 321px;
+  margin-top: 115px;
+}
+.bodyItem1Div h4 {
+  font-weight: 500;
+  font-size: 25px;
+  line-height: 140%;
+  margin-bottom: 46px;
+}
+.bodyItem1Div p {
+  font-weight: 500;
+  font-size: 17px;
+  line-height: 140%;
+}
+
+.bodyItem1Div {
+  margin-left: 95px;
+}
+
+.bodyItem2 {
+  display: flex;
+  margin-top: 120px;
+}
+
+.bodyItem2Div {
+  width: 542px;
+  height: 321px;
+  margin-top: 115px;
+}
+.bodyItem1Div h4 {
+  font-weight: 500;
+  font-size: 25px;
+  line-height: 140%;
+  margin-bottom: 46px;
+}
+.bodyItem2Div p {
+  font-weight: 500;
+  font-size: 17px;
+  line-height: 140%;
+}
+
+.bodyItem2Div {
+  margin-right: 120px;
+}
+.brandButton div {
+  margin: auto;
+  width: 300px;
+}
+
+.brandButton div button {
+  margin-top: 6px;
+  background: #6e9c9f;
+  color: white;
+  padding: 22px 50px;
+  gap: 10px;
+  width: 272px;
+  height: 68px;
+  border: 1px solid #6e9c9f;
+  margin: 130px 0;
+}
+
+.brandButton div button:hover {
+  background: #509498;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.brandButton div button:not(:hover) {
+  transition: 0.3s;
+}

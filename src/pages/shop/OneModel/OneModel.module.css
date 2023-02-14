@@ -1,0 +1,422 @@
+.OneModel {
+  margin: auto;
+  width: 1200px;
+}
+
+.OneModel a:hover {
+  color: #509498;
+}
+.OneModel h3 {
+  font-weight: 500;
+  font-size: 50px;
+  line-height: 110%;
+  letter-spacing: 0.02em;
+  margin-bottom: 26px;
+}
+
+.shopRoutes {
+  display: flex;
+  margin: 0 -5px;
+  margin-bottom: 150px;
+}
+.mainLink {
+  text-decoration: none;
+  margin-left: 10px;
+
+  font-style: normal;
+  font-weight: 500;
+  font-size: 17px;
+  line-height: 140%;
+  letter-spacing: 0.02em;
+  color: #000000;
+}
+.categoriesName {
+  margin-left: 0px;
+  text-decoration: none;
+
+  font-style: normal;
+  font-weight: 500;
+  font-size: 17px;
+  line-height: 140%;
+  letter-spacing: 0.02em;
+  color: #000000;
+}
+.line {
+  font-weight: 500;
+  font-size: 17px;
+  line-height: 140%;
+  letter-spacing: 0.02em;
+  margin: 0 7px;
+}
+
+.shopItem {
+  font-weight: 500;
+  font-size: 17px;
+  line-height: 140%;
+  letter-spacing: 0.02em;
+  color: #919191;
+}
+.shopItemGrey {
+  font-family: 'Raleway';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 17px;
+  line-height: 140%;
+  letter-spacing: 0.02em;
+  color: #919191;
+}
+
+.oneModelDiv {
+  display: flex;
+  margin-bottom: 120px;
+}
+.imgOneModel {
+  position: relative;
+  width: 536px;
+  height: 729px;
+}
+.imgMain {
+  max-width: 100%;
+  height: 100%;
+}
+
+.lineCard {
+  display: flex;
+}
+.lineCard_div {
+  position: relative;
+
+  width: 50%;
+  height: 100%;
+}
+.lineCardImg {
+  position: absolute;
+  top: 30px;
+  width: 35px;
+  z-index: 20;
+  top: -710px;
+  left: 36%;
+  transition: 0.5s;
+}
+.lineCardImgActive {
+  content: url(https://svgur.com/i/pvP.svg);
+  transition: 0.5s;
+}
+.cardImg {
+  position: absolute;
+  bottom: 0;
+
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: flex-start;
+}
+
+.cardImg .cardImg_div {
+  justify-content: flex-end;
+  font-size: 30px;
+  z-index: 800;
+  width: 50%;
+  height: 100%;
+}
+
+.cardImg .cardImg_div:hover {
+  width: 50%;
+  height: 100%;
+  z-index: 0;
+}
+
+.cardImg .cardImg_div img {
+  width: 0%;
+  height: 0%;
+}
+
+.cardImg .cardImg_div:hover img {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  z-index: 0;
+}
+
+.oneModelBody {
+  margin-top: 70px;
+  height: 500px;
+  margin-left: 75px;
+  display: flex;
+  flex-direction: column;
+}
+.oneModelPrice {
+  margin-bottom: 60px;
+}
+.oneModelPrice div {
+  display: flex;
+}
+.oneModelPriceItem1p {
+  margin: 0px;
+  font-family: 'Raleway';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 40px;
+  line-height: 110%;
+  letter-spacing: 0.02em;
+  color: #998e78;
+  margin-right: 30px;
+}
+
+.oneModelPriceItem2p {
+  margin: 0px;
+  font-family: 'Raleway';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 30px;
+  line-height: 110%;
+  letter-spacing: 0.02em;
+  text-decoration-line: line-through;
+  color: #9c9c9c;
+}
+.oneModelSize {
+  margin-bottom: 60px;
+}
+.oneModelSize p {
+  font-family: 'Raleway';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 140%;
+  letter-spacing: 0.02em;
+  margin-bottom: 35px;
+}
+
+.oneModelColor {
+  margin-bottom: 60px;
+}
+.oneModelColor p {
+  font-family: 'Raleway';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 140%;
+  letter-spacing: 0.02em;
+  margin-bottom: 34px;
+}
+.oneModelColor div {
+  display: flex;
+}
+.oneModelColor button {
+  margin-right: 15px;
+  border-radius: 50%;
+  width: 41px;
+  height: 41px;
+}
+.oneModelColor button:hover {
+  opacity: 0.83;
+}
+.sizeBtn {
+  margin-right: 15px;
+  border: 1px solid black;
+  width: 41px;
+  height: 41px;
+  align-items: center;
+  vertical-align: top;
+  background-color: transparent;
+  font-family: 'Raleway';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 17px;
+  line-height: 140%;
+  letter-spacing: 0.02em;
+}
+.sizeBtnAct {
+  margin-right: 15px;
+  width: 41px;
+  height: 41px;
+  background-color: black;
+  color: white;
+  font-family: 'Raleway';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 17px;
+  line-height: 140%;
+  letter-spacing: 0.02em;
+  transition: 1s;
+}
+.sizeBtn:hover {
+  color: white;
+  background-color: #000000;
+  opacity: 0.63;
+  transition: 0.5s;
+}
+.sizeBtn:not(:hover) {
+  background-color: transparent;
+
+  transition: 0.5s;
+}
+
+.addBasket {
+  display: flex;
+}
+
+.addBasket button {
+  align-items: center;
+  padding: 22px 50px;
+  color: white;
+  width: 268px;
+  height: 68px;
+  border: none;
+  background: #6e9c9f;
+  transition: 0.3s;
+}
+
+.addBasket button:disabled {
+  cursor: default;
+  opacity: 0.75;
+}
+
+.addBasket button:not(:disabled):hover {
+  transition: 0.3s;
+  background: #509498;
+}
+
+.addBasket input {
+  align-items: center;
+  width: 68px;
+  height: 68px;
+  padding: 23px;
+  border: 1px solid #afafaf;
+  margin-right: 10px;
+  font-family: 'Raleway';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 140%;
+  text-align: center;
+  letter-spacing: 0.02em;
+}
+
+.addBasket input:focus {
+  outline: none;
+}
+
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.modelRest {
+  position: relative;
+  margin-right: 40px;
+}
+
+.modelRest p {
+  position: absolute;
+  top: 20px;
+  left: -20px;
+
+  font-family: 'Raleway';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 15px;
+  line-height: 140%;
+  letter-spacing: 0.02em;
+}
+
+.oneModelNull {
+  width: 1200px;
+  height: 932px;
+}
+
+.linkModel h4 {
+  font-weight: 500;
+  font-size: 40px;
+  line-height: 110%;
+  letter-spacing: 0.02em;
+  margin-bottom: 50px;
+}
+
+.collectionsShop {
+  display: flex;
+  margin: 0 -5px;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  margin-bottom: 65px;
+}
+.collection {
+  margin: 15px 20px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0px;
+  gap: 24px;
+  width: 350px;
+}
+
+.collectionDiv {
+  position: relative;
+}
+.collectionDiv img {
+  width: 370px;
+  height: 450px;
+}
+
+.cardImg {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: flex-start;
+}
+
+.cardImg .cardImg_div {
+  font-size: 30px;
+  z-index: 10;
+  width: 100%;
+  height: 100%;
+  transition: 1s;
+}
+
+.cardImg .cardImg_div:hover {
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  transition: 1s;
+}
+
+.cardImg .cardImg_div img {
+  width: 0%;
+  height: 0%;
+}
+
+.cardImg .cardImg_div:hover img {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  z-index: 0;
+}
+
+.collectionDiv a {
+  height: 100%;
+  cursor: default;
+}
+
+.collection h4 {
+  margin: 0px;
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 140%;
+  letter-spacing: 0.02em;
+  word-break: break-all;
+}
+
+.zeroLinkModel {
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 140%;
+  letter-spacing: 0.02em;
+  padding-left: 10px;
+}

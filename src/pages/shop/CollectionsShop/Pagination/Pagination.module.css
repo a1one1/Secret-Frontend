@@ -1,0 +1,54 @@
+.pagination {
+  display: flex;
+}
+.paginationDiv {
+  display: flex;
+
+  margin: auto;
+}
+.paginationUl {
+  display: flex;
+  list-style-type: none;
+  padding-left: 0px;
+  min-width: 130px;
+}
+
+.paginationLi {
+  margin-left: 14px;
+  width: 41px;
+  height: 41px;
+}
+.paginationLi:last-child {
+  margin: 0 14px;
+}
+.paginationBtn {
+  border: 1px solid black;
+  width: 41px;
+  height: 41px;
+  background-color: transparent;
+  font-family: 'Raleway';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 17px;
+  line-height: 140%;
+  /* identical to box height, or 24px */
+
+  letter-spacing: 0.02em;
+}
+
+.paginationLiAct {
+  margin-left: 14px;
+  width: 41px;
+  height: 41px;
+  background-color: black;
+  color: white;
+}
+.paginationLiAct button {
+  color: white;
+}
+.nextPage {
+  background-color: transparent;
+  border: none;
+  width: 41px;
+  height: 41px;
+}

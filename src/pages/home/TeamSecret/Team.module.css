@@ -1,0 +1,107 @@
+* a {
+  text-decoration: none;
+}
+.team {
+  position: relative;
+  display: flex;
+}
+.team h2 {
+  font-family: 'Raleway';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 40px;
+  line-height: 110%;
+  letter-spacing: 0.02em;
+  margin-bottom: 90px;
+}
+.carouselDiv {
+  height: 488px;
+  width: 729px;
+  margin-right: 125px;
+  margin-bottom: 130px;
+}
+
+.arrowLeft {
+  cursor: pointer;
+
+  position: absolute;
+  left: -70px;
+  top: 370px;
+  background-color: transparent;
+  border: none;
+  font-size: 40px;
+}
+
+.arrowRight {
+  cursor: pointer;
+  position: absolute;
+  right: 400px;
+  top: 370px;
+  background-color: transparent;
+  border: none;
+  font-size: 40px;
+}
+
+.everyBrand div {
+  margin-top: 280px;
+  justify-content: center;
+}
+.everyBrand h4 {
+  font-family: 'Raleway';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 25px;
+  line-height: 140%;
+  letter-spacing: 0.02em;
+}
+.everyBrand p {
+  font-family: 'Raleway';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 17px;
+  line-height: 140%;
+  letter-spacing: 0.02em;
+}
+.everyBrand a {
+  margin-top: 50px;
+  font-family: 'Raleway';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 17px;
+  line-height: 140%;
+  letter-spacing: 0.02em;
+}
+
+.BrandLink {
+  font-family: 'Raleway';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 17px;
+  line-height: 140%;
+  /* identical to box height, or 24px */
+
+  letter-spacing: 0.02em;
+
+  /* CTA */
+
+  color: #6e9c9f;
+  text-decoration: none;
+}
+
+.BrandLink:hover{
+ font-family: 'Raleway';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 17px;
+  line-height: 140%;
+  /* identical to box height, or 24px */
+
+  letter-spacing: 0.02em;
+
+  /* CTA */
+
+  color: #6e9c9f;
+  text-decoration: none;
+
+  opacity: 0.75;
+}

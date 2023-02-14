@@ -1,0 +1,200 @@
+.divCollections {
+  position: relative;
+}
+
+.collectionH2 {
+  font-weight: 500;
+  font-size: 40px;
+  line-height: 110%;
+  letter-spacing: 0.02em;
+  margin-bottom: 92px;
+}
+.collections {
+  display: flex;
+  margin-bottom: 60px;
+}
+.collection {
+  margin-left: 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0px;
+  gap: 24px;
+}
+
+.collection:first-child {
+  margin-left: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0px;
+  gap: 24px;
+
+  width: 350px;
+  height: 558px;
+}
+.collection:last-child {
+  position: relative;
+  margin-left: 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0px;
+  gap: 24px;
+
+  width: 350px;
+  height: 558px;
+}
+
+.collectionDiv {
+  position: relative;
+}
+
+.imgMain {
+  width: 350px;
+  height: 478px;
+}
+.navLink {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.lineCard {
+  display: flex;
+}
+.lineCard_div {
+  position: relative;
+
+  width: 50%;
+  height: 100%;
+}
+.lineCardImg {
+  position: absolute;
+  /* top: 30px; */
+  width: 22px;
+  z-index: 20;
+  top: -460px;
+  left: 36%;
+  transition: 0.5s;
+}
+.lineCardImgActive {
+  content: url(https://svgur.com/i/pvP.svg);
+  transition: 0.5s;
+}
+
+.cardImg {
+  position: absolute;
+  bottom: 0;
+
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: flex-start;
+}
+
+.cardImg .cardImg_div {
+  justify-content: flex-end;
+  font-size: 30px;
+  z-index: 10;
+  width: 50%;
+  height: 100%;
+}
+
+.cardImg .cardImg_div:hover {
+  width: 50%;
+  height: 100%;
+  z-index: 0;
+}
+
+.cardImg .cardImg_div img {
+  width: 0%;
+  height: 0%;
+}
+
+.cardImg .cardImg_div:hover img {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  z-index: 0;
+}
+
+.collection h4 {
+  z-index: 10;
+  margin: 0px;
+
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 140%;
+  letter-spacing: 0.02em;
+}
+
+.modelPrice {
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 140%;
+  letter-spacing: 0.02em;
+  margin-bottom: 65px;
+  margin-right: 10px;
+  color: #998e78;
+}
+.discountTrue {
+  text-decoration: line-through;
+  font-size: 16px;
+  color: #9c9c9c;
+}
+
+.modelDiscountDiv {
+  width: 180px;
+}
+.modelDiscount {
+  color: #998e78;
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 140%;
+  letter-spacing: 0.02em;
+  margin-bottom: 65px;
+}
+
+.linkStore {
+  display: block;
+  width: 268px;
+  height: 70px;
+  margin-left: 425px;
+  margin-bottom: 120px;
+  background-color: transparent;
+}
+.linkStore button {
+  padding: 13px 100px;
+  border: 1px solid#6e9c9f;
+  font-weight: 400;
+  font-size: 17px;
+  line-height: 138.9%;
+  text-align: center;
+  letter-spacing: 0.02em;
+  color: #6e9c9f;
+  cursor: pointer;
+  background-color: transparent;
+}
+
+.linkStore button:hover {
+  padding: 13px 100px;
+
+  border: 1px solid#6e9c9f;
+  font-weight: 400;
+  font-size: 17px;
+  line-height: 138.9%;
+  text-align: center;
+  letter-spacing: 0.02em;
+  color: white;
+  background: #509498;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.linkStore button:not(:hover) {
+  cursor: pointer;
+  transition: 0.3s;
+}
