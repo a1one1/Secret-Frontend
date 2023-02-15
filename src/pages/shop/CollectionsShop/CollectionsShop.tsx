@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { SetStateAction } from 'react';
 import { NavLink } from 'react-router-dom';
 import { useTypedSelector } from '../../../redux/hooks/useTypedSelector';
 import { iModels } from '../../../redux/store/types/IModels';
@@ -9,7 +9,7 @@ import SkeletonShop from './SkeletonShop';
 
 interface CollectionsProps {
   currentPage: number;
-  setCurrentPage: (value: any) => void;
+  setCurrentPage: (value: SetStateAction<number>) => void;
   modelsPerPage: number;
 }
 
@@ -18,7 +18,7 @@ export default function Collections({
   currentPage,
   setCurrentPage,
 }: CollectionsProps): JSX.Element {
-  const { error, loading, modelsFilter, models } = useTypedSelector(
+  const { loading, modelsFilter, models } = useTypedSelector(
     state => state.model
   );
 
@@ -41,7 +41,7 @@ export default function Collections({
     }
   };
 
-  const pageNumbers: any[] = [];
+  const pageNumbers: number[] = [];
 
   for (let i = 1; i <= Math.ceil(models.length / modelsPerPage); i++) {
     pageNumbers.push(i);

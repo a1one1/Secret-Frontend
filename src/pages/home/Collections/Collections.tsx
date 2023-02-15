@@ -1,14 +1,11 @@
 import React, { useState } from 'react';
 import styles from './Collections.module.css';
-import collections from '../../../assets/home/collections/christopher-campbell.png';
-import arrow from '../../../assets/home/collections/arrow.svg';
 import { Link, NavLink } from 'react-router-dom';
 import { useTypedSelector } from '../../../redux/hooks/useTypedSelector';
-import collections1 from '../../../assets/home/collections/op.jpg';
 import { iModels } from '../../../redux/store/types/IModels';
 
 export default function Collections(): JSX.Element {
-  const { error, loading, models } = useTypedSelector(state => state.model);
+  const { models } = useTypedSelector(state => state.model);
   const [lineCardId, setLineCardId] = useState<any>();
   const [lineCardIndex, setLineCardIndex] = useState<any>();
 
@@ -19,7 +16,7 @@ export default function Collections(): JSX.Element {
   }
 
   return (
-    <div className={styles.divCollections}>
+    <section className={styles.sectionCollections}>
       <h2 className={styles.collectionH2}>Новая коллекция</h2>
       <div className={styles.lineCard}></div>
       <section className={styles.collections}>
@@ -36,7 +33,7 @@ export default function Collections(): JSX.Element {
                 <img className={styles.imgMain} src={model.modelImg} alt='' />
                 <div className={styles.lineCard}>
                   {model.img.map((_, index) => (
-                    <div className={styles.lineCard_div}>
+                    <div key={index} className={styles.lineCard_div}>
                       <img
                         className={
                           model._id === lineCardId
@@ -93,6 +90,6 @@ export default function Collections(): JSX.Element {
       <Link className={styles.linkStore} to='/shop'>
         <button>Открыть магазин </button>
       </Link>
-    </div>
+    </section>
   );
 }

@@ -20,9 +20,7 @@ export const fetchModels = () => {
           categories: responseCategories.data,
         },
       });
-    } catch (e) {
-      console.log(e);
-
+    } catch (e: any) {
       dispatch({
         type: modelsActionTypes.FETCH_MODELS_ERROR,
         payload: 'произошла ошибка при загрузке  моделей',

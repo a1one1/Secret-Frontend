@@ -1,7 +1,6 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import styles from './AuthHeader.module.css';
-import telephone from '../../../../assets/header/telephone.svg';
-import useActions from '../../../../redux/hooks/useActionUser';
+
 import { useTypedSelector } from '../../../../redux/hooks/useTypedSelector';
 import SignIn from './signIn/SignIn';
 import SignUp from './signUp/SignUp';
@@ -22,7 +21,6 @@ export default function Authorization(): JSX.Element {
 
   return (
     <div className={styles.auth}>
-      {/* <img className={styles.img} src={telephone} alt='' /> */}
       <div className={styles.authSwag}>
         {!login ? (
           <div>

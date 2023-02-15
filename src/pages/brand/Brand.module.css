@@ -112,14 +112,12 @@
   height: 68px;
   border: 1px solid #6e9c9f;
   margin: 130px 0;
+  transition: 0.3s;
+
 }
 
 .brandButton div button:hover {
   background: #509498;
   cursor: pointer;
-  transition: 0.3s;
-}
-
-.brandButton div button:not(:hover) {
   transition: 0.3s;
 }

@@ -1,7 +1,6 @@
 import styles from './Header.module.css';
 import AuthHeader from './authHeader/AuthHeader';
 import Basket from './basket/BasketHeader';
-import logo from '../../../assets/header/logo.svg';
 import { NavLink } from 'react-router-dom';
 import { useEffect } from 'react';
 import useActionsUser from '../../../redux/hooks/useActionUser';

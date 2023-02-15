@@ -8,7 +8,7 @@ interface ISignIn {
 }
 
 export default function SignUp({ signUpActive, setSignUpActive }: ISignIn) {
-  const [passwordInput, setPasswordInput] = useState(false);
+  const [passwordInput, setPasswordInput] = useState<boolean>(false);
   const [successAuth, setSuccessAuth] = useState<JSX.Element>(<></>);
 
   const {

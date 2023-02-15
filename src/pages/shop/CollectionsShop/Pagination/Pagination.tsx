@@ -14,7 +14,7 @@ export default function Pagination({
   currentPage,
   paginate,
   nextPage,
-}: IPogination) {
+}: IPogination): JSX.Element {
   return (
     <div className={styles.pagination}>
       <div className={styles.paginationDiv}>

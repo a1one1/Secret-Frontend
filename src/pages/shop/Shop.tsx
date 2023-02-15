@@ -1,17 +1,10 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { useTypedSelector } from '../../redux/hooks/useTypedSelector';
 import styles from './Shop.module.css';
 import Collections from './CollectionsShop/CollectionsShop';
 import Categories from './Categories/Categories';
-import { iModels } from '../../redux/store/types/IModels';
-import axios from 'axios';
-import Skeleton from './CollectionsShop/SkeletonShop';
-import { useDispatch } from 'react-redux';
-import { modelsActionTypes } from '../../redux/store/types/model';
 
 export default function Shop(): JSX.Element {
-  const { error, loading, models } = useTypedSelector(state => state.model);
   const [currentPage, setCurrentPage] = useState(1);
   const [modelsPerPage] = useState(9);
 

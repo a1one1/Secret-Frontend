@@ -5,7 +5,7 @@ export interface IModelState {
   modelsFilter: iModels[];
   categories: iCategories[];
   loading: boolean;
-  error: null | string;
+  error: null | string | boolean;
 }
 interface IModelAction {
   type: string;

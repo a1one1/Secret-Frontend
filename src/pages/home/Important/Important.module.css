@@ -12,18 +12,18 @@
   display: flex;
   flex-wrap: wrap;
 }
-.important {
+.importantQuality {
   flex: 1 1 auto;
   margin: 0 5px;
 }
 
-.important img {
+.importantQuality img {
   width: 60px;
   height: 63px;
   margin-bottom: 35px;
 }
 
-.important h3 {
+.importantQuality h3 {
   font-family: 'Raleway';
   font-style: normal;
   font-weight: 500;
@@ -34,7 +34,7 @@
   margin-bottom: 25px;
 }
 
-.important p {
+.importantQuality p {
   width: 305px;
   height: 115px;
   font-family: 'Raleway';

@@ -11,10 +11,10 @@ import SkeletonBasket from './SkeletonBasket';
 export default function Basket() {
   const { id, login, basket } = useTypedSelector(state => state.user);
   const { loading } = useTypedSelector(state => state.model);
-  const [total, setTotal] = useState<any>();
-  const [totalDiscount, setTotalDiscount] = useState<any>();
-  const [discountSuccess, setDiscountSuccess] = useState<any>();
-  const [couponDiscount, setCouponDiscount] = useState(0);
+  const [total, setTotal] = useState<number>(0);
+  const [totalDiscount, setTotalDiscount] = useState<number>(0);
+  const [discountSuccess, setDiscountSuccess] = useState<JSX.Element>();
+  const [couponDiscount, setCouponDiscount] = useState<number>(0);
 
   const { removeModel, AmountPlus, AmountMinus } = useActions();
 
@@ -112,7 +112,7 @@ export default function Basket() {
   }
 
   return (
-    <div className={styles.basket}>
+    <main className={styles.basket}>
       <h3 className={styles.basketH3}>Корзина</h3>
 
       <div className={styles.basketRoutes}>
@@ -280,6 +280,6 @@ export default function Basket() {
           </div>
         </div>
       )}
-    </div>
+    </main>
   );
 }
