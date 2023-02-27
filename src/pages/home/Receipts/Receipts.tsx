@@ -1,10 +1,6 @@
 import React from 'react';
 import styles from './Receipts.module.css';
-import modelFirst from '../../../assets/home/receipts/model-first.svg';
-import modelSecond from '../../../assets/home/receipts/model-second.svg';
-import modelThird from '../../../assets/home/receipts/model-third.svg';
 import backgraund from '../../../assets/home/receipts/backgraund.jpg';
-import Collections from '../Collections/Collections';
 import { Link } from 'react-router-dom';
 
 export default function Receipts(): JSX.Element {

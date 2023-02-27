@@ -1,31 +1,29 @@
 export interface iModels {
-  colors: [
-    {
-      color: String;
-      modelImgItem: String;
-      imgItem: String[];
-      _id: String;
-      sizesModel: [
-        {
-          size: String;
-          rest: Number;
-          _id: string;
-        }
-      ];
-    }
-  ];
+  colors: iModelsColor[];
   _id: string;
   name: string;
   modelImg: string;
-  img: String[];
-  price: Number;
-  discount: Number;
+  img: string[];
+  price: number;
+  discount: number;
   categoriesId: {
     _id: string;
     name: string;
-    __v: Number;
   };
-  __v: Number;
+}
+
+export interface iModelsColor {
+  color: string;
+  modelImgItem: string;
+  imgItem: string[];
+  _id: string;
+  sizesModel: iModelsSize[];
+}
+
+export interface iModelsSize {
+  size: string;
+  rest: number;
+  _id: string;
 }
 
 export interface iCategories {

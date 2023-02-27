@@ -1,6 +1,5 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import styles from './BasketHeader.module.css';
-import basketImg from '../../../../assets/header/basket.svg';
 import { useTypedSelector } from '../../../../redux/hooks/useTypedSelector';
 import { Link } from 'react-router-dom';
 

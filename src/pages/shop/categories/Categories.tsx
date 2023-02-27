@@ -1,24 +1,20 @@
-import axios from 'axios';
-import React, { Dispatch, SetStateAction, useEffect, useState } from 'react';
+import React, { SetStateAction, useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useTypedSelector } from '../../../redux/hooks/useTypedSelector';
-import { iModels } from '../../../redux/store/types/IModels';
 import { modelsActionTypes } from '../../../redux/store/types/model';
 import styles from './Categories.module.css';
 import SkeletonCat from './SkeletonCat';
 interface CategoriesProps {
   currentPage: number;
-  setCurrentPage: (value: number) => void;
+  setCurrentPage: (value: SetStateAction<number>) => void;
 }
 
-export default function Categories({ setCurrentPage }: CategoriesProps) {
-  const { loading, models, categories } = useTypedSelector(
-    state => state.model
-  );
+export default function Categories({ setCurrentPage }: CategoriesProps): JSX.Element {
+  const { loading, categories } = useTypedSelector(state => state.model);
   const dispatch = useDispatch();
-  const [categoriesId, setCategoriesId] = useState(0);
+  const [categoriesId, setCategoriesId] = useState<number>(0);
 
-  function handleCategoriesId(index: number, categoriesName: any) {
+  function handleCategoriesId(index: number, categoriesName: string) {
     setCurrentPage(1);
     setCategoriesId(index);
     dispatch({
@@ -45,17 +41,17 @@ export default function Categories({ setCurrentPage }: CategoriesProps) {
             [...new Array(5)].map((_, index) => <SkeletonCat key={index} />)
           ) : (
             <div className={styles.liWrapper}>
-              {categories.map((item, index) => (
-                <li key={item._id}>
+              {categories.map((categories, index) => (
+                <li key={categories._id}>
                   <button
-                    onClick={() => handleCategoriesId(index, item.name)}
+                    onClick={() => handleCategoriesId(index, categories.name)}
                     className={
                       categoriesId == index
                         ? styles.categoriesBtnACT
                         : styles.categoriesBtn
                     }
                   >
-                    {item.name}
+                    {categories.name}
                   </button>
                 </li>
               ))}

@@ -1,7 +1,6 @@
 import styles from './Header.module.css';
 import AuthHeader from './authHeader/AuthHeader';
 import Basket from './basket/BasketHeader';
-import logo from '../../../assets/header/logo.svg';
 import { NavLink } from 'react-router-dom';
 import { useEffect } from 'react';
 import useActionsUser from '../../../redux/hooks/useActionUser';
@@ -20,7 +19,7 @@ export default function Header(): JSX.Element {
     <header>
       <div className={styles.header}>
         <div className={styles.headerLog}>
-          <img src='https://svgur.com/i/pt7.svg' alt='dress' />
+          <img src='https://svgur.com/i/qdv.svg' alt='dress' />
           <div>Secret</div>
         </div>
 

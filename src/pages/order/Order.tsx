@@ -1,6 +1,6 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
-import { json, Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { IModel } from '../../redux/store/types/IModel';
 import styles from './Order.module.css';
 
@@ -26,10 +26,9 @@ interface IOrder {
   };
 }
 
-export default function OrderUser() {
+export default function OrderUser(): JSX.Element {
   const [UserOrder, setUserOrder] = useState<IOrder>();
-  const [total, setTotal] = useState<any>();
-  const [errrorOrder, setErrrorOrder] = useState<any>();
+  const [total, setTotal] = useState<number>(0);
 
   useEffect(() => {
     const localStorageOrder = localStorage.getItem('order');
@@ -43,8 +42,9 @@ export default function OrderUser() {
     const total = UserOrder?.basket.reduce((acc, model) => {
       return model.price * model.amount + acc;
     }, 0);
-
-    setTotal(total);
+    if (total) {
+      setTotal(total);
+    }
   }, [UserOrder]);
 
   const {

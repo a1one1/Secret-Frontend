@@ -6,11 +6,13 @@ export interface IModel {
   modelImg: string;
   img: string[];
   uniqueId: string;
-  size: {
-    size: string;
-    rest: number;
-    _id?: string;
-  };
+  size: ISizeModel;
   _id?: string;
   amount: number;
+}
+
+export interface ISizeModel {
+  size: string;
+  rest: number;
+  _id?: string;
 }

@@ -9,7 +9,7 @@ export default function Important(): JSX.Element {
     <section>
       <h2 className={styles.importantH2}>Что для нас важно</h2>
       <div className={styles.importantDiv}>
-        <div className={styles.important}>
+        <div className={styles.importantQuality}>
           <img src={quality} alt='quality' />
           <h3>Качество</h3>
           <p>
@@ -17,7 +17,7 @@ export default function Important(): JSX.Element {
             беспрецедентного качества
           </p>
         </div>
-        <div className={styles.important}>
+        <div className={styles.importantQuality}>
           <img src={speed} alt='speed' />
           <h3>Скорость</h3>
           <p>
@@ -25,7 +25,7 @@ export default function Important(): JSX.Element {
             отшивать до 20-ти единиц продукции в наших собственных цехах
           </p>
         </div>
-        <div className={styles.important}>
+        <div className={styles.importantQuality}>
           <img src={hand} alt='hand' />
           <h3>Ответственность</h3>
           <p>

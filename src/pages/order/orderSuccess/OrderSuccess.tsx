@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import styles from './OrderSuccess.module.css';
 
-export default function OrderSuccess() {
+export default function OrderSuccess(): JSX.Element {
   return (
     <section className={styles.orderSuccessSection}>
       <div className={styles.HeadOrder}>
@@ -13,7 +13,9 @@ export default function OrderSuccess() {
           </Link>
           <div className={styles.line}>—</div>
           <div className={styles.orderItem}>
-            <Link className={styles.orderLink} to={'/shop'}>Оформление заказа</Link>
+            <Link className={styles.orderLink} to={'/shop'}>
+              Оформление заказа
+            </Link>
           </div>
           <div className={styles.line}>—</div>
           <div className={styles.orderItemGrey}>Заказ оформлен</div>

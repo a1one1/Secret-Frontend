@@ -43,7 +43,7 @@ export const fetchUserToken = (data: any) => {
         });
       }
     } catch (e: any) {
-      console.log(e.toString());
+      throw e.toString()
     }
   };
 };
@@ -78,8 +78,19 @@ export const fetchUser = () => {
           });
         }
       }
-    } catch (e) {
-      console.log(e);
+    } catch (e: any) {
+      localStorage.removeItem('login');
+
+      const localStorageGet = localStorage.getItem('basket');
+
+      if (localStorageGet) {
+        const localStorageParse: IModel[] = JSON.parse(localStorageGet!);
+
+        dispatch({
+          type: userActionTypes.LOCAL_STORAGE_ADD,
+          payload: localStorageParse,
+        });
+      }
     }
   };
 };
