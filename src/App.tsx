@@ -8,7 +8,7 @@ import Contacts from './pages/contacts/Contacts';
 import Footer from './components/layout/footer/Footer';
 import { Provider } from 'react-redux';
 import { store } from './redux/store/store';
-import OneModel from './pages/shop/OneModel/OneModel';
+import OneModel from './pages/shop/oneModel/OneModel';
 import Basket from './pages/basket/Basket';
 import Order from './pages/order/Order';
 import OrderSuccess from './pages/order/orderSuccess/OrderSuccess';
