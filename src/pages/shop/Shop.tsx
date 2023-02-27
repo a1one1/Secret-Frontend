@@ -5,8 +5,8 @@ import Collections from './CollectionsShop/CollectionsShop';
 import Categories from './Categories/Categories';
 
 export default function Shop(): JSX.Element {
-  const [currentPage, setCurrentPage] = useState(1);
-  const [modelsPerPage] = useState(9);
+  const [currentPage, setCurrentPage] = useState<number>(1);
+  const [modelsPerPage] = useState<number>(9);
 
   return (
     <main className={styles.main}>
