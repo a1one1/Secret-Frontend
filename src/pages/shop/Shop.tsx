@@ -8,7 +8,7 @@ export default function Shop(): JSX.Element {
   const [currentPage, setCurrentPage] = useState<number>(1);
   const [modelsPerPage] = useState<number>(9);
 
-  console.log('ds');
+
   
 
   return (
