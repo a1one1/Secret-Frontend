@@ -1,8 +1,8 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import styles from './Shop.module.css';
-import Collections from './CollectionsShop/CollectionsShop';
-import Categories from './Categories/Categories';
+import Collections from './collectionsShop/CollectionsShop';
+import Categories from './categories/Categories';
 
 export default function Shop(): JSX.Element {
   const [currentPage, setCurrentPage] = useState<number>(1);

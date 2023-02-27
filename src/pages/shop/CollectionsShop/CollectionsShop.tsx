@@ -3,7 +3,7 @@ import { NavLink } from 'react-router-dom';
 import { useTypedSelector } from '../../../redux/hooks/useTypedSelector';
 import { iModels } from '../../../redux/store/types/IModels';
 import styles from './CollectionsShop.module.css';
-import Pagination from './Pagination/Pagination';
+import Pagination from './pagination/Pagination';
 import ContentLoader from 'react-content-loader';
 import SkeletonShop from './SkeletonShop';
 

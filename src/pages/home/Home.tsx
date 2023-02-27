@@ -1,8 +1,8 @@
-import Collections from './Collections/Collections';
+import Collections from './collections/Collections';
 import styles from './Home.module.css';
-import Receipts from './Receipts/Receipts';
-import Important from './Important/Important';
-import Team from './TeamSecret/Team';
+import Receipts from './receipts/Receipts';
+import Important from './important/Important';
+import Team from './teamSecret/Team';
 
 export default function Home(): JSX.Element {
   return (
