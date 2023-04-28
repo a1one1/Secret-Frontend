@@ -13,6 +13,7 @@ _Стек технологий_
 - React-content-loader
 - Prettier 
 - NodeJS (express.js)
+- MongoDb
 - mongoose
 - JsonWebToken
 - Git 
