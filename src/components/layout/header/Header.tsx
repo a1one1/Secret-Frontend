@@ -5,6 +5,7 @@ import { NavLink } from 'react-router-dom';
 import { useEffect } from 'react';
 import useActionsUser from '../../../redux/hooks/useActionUser';
 import useActionsModel from '../../../redux/hooks/useActionModels';
+import HeadLogo from '../../../../public/Vector.svg';
 
 export default function Header(): JSX.Element {
   const { fetchUser } = useActionsUser();
@@ -19,7 +20,7 @@ export default function Header(): JSX.Element {
     <header>
       <div className={styles.header}>
         <div className={styles.headerLog}>
-          <img src='https://svgur.com/i/qdv.svg' alt='dress' />
+          <img src={HeadLogo} alt='dress' />
           <div>Secret</div>
         </div>
 
