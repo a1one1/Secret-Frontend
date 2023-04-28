@@ -17,6 +17,7 @@ _Стек технологий_
 - mongoose
 - JsonWebToken
 - Git 
+- Vite 
 
 ---
 _Команда проекта_
